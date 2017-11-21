@@ -1,0 +1,1105 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Android,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="想法RecyclerView 出来已经有好长时间了, 在自己的项目中却一直没有使用 … 这几天查阅了相关资料, 一步步地 check 着这个熟悉而又陌生的家伙, 自此爱不释手。 官方是这样介绍的:  RecyclerView is a more advanced and flexible version of List">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android RecyclerView Demo">
+<meta property="og:url" content="https://absentm.github.io/2016/11/21/Android-RecyclerView-Demo/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="想法RecyclerView 出来已经有好长时间了, 在自己的项目中却一直没有使用 … 这几天查阅了相关资料, 一步步地 check 着这个熟悉而又陌生的家伙, 自此爱不释手。 官方是这样介绍的:  RecyclerView is a more advanced and flexible version of ListView. This widget is a container for lar">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-1.jpg">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-2.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-3-new.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-4.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-5.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-6.png">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android RecyclerView Demo">
+<meta name="twitter:description" content="想法RecyclerView 出来已经有好长时间了, 在自己的项目中却一直没有使用 … 这几天查阅了相关资料, 一步步地 check 着这个熟悉而又陌生的家伙, 自此爱不释手。 官方是这样介绍的:  RecyclerView is a more advanced and flexible version of ListView. This widget is a container for lar">
+<meta name="twitter:image" content="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/11/21/Android-RecyclerView-Demo/">
+
+  <title> Android RecyclerView Demo | AbsentM's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?021d64369b3c401c47c6ab7aa56f7074";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">AbsentM's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android RecyclerView Demo
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-11-21T15:17:16+08:00" content="2016-11-21">
+              2016-11-21
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Android Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/21/Android-RecyclerView-Demo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/21/Android-RecyclerView-Demo/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/21/Android-RecyclerView-Demo/" class="leancloud_visitors" data-flag-title="Android RecyclerView Demo">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>RecyclerView 出来已经有好长时间了, 在自己的项目中却一直没有使用 … 这几天查阅了相关资料, 一步步地 check 着这个熟悉而又陌生的家伙, 自此爱不释手。</p>
+<p>官方是这样介绍的:</p>
+<blockquote>
+<p>RecyclerView is a more advanced and flexible version of ListView. This widget is a container for large sets of views that can be recycled and scrolled very efficiently. Use the RecyclerView widget when you have lists with elements that change dynamically.</p>
+</blockquote>
+<p>写了一个 Demo, 包涵了如下功能, 下文也将依次以此展开 (适合新手, 大神绕道)：</p>
+<ol>
+<li>RecyclerView 控件的基本用法 ;</li>
+<li>item 的 Click, LongClick 事件处理 ;</li>
+<li>同一样式的 Item 不同布局的展示 ;</li>
+<li>Item 控件的状态变化处理, 如阅读痕迹等 …</li>
+</ol>
+<p>写着写着, 大致有了如此模样:</p>
+<figure class="third"><br>    <img src="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-1.jpg" height="400" width="240"><br>    <img src="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-2.png" height="400" width="240"><br>    <img src="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-3-new.png" height="400" width="240"><br></figure>
+
+<figure class="third"><br>    <img src="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-4.png" height="400" width="240"><br>    <img src="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-5.png" height="400" width="240"><br>    <img src="https://o8zyn0sct.qnssl.com/RecyclerView-Demo-6.png" height="400" width="240"><br></figure>
+
+<p><br><strong>Demo 代码放在了这里:</strong><br><a href="https://github.com/absentm/Demo" target="_blank" rel="noopener">https://github.com/absentm/Demo</a><br><strong>Apk 下载地址:</strong><br><a href="https://github.com/absentm/Demo/blob/master/apk/RecyclerViewDemo.apk" target="_blank" rel="noopener">https://github.com/absentm/Demo/blob/master/apk/RecyclerViewDemo.apk</a></p>
+<hr>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="添加包引用"><a href="#添加包引用" class="headerlink" title="添加包引用"></a>添加包引用</h3><p>在 Gradle 文件中添加 recyclerview 的包引用, cardview 也顺便加上吧:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.android.support:recyclerview-v7:24.+&apos;</span><br><span class="line">compile &apos;com.android.support:cardview-v7:24.+&apos;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="XML-中定义"><a href="#XML-中定义" class="headerlink" title="XML 中定义"></a>XML 中定义</h3><p>这个很基本了, 长这样就 ok :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.RecyclerView</span><br><span class="line">    android:id=&quot;@+id/recyclerview&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="Activity-中初始化"><a href="#Activity-中初始化" class="headerlink" title="Activity 中初始化"></a>Activity 中初始化</h3><p>在 Activity 中需要查找 id , 初始化布局管理器（LayoutManager）, 设置Adapter等, 大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);</span><br><span class="line">mMainPagesAdapter = new MainPagesAdapter(MainActivity.this, mDatas);</span><br><span class="line">mLayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);</span><br><span class="line"></span><br><span class="line">mRecyclerView.setAdapter(mMainPagesAdapter);</span><br><span class="line">mRecyclerView.setLayoutManager(mLayoutManager);</span><br><span class="line">mRecyclerView.setItemAnimator(new DefaultItemAnimator());//默认动画</span><br><span class="line">mRecyclerView.setHasFixedSize(true);//效率最高</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Adapter-构造适配器"><a href="#Adapter-构造适配器" class="headerlink" title="Adapter 构造适配器"></a>Adapter 构造适配器</h3><p>到这里, 当和 ListView 做对比时, 可以发现 RecyclerView 似乎是在强制开发者使用 ListView 的 ViewHolder 模式, Adapter 的代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">import android.content.Context;</span><br><span class="line">import android.graphics.Color;</span><br><span class="line">import android.support.v7.widget.RecyclerView;</span><br><span class="line">import android.view.LayoutInflater;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.view.ViewGroup;</span><br><span class="line">import android.widget.ImageView;</span><br><span class="line">import android.widget.TextView;</span><br><span class="line"></span><br><span class="line">import com.bumptech.glide.Glide;</span><br><span class="line">import com.bumptech.glide.load.engine.DiskCacheStrategy;</span><br><span class="line">import com.dm.recyclerviewdemo.R;</span><br><span class="line">import com.dm.recyclerviewdemo.beans.NewsBean;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * MainPagesAdapter</span><br><span class="line"> * Created by dm on 16-11-17.</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class MainPagesAdapter</span><br><span class="line">        extends RecyclerView.Adapter&lt;MainPagesAdapter.ItemContentHolder&gt;</span><br><span class="line">        implements View.OnClickListener, View.OnLongClickListener &#123;</span><br><span class="line"></span><br><span class="line">    private Context context;</span><br><span class="line">    private List&lt;NewsBean&gt; mDatas;</span><br><span class="line"></span><br><span class="line">    public MainPagesAdapter(Context context, List&lt;NewsBean&gt; datas) &#123;</span><br><span class="line">        this.context = context;</span><br><span class="line">        mDatas = datas;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public ItemContentHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</span><br><span class="line">        View view = LayoutInflater.from(context).inflate(R.layout.main_news_item, parent, false);</span><br><span class="line"></span><br><span class="line">        MainPagesAdapter.ItemContentHolder viewHolder = new MainPagesAdapter.ItemContentHolder(view);</span><br><span class="line">        return viewHolder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onBindViewHolder(ItemContentHolder holder, int position) &#123;</span><br><span class="line">        // 使用Glide图片缓存框架加载图</span><br><span class="line">        Glide.with(context)</span><br><span class="line">                .load(mDatas.get(position).getPicUrl())</span><br><span class="line">                .error(R.drawable.icon)</span><br><span class="line">                .diskCacheStrategy(DiskCacheStrategy.ALL)</span><br><span class="line">                .crossFade()</span><br><span class="line">                .centerCrop()</span><br><span class="line">                .into(holder.newsItemImv);</span><br><span class="line">        holder.newsItemTitleTv.setText(mDatas.get(position).getTitle());</span><br><span class="line">        holder.newsItemTimeTv.setText(mDatas.get(position).getCtime());</span><br><span class="line"></span><br><span class="line">        // 将数据保存在itemView的Tag中，以便点击时进行获取</span><br><span class="line">        holder.itemView.setTag(mDatas.get(position));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getItemCount() &#123;</span><br><span class="line">        return mDatas == null ? 0 : mDatas.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class ItemContentHolder extends RecyclerView.ViewHolder &#123;</span><br><span class="line">        ImageView newsItemImv;</span><br><span class="line">        TextView newsItemTitleTv;</span><br><span class="line">        TextView newsItemTimeTv;</span><br><span class="line"></span><br><span class="line">        public ItemContentHolder(View itemView) &#123;</span><br><span class="line">            super(itemView);</span><br><span class="line">            newsItemImv = (ImageView) itemView.findViewById(R.id.main_item_image_imv);</span><br><span class="line">            newsItemTitleTv = (TextView) itemView.findViewById(R.id.main_item_title_tv);</span><br><span class="line">            newsItemTimeTv = (TextView) itemView.findViewById(R.id.main_item_time_tv);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="数据源-mDatas"><a href="#数据源-mDatas" class="headerlink" title="数据源 mDatas"></a>数据源 mDatas</h3><p>完成了以上操作, 还需要加载我们的数据。 Demo 的数据来自 <a href="http://apistore.baidu.com/apiworks/servicedetail/768.html" target="_blank" rel="noopener">ApiStore 的娱乐新闻</a> , 请求网络后返回 Json 格式数据。所以, 需要进行Json数据解析。</p>
+<p>本文使用 Thread + Handler + Gson 技术进行网络数据加载和解析, 该技术的使用方法可参看我的这些文章:</p>
+<blockquote>
+<p><a href="https://absentm.github.io/2015/03/24/Java%E4%B8%ADGson%E7%9A%84%E4%BD%BF%E7%94%A8/">Java中Gson的使用</a><br><a href="https://absentm.github.io/2015/03/28/Java%E4%B8%AD%E4%BD%BF%E7%94%A8Gson%E8%A7%A3%E6%9E%90json%E6%95%B0%E6%8D%AE/">Java中使用Gson解析json数据</a><br><a href="https://absentm.github.io/2015/04/20/Android-%E4%BD%BF%E7%94%A8Thread-Handler%E5%AE%9E%E7%8E%B0%E9%9D%9EUI%E7%BA%BF%E7%A8%8B%E6%9B%B4%E6%96%B0UI%E7%95%8C%E9%9D%A2/">Android 使用Thread+Handler实现非UI线程更新UI界面</a></p>
+</blockquote>
+<p>数据加载和填充的核心代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">// 发送网络请求, 获取数据</span><br><span class="line">isConnect = SystemUtils.checkNetworkConnection(MainActivity.this);</span><br><span class="line">if (isConnect) &#123;</span><br><span class="line">    new Thread(new Runnable() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            String newsDatas = SystemUtils.getNewsJsonStr();</span><br><span class="line">            Log.i(TAG, &quot;newsDatas &gt;&gt;&gt; &quot; + newsDatas);</span><br><span class="line">            if (!newsDatas.equals(&quot;&quot;)) &#123;</span><br><span class="line">                Message message = mHandler.obtainMessage();</span><br><span class="line">                message.obj = newsDatas;</span><br><span class="line">                mHandler.sendMessage(message);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                mProgressBar.setVisibility(View.GONE);</span><br><span class="line">                Snackbar.make(mCoordinatorLayout, &quot;数据加载出错 !!!&quot;,</span><br><span class="line">                        Snackbar.LENGTH_LONG).setAction(&quot;Action&quot;, null).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    Snackbar.make(mCoordinatorLayout, &quot;No NetWork !!!&quot;,</span><br><span class="line">            Snackbar.LENGTH_LONG).setAction(&quot;Action&quot;, null).show();</span><br><span class="line">    mProgressBar.setVisibility(View.GONE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 解析数据, 填充到控件上</span><br><span class="line">private Handler mHandler = new Handler() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void handleMessage(Message msg) &#123;</span><br><span class="line">        String newsJsonStr = msg.obj.toString();</span><br><span class="line">        Log.d(&quot;FindVideoAty&quot;, &quot; Json: &quot; + newsJsonStr);</span><br><span class="line"></span><br><span class="line">        Gson gson = new Gson();</span><br><span class="line">        NewsInfosBean newsInfosBean = gson.fromJson(newsJsonStr, NewsInfosBean.class);</span><br><span class="line">        if (newsInfosBean.getCode() == 200) &#123;</span><br><span class="line">            mDatas = newsInfosBean.getNewslist();</span><br><span class="line"></span><br><span class="line">            MainPagesAdapter.layoutFlag = 0;</span><br><span class="line">            mMainPagesAdapter = new MainPagesAdapter(MainActivity.this, mDatas);</span><br><span class="line">            mLayoutManager = new LinearLayoutManager(MainActivity.this,</span><br><span class="line">                    LinearLayoutManager.VERTICAL, false);</span><br><span class="line">            mRecyclerView.setAdapter(mMainPagesAdapter);</span><br><span class="line">            mRecyclerView.setLayoutManager(mLayoutManager);</span><br><span class="line">            mRecyclerView.setItemAnimator(new DefaultItemAnimator());//默认动画</span><br><span class="line">            mRecyclerView.setHasFixedSize(true);//效率最高</span><br><span class="line"></span><br><span class="line">            mMainPagesAdapter.setOnItemClickListener(MainActivity.this);</span><br><span class="line">            mMainPagesAdapter.setOnItemLongClickListener(MainActivity.this);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            Snackbar.make(mCoordinatorLayout, &quot;数据加载出错 !!!&quot;,</span><br><span class="line">                    Snackbar.LENGTH_LONG).setAction(&quot;Action&quot;, null).show();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mProgressBar.setVisibility(View.GONE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="Click-事件监听"><a href="#Click-事件监听" class="headerlink" title="Click 事件监听"></a>Click 事件监听</h2><p>以上基本上是 RecyclerView 的用法过程了, 但是 Google 却没有没给我们提供相应 Item 的点击事件处理, 我们需要自己改写自己的Adapter实现:</p>
+<h3 id="修改-Adapter"><a href="#修改-Adapter" class="headerlink" title="修改 Adapter"></a>修改 Adapter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">// 使 Adapter implements View.OnClickListener, View.OnLongClickListener事件监听</span><br><span class="line">public class MainPagesAdapter</span><br><span class="line">        extends RecyclerView.Adapter&lt;MainPagesAdapter.ItemContentHolder&gt;</span><br><span class="line">        implements View.OnClickListener, View.OnLongClickListener</span><br><span class="line"></span><br><span class="line">// 设置item点击事件的回调函数</span><br><span class="line">private OnRecyclerViewItemClickListener mOnItemClickListener = null;</span><br><span class="line">// 设置item点击事件的回调函数</span><br><span class="line">private OnRecyclerViewItemLongClickListener mOnItemLongClickListener = null;</span><br><span class="line"></span><br><span class="line">// define interface</span><br><span class="line">public interface OnRecyclerViewItemClickListener &#123;</span><br><span class="line">    void onItemClick(View view, NewsBean data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// define interface</span><br><span class="line">public interface OnRecyclerViewItemLongClickListener &#123;</span><br><span class="line">    void onItemLongClick(View view, NewsBean data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 提供外部 Activity 的实现方法</span><br><span class="line">public void setOnItemClickListener(MainPagesAdapter.OnRecyclerViewItemClickListener listener) &#123;</span><br><span class="line">    this.mOnItemClickListener = listener;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void setOnItemLongClickListener(MainPagesAdapter.OnRecyclerViewItemLongClickListener listener) &#123;</span><br><span class="line">    this.mOnItemLongClickListener = listener;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在 Adapter 中的 onCreateViewHolder 方法中创建的View注册点击事件</span><br><span class="line">view.setOnClickListener(this);</span><br><span class="line">view.setOnLongClickListener(this);</span><br><span class="line"></span><br><span class="line">// 在 Adapter 中重写 View 的 onClick 和 onLongClick 方法</span><br><span class="line">@Override</span><br><span class="line">public void onClick(View view) &#123;</span><br><span class="line">    if (mOnItemClickListener != null) &#123;</span><br><span class="line">        //注意这里使用getTag方法获取数据</span><br><span class="line">        mOnItemClickListener.onItemClick(view, (NewsBean) view.getTag());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public boolean onLongClick(View view) &#123;</span><br><span class="line">    if (mOnItemLongClickListener != null) &#123;</span><br><span class="line">        mOnItemLongClickListener.onItemLongClick(view, (NewsBean) view.getTag());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注释较详细, 详见上文 Demo 的 Github 地址。</p>
+<hr>
+<h3 id="在-Activity-中处理-Item-点击事件的逻辑"><a href="#在-Activity-中处理-Item-点击事件的逻辑" class="headerlink" title="在 Activity 中处理 Item 点击事件的逻辑"></a>在 Activity 中处理 Item 点击事件的逻辑</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 使 Activity 实现上述 Adapter 中定义的 Click 事件接口</span><br><span class="line">public class MainActivity extends BaseActivity implements</span><br><span class="line">        MainPagesAdapter.OnRecyclerViewItemClickListener,</span><br><span class="line">        MainPagesAdapter.OnRecyclerViewItemLongClickListener</span><br><span class="line"></span><br><span class="line">// 重写 Adapter 的 onItemClick， onItemLongClick 方法</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onItemClick(View view, NewsBean data) &#123;</span><br><span class="line">    // 可以跳转到 Item 的详情页面</span><br><span class="line">    Toast.make(MainActivity.this, &quot;data: &quot;</span><br><span class="line">    + data.getTitle, Toast.LENGTH_LONG).show();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onItemLongClick(View view, final NewsBean data) &#123;</span><br><span class="line">    // 可以设置状态标记</span><br><span class="line">    Toast.make(MainActivity.this, &quot;data: &quot;</span><br><span class="line">    + data.getCtime, Toast.LENGTH_LONG).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样点击事件的处理逻辑就 OK 了！</p>
+<hr>
+<h2 id="Item-状态变换处理"><a href="#Item-状态变换处理" class="headerlink" title="Item 状态变换处理"></a>Item 状态变换处理</h2><p>有时候, 我们还有这样的需求:</p>
+<blockquote>
+<p>在列表中点击一个 Item 之后, 被点击的 Item 控件的字体颜色, 背景颜色或者图片是否显示等发生改变, 表现出和其他 Item 不一样的呈现状态。（如新闻点击阅读后, 当前新闻 Item 颜色变浅等）</p>
+</blockquote>
+<p>我们的处理思路是: 在数据 Bean 中添加标记状态, 当 Item 的点击事件发生时改变当前数据 Bean 的标记状态, 之后使用 notifyDataSetChanged() 通知 Adapter 数据改变, 更新 UI 界面。因此, 需要如下代码处理。</p>
+<h3 id="数据-Bean-中添加标记属性"><a href="#数据-Bean-中添加标记属性" class="headerlink" title="数据 Bean 中添加标记属性"></a>数据 Bean 中添加标记属性</h3><p>添加一个 isSelected 属性, 用于数据标记。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">import java.io.Serializable;</span><br><span class="line"></span><br><span class="line">public class NewsBean implements Serializable &#123;</span><br><span class="line">    private String ctime;           // 新闻发布时间</span><br><span class="line">    private String title;           // 新闻标题</span><br><span class="line">    private String description;     // 新闻描述</span><br><span class="line">    private String picUrl;          // 新闻配图</span><br><span class="line">    private String url;             // 新闻链接地址</span><br><span class="line"></span><br><span class="line">    private boolean isSelected = false;     // 是否已读</span><br><span class="line"></span><br><span class="line">    public NewsBean() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getCtime() &#123;</span><br><span class="line">        return ctime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCtime(String ctime) &#123;</span><br><span class="line">        this.ctime = ctime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getTitle() &#123;</span><br><span class="line">        return title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setTitle(String title) &#123;</span><br><span class="line">        this.title = title;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getDescription() &#123;</span><br><span class="line">        return description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDescription(String description) &#123;</span><br><span class="line">        this.description = description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getPicUrl() &#123;</span><br><span class="line">        return picUrl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPicUrl(String picUrl) &#123;</span><br><span class="line">        this.picUrl = picUrl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUrl() &#123;</span><br><span class="line">        return url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUrl(String url) &#123;</span><br><span class="line">        this.url = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean isSelected() &#123;</span><br><span class="line">        return isSelected;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSelected(boolean selected) &#123;</span><br><span class="line">        isSelected = selected;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p>
+<hr>
+<h3 id="Adapter-中根据-Bean-的标记状态设置不同显示效果"><a href="#Adapter-中根据-Bean-的标记状态设置不同显示效果" class="headerlink" title="Adapter 中根据 Bean 的标记状态设置不同显示效果"></a>Adapter 中根据 Bean 的标记状态设置不同显示效果</h3><p>在 Adapter 中的 onBindViewHolder()方法中设置 Item 的不同加载状态。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onBindViewHolder(ItemContentHolder holder, int position) &#123;</span><br><span class="line">    // 使用Glide图片缓存框架加载图</span><br><span class="line">    Glide.with(context)</span><br><span class="line">            .load(mDatas.get(position).getPicUrl())</span><br><span class="line">            .error(R.drawable.icon)</span><br><span class="line">            .diskCacheStrategy(DiskCacheStrategy.ALL)</span><br><span class="line">            .crossFade()</span><br><span class="line">            .centerCrop()</span><br><span class="line">            .into(holder.newsItemImv);</span><br><span class="line">    holder.newsItemTitleTv.setText(mDatas.get(position).getTitle());</span><br><span class="line">    holder.newsItemTimeTv.setText(mDatas.get(position).getCtime());</span><br><span class="line"></span><br><span class="line">    int textColor = Color.parseColor(&quot;#CC000000&quot;);</span><br><span class="line">    int textColorChange = Color.parseColor(&quot;#40000000&quot;);</span><br><span class="line">    if (mDatas.get(position).isSelected()) &#123; // 判断是否标记</span><br><span class="line">        holder.newsItemTitleTv.setTextColor(textColorChange);</span><br><span class="line">        holder.newsItemTimeTv.setTextColor(textColorChange);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        holder.newsItemTitleTv.setTextColor(textColor);</span><br><span class="line">        holder.newsItemTimeTv.setTextColor(textColor);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 将数据保存在itemView的Tag中，以便点击时进行获取</span><br><span class="line">    holder.itemView.setTag(mDatas.get(position));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br>这样根据标记, 数据更新时加载数据, 显示不同的状态。</p>
+<hr>
+<h3 id="Activtiy-的-Click-方法中更改数据-Bean-标记状态"><a href="#Activtiy-的-Click-方法中更改数据-Bean-标记状态" class="headerlink" title="Activtiy 的 Click() 方法中更改数据 Bean 标记状态"></a>Activtiy 的 Click() 方法中更改数据 Bean 标记状态</h3><p>这样在相应的 Activity 中, 当点击事件发生时, 修改相关 Item 数据并通知 Adapter.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onItemClick(View view, NewsBean data) &#123;</span><br><span class="line">    // 标记已读，设置标记位</span><br><span class="line">    data.setSelected(true);</span><br><span class="line">    mMainPagesAdapter.notifyDataSetChanged();</span><br><span class="line"></span><br><span class="line">    // 跳转至详情页</span><br><span class="line">    Intent intent = new Intent();</span><br><span class="line">    Bundle bundle = new Bundle();</span><br><span class="line">    bundle.putSerializable(&quot;newsInfos&quot;, data);</span><br><span class="line">    intent.setClass(MainActivity.this, ItemDetailAty.class);</span><br><span class="line">    intent.putExtras(bundle);</span><br><span class="line">    startActivity(intent);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onItemLongClick(View view, final NewsBean data) &#123;</span><br><span class="line">    new MaterialDialog.Builder(MainActivity.this)</span><br><span class="line">            .title(&quot;标记&quot;)</span><br><span class="line">            .items(R.array.tag_values)</span><br><span class="line">            .itemsCallback(new MaterialDialog.ListCallback() &#123;</span><br><span class="line">                @Override</span><br><span class="line">                public void onSelection(MaterialDialog dialog,</span><br><span class="line">                                        View itemView,</span><br><span class="line">                                        int position,</span><br><span class="line">                                        CharSequence text) &#123;</span><br><span class="line"></span><br><span class="line">                    String listItemStr = (String) text;</span><br><span class="line">                    Log.d(TAG, &quot;listItemStr &gt;&gt;&gt; &quot; + listItemStr);</span><br><span class="line">                    switch (listItemStr) &#123;</span><br><span class="line">                        case &quot;已读&quot;:</span><br><span class="line">                            data.setSelected(true);</span><br><span class="line">                            mMainPagesAdapter.notifyDataSetChanged();</span><br><span class="line">                            break;</span><br><span class="line">                        case &quot;未读&quot;:</span><br><span class="line">                            data.setSelected(false);</span><br><span class="line">                            mMainPagesAdapter.notifyDataSetChanged();</span><br><span class="line">                            break;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样效果就出来了, 如展示图3所示。</p>
+<hr>
+<h2 id="样式切换"><a href="#样式切换" class="headerlink" title="样式切换"></a>样式切换</h2><p>RecycleView 的布局管理器为我们提供了不同的布局样式, 如默认的线性列表布局, 网格布局, 瀑布流式布局等。Demo 中也提供了相关不同布局的切换, 如上图4, 5, 6所示。</p>
+<p>思路是这样的: 在Adapter设置一个布局加载标志, 根据传回来的不同布局切换标志, 在 Adapter的 onCreateViewHolder() 方法中 inflate不同的布局, 具体做法如下:</p>
+<h3 id="Adapter-中添加加载布局标志"><a href="#Adapter-中添加加载布局标志" class="headerlink" title="Adapter 中添加加载布局标志"></a>Adapter 中添加加载布局标志</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static int layoutFlag = 0;</span><br></pre></td></tr></table></figure>
+<p>0: 默认卡片布局;<br>1: 无间隔卡片布局;<br>2: 瀑布流式布局;<br>3: 网格布局</p>
+<hr>
+<h3 id="改写-Adapter-中-onCreateViewHolder-方法"><a href="#改写-Adapter-中-onCreateViewHolder-方法" class="headerlink" title="改写 Adapter 中 onCreateViewHolder()方法"></a>改写 Adapter 中 onCreateViewHolder()方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public ItemContentHolder onCreateViewHolder(ViewGroup parent, int viewType) &#123;</span><br><span class="line">    View view;</span><br><span class="line">    switch (layoutFlag) &#123;</span><br><span class="line">        case 0:</span><br><span class="line">            view = LayoutInflater.from(context).inflate(R.layout.main_news_item, parent, false);</span><br><span class="line">            break;</span><br><span class="line">        case 1:</span><br><span class="line">            view = LayoutInflater.from(context).inflate(R.layout.main_news_item_nogap, parent, false);</span><br><span class="line">            break;</span><br><span class="line">        case 2:</span><br><span class="line">        case 3:</span><br><span class="line">            view = LayoutInflater.from(context).inflate(R.layout.main_news_item_flu, parent, false);</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">            view = LayoutInflater.from(context).inflate(R.layout.main_news_item, parent, false);</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    MainPagesAdapter.ItemContentHolder viewHolder = new MainPagesAdapter.ItemContentHolder(view);</span><br><span class="line">    //将创建的View注册点击事件</span><br><span class="line">    view.setOnClickListener(this);</span><br><span class="line">    view.setOnLongClickListener(this);</span><br><span class="line">    return viewHolder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p></p>
+<hr>
+<h3 id="Activity-中-Menu-菜单触发布局切换事件"><a href="#Activity-中-Menu-菜单触发布局切换事件" class="headerlink" title="Activity 中 Menu 菜单触发布局切换事件"></a>Activity 中 Menu 菜单触发布局切换事件</h3><p><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line">// Menu 菜单</span><br><span class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">      xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">      xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">      tools:context=&quot;com.dm.recyclerviewdemo.activitys.MainActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_cardview&quot;</span><br><span class="line">        android:orderInCategory=&quot;100&quot;</span><br><span class="line">        android:title=&quot;@string/action_cardview&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_no_gapview&quot;</span><br><span class="line">        android:orderInCategory=&quot;100&quot;</span><br><span class="line">        android:title=&quot;@string/action_no_gapview&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_fluview&quot;</span><br><span class="line">        android:orderInCategory=&quot;100&quot;</span><br><span class="line">        android:title=&quot;@string/action_fluview&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_gridview&quot;</span><br><span class="line">        android:orderInCategory=&quot;100&quot;</span><br><span class="line">        android:title=&quot;@string/action_gridview&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id=&quot;@+id/action_about&quot;</span><br><span class="line">        android:orderInCategory=&quot;100&quot;</span><br><span class="line">        android:title=&quot;@string/action_about&quot;</span><br><span class="line">        app:showAsAction=&quot;never&quot;/&gt;</span><br><span class="line">&lt;/menu&gt;</span><br><span class="line"></span><br><span class="line">// Activity Menu 事件处理</span><br><span class="line">@Override</span><br><span class="line">public boolean onCreateOptionsMenu(Menu menu) &#123;</span><br><span class="line">    getMenuInflater().inflate(R.menu.menu_main, menu);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public boolean onOptionsItemSelected(MenuItem item) &#123;</span><br><span class="line">    switch (item.getItemId()) &#123;</span><br><span class="line">        case R.id.action_cardview:</span><br><span class="line">            mLayoutManager = new LinearLayoutManager(MainActivity.this,</span><br><span class="line">                    LinearLayoutManager.VERTICAL, false);</span><br><span class="line">            initRecycleView(0, mDatas, mLayoutManager);</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_no_gapview:</span><br><span class="line">            mLayoutManager = new LinearLayoutManager(MainActivity.this,</span><br><span class="line">                    LinearLayoutManager.VERTICAL, false);</span><br><span class="line">            initRecycleView(1, mDatas, mLayoutManager);</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_fluview:</span><br><span class="line">            mLayoutManager = new StaggeredGridLayoutManager(2,</span><br><span class="line">                    StaggeredGridLayoutManager.VERTICAL);</span><br><span class="line">            initRecycleView(2, mDatas, mLayoutManager);</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_gridview:</span><br><span class="line">            mLayoutManager = new GridLayoutManager(MainActivity.this, 3);</span><br><span class="line">            initRecycleView(3, mDatas, mLayoutManager);</span><br><span class="line">            break;</span><br><span class="line">        case R.id.action_about:</span><br><span class="line">            startActivity(new Intent(MainActivity.this, AboutAty.class));</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return super.onOptionsItemSelected(item);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void initRecycleView(int flag,</span><br><span class="line">                             List&lt;NewsBean&gt; datas,</span><br><span class="line">                             RecyclerView.LayoutManager layoutManager) &#123;</span><br><span class="line">    MainPagesAdapter.layoutFlag = flag;</span><br><span class="line"></span><br><span class="line">    mMainPagesAdapter = new MainPagesAdapter(MainActivity.this, datas);</span><br><span class="line">    mRecyclerView.setAdapter(mMainPagesAdapter);</span><br><span class="line">    mRecyclerView.setLayoutManager(layoutManager);</span><br><span class="line">    mRecyclerView.setItemAnimator(new DefaultItemAnimator());//默认动画</span><br><span class="line">    mRecyclerView.setHasFixedSize(true);//效率最高</span><br><span class="line"></span><br><span class="line">    mMainPagesAdapter.setOnItemClickListener(MainActivity.this);</span><br><span class="line">    mMainPagesAdapter.setOnItemLongClickListener(MainActivity.this);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p></p>
+<p><strong>这样实现了基本效果, 但仍存在一个问题: Item 的标记状态存在内存中，随着 Activity 的消亡而消失; 可以考虑将数据 Bean 的标记状态存放在外部（数据库, SP, 网络等）</strong></p>
+<hr>
+<h2 id="用到的开源库"><a href="#用到的开源库" class="headerlink" title="用到的开源库"></a>用到的开源库</h2><p>特别感谢这些作者提供的开源库, 丰富了 Demo 功能。</p>
+<blockquote>
+<p><a href="https://github.com/daimajia/NumberProgressBar" target="_blank" rel="noopener">compile ‘com.daimajia.numberprogressbar:library:1.2@aar’</a><br><a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">compile ‘com.github.bumptech.glide:glide:3.7.0’</a><br><a href="https://github.com/google/gson" target="_blank" rel="noopener">compile ‘com.google.code.gson:gson:2.8.0’</a><br><a href="https://github.com/afollestad/material-dialogs" target="_blank" rel="noopener">compile ‘com.afollestad.material-dialogs:commons:0.9.0.1’</a><br><a href="https://github.com/laobie/StatusBarUtil" target="_blank" rel="noopener">compile ‘com.jaeger.statusbaruitl:library:1.3.0’</a><br><a href="https://github.com/hdodenhof/CircleImageView" target="_blank" rel="noopener">compile ‘de.hdodenhof:circleimageview:2.1.0’</a></p>
+</blockquote>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.csdn.net/lmj623565791/article/details/45059587" target="_blank" rel="noopener">http://blog.csdn.net/lmj623565791/article/details/45059587</a><br>[2] <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2004.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2014/1118/2004.html</a><br>[3] <a href="http://www.loongwind.com/archives/189.html" target="_blank" rel="noopener">http://www.loongwind.com/archives/189.html</a><br>[4] <a href="http://frank-zhu.github.io/android/2015/01/16/android-recyclerview-part-1/" target="_blank" rel="noopener">http://frank-zhu.github.io/android/2015/01/16/android-recyclerview-part-1/</a><br>[5] <a href="https://github.com/Tikitoo/blog/issues/29" target="_blank" rel="noopener">https://github.com/Tikitoo/blog/issues/29</a></p>
+<hr>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/26/Life-is-around/" rel="next" title="Life is around">
+                <i class="fa fa-chevron-left"></i> Life is around
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/13/命令行中的手机录屏及转Gif工具/" rel="prev" title="命令行中的手机录屏及转Gif工具">
+                命令行中的手机录屏及转Gif工具 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+          <p class="site-author-name" itemprop="name">AbsentM</p>
+          <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/absentm123" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/absentm" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/dmicrocosmos" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hanhanfilm.com/" title="憨憨电影" target="_blank">憨憨电影</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.fengxiaochuang.com/" title="晓闯博客" target="_blank">晓闯博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">1.</span> <span class="nav-text">想法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加包引用"><span class="nav-number">2.1.</span> <span class="nav-text">添加包引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML-中定义"><span class="nav-number">2.2.</span> <span class="nav-text">XML 中定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity-中初始化"><span class="nav-number">2.3.</span> <span class="nav-text">Activity 中初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter-构造适配器"><span class="nav-number">2.4.</span> <span class="nav-text">Adapter 构造适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源-mDatas"><span class="nav-number">2.5.</span> <span class="nav-text">数据源 mDatas</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Click-事件监听"><span class="nav-number">3.</span> <span class="nav-text">Click 事件监听</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-Adapter"><span class="nav-number">3.1.</span> <span class="nav-text">修改 Adapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-Activity-中处理-Item-点击事件的逻辑"><span class="nav-number">3.2.</span> <span class="nav-text">在 Activity 中处理 Item 点击事件的逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Item-状态变换处理"><span class="nav-number">4.</span> <span class="nav-text">Item 状态变换处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据-Bean-中添加标记属性"><span class="nav-number">4.1.</span> <span class="nav-text">数据 Bean 中添加标记属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter-中根据-Bean-的标记状态设置不同显示效果"><span class="nav-number">4.2.</span> <span class="nav-text">Adapter 中根据 Bean 的标记状态设置不同显示效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activtiy-的-Click-方法中更改数据-Bean-标记状态"><span class="nav-number">4.3.</span> <span class="nav-text">Activtiy 的 Click() 方法中更改数据 Bean 标记状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样式切换"><span class="nav-number">5.</span> <span class="nav-text">样式切换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Adapter-中添加加载布局标志"><span class="nav-number">5.1.</span> <span class="nav-text">Adapter 中添加加载布局标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改写-Adapter-中-onCreateViewHolder-方法"><span class="nav-number">5.2.</span> <span class="nav-text">改写 Adapter 中 onCreateViewHolder()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity-中-Menu-菜单触发布局切换事件"><span class="nav-number">5.3.</span> <span class="nav-text">Activity 中 Menu 菜单触发布局切换事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用到的开源库"><span class="nav-number">6.</span> <span class="nav-text">用到的开源库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'absentm';
+      var disqus_identifier = '2016/11/21/Android-RecyclerView-Demo/';
+      var disqus_title = "Android RecyclerView Demo";
+      var disqus_url = 'https://absentm.github.io/2016/11/21/Android-RecyclerView-Demo/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

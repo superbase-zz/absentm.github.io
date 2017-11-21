@@ -1,0 +1,1105 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Linux,Ubuntu,Mobile Development,Android Studio,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="JDK的安装(Ubuntu 版本)：使用oracle jdk7以上的版本，使用apt-get方式安装，安装方法见上篇Blog 12345sudo add-apt-repository ppa:webupd8team/javasudo apt-get updatesudo apt-get install oracle-j">
+<meta name="keywords" content="Linux,Ubuntu,Mobile Development,Android Studio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android studio 安装过程中的问题整理">
+<meta property="og:url" content="https://absentm.github.io/2016/02/03/Android-studio-安装过程中的问题整理/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="JDK的安装(Ubuntu 版本)：使用oracle jdk7以上的版本，使用apt-get方式安装，安装方法见上篇Blog 12345sudo add-apt-repository ppa:webupd8team/javasudo apt-get updatesudo apt-get install oracle-java7-installer或sudo apt-get install ora">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160203210721918">
+<meta property="og:image" content="http://img.blog.csdn.net/20160203210845919">
+<meta property="og:image" content="http://img.blog.csdn.net/20160203210945263">
+<meta property="og:image" content="http://img.blog.csdn.net/20160203211334768">
+<meta property="og:image" content="http://img.blog.csdn.net/20160203211406394">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/as1.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/as2.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/as3.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20160413114331970">
+<meta property="og:image" content="http://img.blog.csdn.net/20160413114506892">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android studio 安装过程中的问题整理">
+<meta name="twitter:description" content="JDK的安装(Ubuntu 版本)：使用oracle jdk7以上的版本，使用apt-get方式安装，安装方法见上篇Blog 12345sudo add-apt-repository ppa:webupd8team/javasudo apt-get updatesudo apt-get install oracle-java7-installer或sudo apt-get install ora">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160203210721918">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/02/03/Android-studio-安装过程中的问题整理/">
+
+  <title> Android studio 安装过程中的问题整理 | AbsentM's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?021d64369b3c401c47c6ab7aa56f7074";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">AbsentM's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android studio 安装过程中的问题整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-02-03T21:18:53+08:00" content="2016-02-03">
+              2016-02-03
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Android Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/03/Android-studio-安装过程中的问题整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/03/Android-studio-安装过程中的问题整理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/03/Android-studio-安装过程中的问题整理/" class="leancloud_visitors" data-flag-title="Android studio 安装过程中的问题整理">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="JDK的安装-Ubuntu-版本-："><a href="#JDK的安装-Ubuntu-版本-：" class="headerlink" title="JDK的安装(Ubuntu 版本)："></a>JDK的安装(Ubuntu 版本)：</h2><p>使用oracle jdk7以上的版本，使用apt-get方式安装，安装方法见上篇Blog</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install oracle-java7-installer</span><br><span class="line">或</span><br><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="JDK的安装-Windows-版本-："><a href="#JDK的安装-Windows-版本-：" class="headerlink" title="JDK的安装(Windows 版本)："></a>JDK的安装(Windows 版本)：</h2><p>1: 下载java jdk:  <a href="http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html" target="_blank" rel="noopener">jdk-8 下载地址</a>；<br>2: 傻瓜式安装后，设置环境变量；<br>3: 依次点开：控制面板 -&gt; 系统和安全 -&gt; 系统 -&gt; 高级系统设置 -&gt; 环境变量，在 <strong><em>系统变量</em></strong> 中添加如下java 环境变量：</p>
+<h3 id="Java环境变量设置"><a href="#Java环境变量设置" class="headerlink" title="Java环境变量设置"></a>Java环境变量设置</h3><p>1: 新建:</p>
+<p>变量名：<code>JAVA_HOME</code>;<br>变量值： <code>C:\Program Files\Java\jdk1.8.0_20</code>（即，JDK的安装目录），如图：</p>
+<p><img src="http://img.blog.csdn.net/20160203210721918" alt="新建JAVA_HOME环境变量"></p>
+<p>2: 新建：<br>变量名：CLASSPATH；<br>变量值：<code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar;</code>（注意前方的“ . ” 英文格式），如图：</p>
+<p><img src="http://img.blog.csdn.net/20160203210845919" alt="新建CLASSPATH环境变量"></p>
+<p>3: 在Path环境变量的末尾中添加： <code>;%JAVA_HOME%\bin ;%JAVA_HOME%\jre\bin;C:\Program Files\Java\jdk1.8.0_20\bin</code> （注意最前边个的“ ; ” 英文分号），如图:</p>
+<p><img src="http://img.blog.csdn.net/20160203210945263" alt="Path环境变量的设置"></p>
+<p>4: 测试jdk的安装：win + R -&gt; cmd -&gt; 打开命令提示符，键入如下代码：<code>java</code> 和 <code>javac</code> 来测试是否成功，若成功，如图所示：</p>
+<p><img src="http://img.blog.csdn.net/20160203211334768" alt="java命令测试效果"></p>
+<p><img src="http://img.blog.csdn.net/20160203211406394" alt="javac命令测试效果"></p>
+<hr>
+<h2 id="首次进入Android-studio，国内被墙："><a href="#首次进入Android-studio，国内被墙：" class="headerlink" title="首次进入Android studio，国内被墙："></a>首次进入Android studio，国内被墙：</h2><ul>
+<li>单独下载 sdk</li>
+<li>android-studio/bin/ -&gt; idea.properties文件，加上：<code>disable.android.first.run=true</code>，保证第一次可进入</li>
+<li>修改Hosts: <code>$ sudo vim /etc/hosts</code> , 添加如下列表（Windows同样可以修改Hosts文件如下， 位置为：<code>C:\Windows\System32\drivers\etc</code>）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">203.208.46.146 www.google.com</span><br><span class="line">74.125.113.121 developer.android.com</span><br><span class="line">203.208.46.146 dl.google.com</span><br><span class="line">203.208.46.146 dl-ssl.google.com</span><br></pre></td></tr></table></figure>
+<p>重启网络：<code>$ /etc/init.d/networking restart</code></p>
+<ul>
+<li>在单独下载的sdk中，如：android-sdk-linux/tool/文件夹下执行：./android 打开sdk manager;</li>
+<li>设置sdk manager的optionxuanxiang选项为（windows同样适用）：<br>在「HTTP Proxy Server」和「HTTP Proxy Port」输入框内填入<strong>mirrors.neusoft.edu.cn和80</strong>，并且选中「Force https://… sources to be fetched using <a href="http://...」复选框。设置完成后单击「Close」按钮关闭『Android" target="_blank" rel="noopener">http://...」复选框。设置完成后单击「Close」按钮关闭『Android</a> SDK Manager - Settings』，下载速度嗖嗖的！效果图如下：</li>
+</ul>
+<hr>
+<h2 id="模拟器Genymotion的安装："><a href="#模拟器Genymotion的安装：" class="headerlink" title="模拟器Genymotion的安装："></a>模拟器Genymotion的安装：</h2><ul>
+<li>安装VirtualBox虚拟机：<code>$ sudo apt-get install virtualbox</code></li>
+<li>下载Genymotion模拟器添加权限：<code>$ chmod +x genymotion.XXXXX.bin</code></li>
+<li>执行安装：<code>$ ./genymotion.XXXXX.bin</code></li>
+<li>注意：<strong>创建android模拟器后可能打不开，设置BIOS开启虚拟化功能，开机进入BIOS -&gt; Virtualization -&gt; enabled</strong>，各个主板可能不同</li>
+</ul>
+<hr>
+<h2 id="快捷键设置"><a href="#快捷键设置" class="headerlink" title="快捷键设置"></a>快捷键设置</h2><p>1: java类注释：Fix doc comment -&gt; “Alt + Shift + j”；<br>2: 自动匹配：Basic -&gt; “Alt + /“；<br>3: 格式化代码：Reformat code -&gt; “Ctrl + Shift + F”；<br>4: 驼峰选择：Editor | General | Smart Keys | Use “CamelHumps” words；<br>5: 如果你仍然希望当鼠标在单词上双击之后选中整个单词，需要作如下设置：Editor | General | 取消选中‘Honor Camel Humps words settings when selecting on double click’；<br>6: 命名前缀：Editor | Code Style | Java | Code Generation， 给普通Field 添加一个’m’前缀，给Static filed 添加一个’s’前缀；<br>7: 快速导包：Editor | General | Auto Import，勾选Optimize imports on the fly，勾选Add unambiguous imports on the fly；<br>8: 插件: Markdown, .gitignore, minimap(CodeGlance)；<br>9: Http Proxy: Plugins | HTTP Proxy Settings | Manual proxy configuration | HTTP | HostName: 127.0.0.1 | Port: 1080 | No proxy for: 127.0.0.1 。</p>
+<p>详细配置参见：<br><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html</a></p>
+<hr>
+<h2 id="AS-Gradle-Build-Running-卡顿、慢等问题"><a href="#AS-Gradle-Build-Running-卡顿、慢等问题" class="headerlink" title="AS Gradle Build Running 卡顿、慢等问题"></a>AS Gradle Build Running 卡顿、慢等问题</h2><p>主要是因为缺少相关的32位依赖库, 可通过一下方法解决: 终端输入以下命令, 安装完成后, 重启as即可。</p>
+<p>sudo dpkg –add-architecture i386<br>sudo apt-get update<br>sudo apt-get install libncurses5:i386 libstdc++6:i386 zlib1g:i386</p>
+<p><1>. 加快Gradle编译速度</1></p>
+<p>在下面的目录下面创建gradle.properties文件：</p>
+<ul>
+<li>Linux:    /home/<username>/.gradle/</username></li>
+<li>Mac：     /Users/<username>/.gradle/</username></li>
+<li>Windows： C:\Users\<username>.gradle</username></li>
+</ul>
+<p>添加如下几行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 开启gradle单独的守护进程</span><br><span class="line">org.gradle.daemon=true      </span><br><span class="line"></span><br><span class="line"># 调大JVM参数</span><br><span class="line">org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span><br><span class="line"></span><br><span class="line"># 平行运行</span><br><span class="line">org.gradle.parallel=true</span><br><span class="line"></span><br><span class="line"># Enables new incubating mode that makes Gradle selective when configuring projects.</span><br><span class="line">org.gradle.configureondemand=true</span><br></pre></td></tr></table></figure></p>
+<p><2>. 修改android studio配置(看图配置)</2></p>
+<p><img src="https://o8zyn0sct.qnssl.com/as1.png" alt="配置1"></p>
+<p><img src="https://o8zyn0sct.qnssl.com/as2.png" alt="配置2"></p>
+<p><img src="https://o8zyn0sct.qnssl.com/as3.png" alt="配置3"></p>
+<p><strong>详细说明，请参看参考资料[3],[4].</strong></p>
+<hr>
+<h2 id="check-for-update无法更新问题解决办法"><a href="#check-for-update无法更新问题解决办法" class="headerlink" title="check for update无法更新问题解决办法"></a>check for update无法更新问题解决办法</h2><p>当点击check for update的时候遇到了如下问题：Connection failed (connect timed out). Please check network connection and try again.</p>
+<p><strong>解决办法</strong>:</p>
+<p>修改 \Android Studio\bin 下的文件 studio.exe.vmoptions(linux系统为: studio.vmoptions) 和 studio64.exe.vmoptions(linux系统为: studio64.vmoptions)文件,  添加如下内容重启 Android Studio 即可:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-Djava.net.preferIPv4Stack=true</span><br><span class="line"></span><br><span class="line">-Didea.updates.url=http://dl.google.com/android/studio/patches/updates.xml</span><br><span class="line"></span><br><span class="line">-Didea.patches.url=http://dl.google.com/android/studio/patches/</span><br></pre></td></tr></table></figure>
+<p>配置好了之后，android studio还是与之前一样不能更新！</p>
+<p>因为之前为了要让sdk更新而修改了系统的hosts文件，把hosts文件的内容改回来就可以更新了, 即注释掉之前添加的行, 修改后如下图所示:</p>
+<p><img src="http://img.blog.csdn.net/20160413114331970" alt="hosts注释掉"></p>
+<p>修改完后, 注意重启一下网络啊:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/networking restart 	# ubuntu下</span><br></pre></td></tr></table></figure>
+<p>之后变可以更新了! 瞅瞅!</p>
+<p><img src="http://img.blog.csdn.net/20160413114506892" alt="update"></p>
+<hr>
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><p>[1]. <a href="http://blog.csdn.net/double2hao/article/details/49582585" target="_blank" rel="noopener">http://blog.csdn.net/double2hao/article/details/49582585</a><br>[2]. <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html</a><br>[3]. <a href="http://www.jianshu.com/p/2a58fd896214" target="_blank" rel="noopener">http://www.jianshu.com/p/2a58fd896214</a><br>[4]. <a href="http://blog.isming.me/2015/03/18/android-build-speed-up/" target="_blank" rel="noopener">http://blog.isming.me/2015/03/18/android-build-speed-up/</a></p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag">#Mobile Development</a>
+          
+            <a href="/tags/Android-Studio/" rel="tag">#Android Studio</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/12/Ubuntu-14-04-LTS-安装与配置/" rel="next" title="Ubuntu 14.04 LTS 安装与配置">
+                <i class="fa fa-chevron-left"></i> Ubuntu 14.04 LTS 安装与配置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/19/Ubuntu14-04-LTS-系统中Opencv-3-0开发环境的搭建/" rel="prev" title="Ubuntu14.04 LTS 系统中Opencv 3.0开发环境的搭建">
+                Ubuntu14.04 LTS 系统中Opencv 3.0开发环境的搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+          <p class="site-author-name" itemprop="name">AbsentM</p>
+          <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/absentm123" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/absentm" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/dmicrocosmos" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hanhanfilm.com/" title="憨憨电影" target="_blank">憨憨电影</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.fengxiaochuang.com/" title="晓闯博客" target="_blank">晓闯博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK的安装-Ubuntu-版本-："><span class="nav-number">1.</span> <span class="nav-text">JDK的安装(Ubuntu 版本)：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK的安装-Windows-版本-："><span class="nav-number">2.</span> <span class="nav-text">JDK的安装(Windows 版本)：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java环境变量设置"><span class="nav-number">2.1.</span> <span class="nav-text">Java环境变量设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#首次进入Android-studio，国内被墙："><span class="nav-number">3.</span> <span class="nav-text">首次进入Android studio，国内被墙：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟器Genymotion的安装："><span class="nav-number">4.</span> <span class="nav-text">模拟器Genymotion的安装：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键设置"><span class="nav-number">5.</span> <span class="nav-text">快捷键设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AS-Gradle-Build-Running-卡顿、慢等问题"><span class="nav-number">6.</span> <span class="nav-text">AS Gradle Build Running 卡顿、慢等问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#check-for-update无法更新问题解决办法"><span class="nav-number">7.</span> <span class="nav-text">check for update无法更新问题解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资源"><span class="nav-number">8.</span> <span class="nav-text">参考资源</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'absentm';
+      var disqus_identifier = '2016/02/03/Android-studio-安装过程中的问题整理/';
+      var disqus_title = "Android studio 安装过程中的问题整理";
+      var disqus_url = 'https://absentm.github.io/2016/02/03/Android-studio-安装过程中的问题整理/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

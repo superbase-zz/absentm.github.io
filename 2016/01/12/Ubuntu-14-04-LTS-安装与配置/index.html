@@ -1,0 +1,1115 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Linux,Ubuntu,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="简记最近项目环境重新移植到阔别1年多的Linux系统上，重新在实验室台式机上安装windows10 + ubuntu 14.04.3双系统，搭建环境。 下面简单记录一下安装和常用的软件配置，算是个整合吧（个人喜好设置）。  安装我的双系统安装方式一直没变过，在原有的windwos10上，分出一块未使用的磁盘空间，格式化">
+<meta name="keywords" content="Linux,Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 14.04 LTS 安装与配置">
+<meta property="og:url" content="https://absentm.github.io/2016/01/12/Ubuntu-14-04-LTS-安装与配置/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="简记最近项目环境重新移植到阔别1年多的Linux系统上，重新在实验室台式机上安装windows10 + ubuntu 14.04.3双系统，搭建环境。 下面简单记录一下安装和常用的软件配置，算是个整合吧（个人喜好设置）。  安装我的双系统安装方式一直没变过，在原有的windwos10上，分出一块未使用的磁盘空间，格式化，删除卷，不分配，大约90G，用于ubuntu系统； 安装方式（最为快捷）：U盘">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160112101509741">
+<meta property="og:image" content="http://img.blog.csdn.net/20160112102418378">
+<meta property="og:image" content="http://img.blog.csdn.net/20160112103340777">
+<meta property="og:image" content="http://img.blog.csdn.net/20160112103416480">
+<meta property="og:image" content="http://img.blog.csdn.net/20160112103435392">
+<meta property="og:image" content="http://img.blog.csdn.net/20160112103451710">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.748Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 14.04 LTS 安装与配置">
+<meta name="twitter:description" content="简记最近项目环境重新移植到阔别1年多的Linux系统上，重新在实验室台式机上安装windows10 + ubuntu 14.04.3双系统，搭建环境。 下面简单记录一下安装和常用的软件配置，算是个整合吧（个人喜好设置）。  安装我的双系统安装方式一直没变过，在原有的windwos10上，分出一块未使用的磁盘空间，格式化，删除卷，不分配，大约90G，用于ubuntu系统； 安装方式（最为快捷）：U盘">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160112101509741">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/01/12/Ubuntu-14-04-LTS-安装与配置/">
+
+  <title> Ubuntu 14.04 LTS 安装与配置 | AbsentM's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?021d64369b3c401c47c6ab7aa56f7074";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">AbsentM's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ubuntu 14.04 LTS 安装与配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-01-12T10:38:50+08:00" content="2016-01-12">
+              2016-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/12/Ubuntu-14-04-LTS-安装与配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/12/Ubuntu-14-04-LTS-安装与配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/01/12/Ubuntu-14-04-LTS-安装与配置/" class="leancloud_visitors" data-flag-title="Ubuntu 14.04 LTS 安装与配置">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简记"><a href="#简记" class="headerlink" title="简记"></a>简记</h2><p>最近项目环境重新移植到阔别1年多的Linux系统上，重新在实验室台式机上安装windows10 + ubuntu 14.04.3双系统，搭建环境。</p>
+<p>下面简单记录一下安装和常用的软件配置，算是个整合吧（个人喜好设置）。</p>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我的双系统安装方式一直没变过，在原有的windwos10上，分出一块未使用的磁盘空间，格式化，删除卷，不分配，大约90G，用于ubuntu系统；</p>
+<p>安装方式（最为快捷）：U盘安装。系统安装方式的快速变革，安装ubuntu已经不是难事，简单记叙一下吧：</p>
+<ol>
+<li>Ubuntu.XXX..iso 镜像文件下载： <a href="http://www.ubuntu.com/download" target="_blank" rel="noopener">Ubuntu官方下载地址</a> ，我使用的是长期支持的14.04 LTS 版本，64位 。</li>
+<li>U盘刻录工具：Universal-USB-Installer-1.9.6.3.exe，下载地址为： <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button" target="_blank" rel="noopener">Universal-USB-Installer下载地址</a> 。</li>
+<li>U盘烧录镜像文件：详细的烧录方法请移步: <a href="http://www.ubuntu.org.cn/download/desktop/create-a-usb-stick-on-windows" target="_blank" rel="noopener">How to create a bootable USB stick on Windows</a>，有图有真相 。</li>
+<li>重启系统，设置BIOS Boot 启动优先级，从优盘启动，各个电脑厂商的按键不同：如Dell 的开机按F2, 联想的开机按F12, 较老的机器按键Del 。</li>
+<li>之后进入安装界面，傻瓜式安装，注意在分区时如果识别到了windows系统，使用推荐方式，如果未识别到则手动分区：分一个交换分区swap(大小内存的2倍)和一个挂在“/”目录下的ext4文件格式的主分区就ok了，可参看这个图文教程：<a href="http://www.bkjia.com/xtzh/760107.html" target="_blank" rel="noopener">U盘安装咱中国人自己的操作系统UbuntuKylin14.04LST</a>。</li>
+<li>安装成功了！！！</li>
+</ol>
+<hr>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>现在的Ubuntu使用上已经很舒服了，这里整理了一些基本环境配置的安装及使用，比较符合个人的使用习惯，简单记录：</p>
+<h3 id="ubuntu设置相关"><a href="#ubuntu设置相关" class="headerlink" title="ubuntu设置相关"></a>ubuntu设置相关</h3><p>1: 更新源列表： 新安装系统后，在“软件与更新”中找到，软件源设置<strong>从主服务器下载</strong>（默认的中国），更新源列表，也可以在终端键入： <code>sudo apt-get update</code>, 之后更新系统，升级最新的内核：<code>sudo apt-get upgrade</code>, 更新完成重启；</p>
+<p>2: 安装驱动： 在终端，安装基本编译环境：<code>sudo apt-get install apt-get install build-essential</code>, 之后在“软件与更新”中的<strong>附加驱动</strong>选项中，安装推荐驱动，为之后开启3D特效做铺垫， 驱动安装完成后，重启；</p>
+<p>3: 安装vim和git : vim配置和git配置请看上篇博客：<a href="https://absentm.github.io/2016/01/10/%E6%88%91%E7%9A%84vim%E9%85%8D%E7%BD%AE-vimrc%EF%BC%9Agit-github%E7%AE%A1%E7%90%86/">我的Vim配置</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim </span><br><span class="line">sudo apt-get install vim-doc</span><br><span class="line">sudo apt-get install vim-script</span><br><span class="line">sudo apt-get install ctags</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<p>4: 安装oracle JDK:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="string">" Oracle JDK 6(旧版本)</span></span><br><span class="line"><span class="string">sudo apt-get install oracle-java6-installer</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> Oracle JDK 7(较新的稳定版本)</span><br><span class="line">sudo apt-get install oracle-java7-installer</span><br><span class="line"></span><br><span class="line"><span class="string">" Oracle JDK 8(最新预览版本)</span></span><br><span class="line"><span class="string">sudo apt-get install oracle-java8-installer</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> 设置java</span><br><span class="line">sudo update-alternatives --config java</span><br><span class="line">有 2 个候选项可用于替换 java (提供 /usr/bin/java)。</span><br><span class="line"></span><br><span class="line">选择                    路径                          优先级     状态</span><br><span class="line">*0   /usr/lib/jvm/java-7-oracle/jre/bin/java         1072    自动模式</span><br><span class="line">1    /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java  1071    手动模式</span><br><span class="line">2    /usr/lib/jvm/java-7-oracle/jre/bin/java         1072    手动模式</span><br><span class="line">    </span><br><span class="line">要维持当前值[*]请按回车键，或者键入选择的编号：（按了回车，没改）</span><br><span class="line">    </span><br><span class="line">sudo update-alternatives --config javac</span><br><span class="line">（同上）</span><br><span class="line">    </span><br><span class="line"><span class="string">" 查看java 和javac版本: java -version; javac -version</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">5: 安装gcc/g++ 或更新gcc/g++（同时解决飞鸽安装出错问题，见下文）: [Ubuntu 14.04 LTS 版升级到 GCC 4.9](http://blog.sina.com.cn/s/blog_54dd80920102vvt6.html)</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">``` bash</span></span><br><span class="line"><span class="string">sudo add-apt-repository ppa:ubuntu-toolchain-r/test</span></span><br><span class="line"><span class="string">sudo apt-get update</span></span><br><span class="line"><span class="string">sudo apt-get install gcc-4.9 g++-4.9</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">(保留原来的4.8.2版本，便于快速切换)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10 </span></span><br><span class="line"><span class="string">sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 20 </span></span><br><span class="line"><span class="string">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10 </span></span><br><span class="line"><span class="string">sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 20 </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">sudo update-alternatives --config gcc</span></span><br><span class="line"><span class="string">有 2 个候选项可用于替换 gcc (提供 /usr/bin/gcc)。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">选择          路径               优先级      状态</span></span><br><span class="line"><span class="string">**0          /usr/bin/gcc-4.9   20        自动模式</span></span><br><span class="line"><span class="string">1            /usr/bin/gcc-4.8   10        手动模式</span></span><br><span class="line"><span class="string">2            /usr/bin/gcc-4.9   20        手动模式</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$ sudo update-alternatives --config g++</span></span><br><span class="line"><span class="string">有 2 个候选项可用于替换 g++ (提供 /usr/bin/g++)。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">选择          路径                优先级      状态</span></span><br><span class="line"><span class="string">**0          /usr/bin/g++-4.9    20        自动模式</span></span><br><span class="line"><span class="string">1            /usr/bin/g++-4.8    10        手动模式</span></span><br><span class="line"><span class="string">2            /usr/bin/g++-4.9    20        手动模式</span></span><br></pre></td></tr></table></figure>
+<p>6: 解决安装双系统后系统时间不一致问题</p>
+<blockquote>
+<ul>
+<li>Ubuntu中不使用UTC时间，而启用本地时间:</li>
+<li>编辑<code>/etc/default/rcS</code>，把其中的内容”UTC=yes”改成”UTC=no”,保存后重启系统就可以了</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="常用软件安装"><a href="#常用软件安装" class="headerlink" title="常用软件安装"></a>常用软件安装</h3><p>1: 搜狗输入法：<a href="http://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="noopener">搜狗输入法Linux下载地址</a>，之后双击安装；</p>
+<blockquote>
+<p>搜狗拼音输入法安装后，可能会发现整个输入法都不能使用了，解决办法如下：<br>1&gt; 在终端输入：<code>im-config</code>,这时会出现一个对话框，点击OK，有一个对话框，点击Yes，你会看到下面的对话框。如果上面是fcitx，就不用管，直接关闭；如果不是，就修改上面的ibus为fcitx.点击OK即可。又会出现一个对话框，接着就是OK，最后重启电脑。<br>2&gt; 之后，在终端中输入：fcitx-config-gtk3出现对话框如下。点击对话框左下角的（+）按钮，弹出另一个对话框如上图所示。然后，取消Only Show Current Language（很重要，否则不能找到刚安装过的搜狗输入法!）最后，在输入框中输入sogou，选中点击OK即可。添加完后将其放置到列表的最下方，注意，是最下方！！！然后默认输入法就是搜狗输入法了。</p>
+</blockquote>
+<p>2: 键鼠共享软件synergy安装； <a href="http://www.veryhuo.com/down/html/90202.html" target="_blank" rel="noopener">synergy_1.7.2_for_linux.deb下载地址</a>，之后双击安装，具体设置，之后博客更新；</p>
+<p>3: Latern: <a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">下载地址</a>，双击安装；</p>
+<p>4: 飞鸽传书：<a href="http://www.ipmsg.org.cn/ipmsg/download.html" target="_blank" rel="noopener">下载地址</a>，下载后解压，在命令行中:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ chomod +x QIpmsg   <span class="comment"># 设置权限</span></span><br><span class="line">$ ./QIpmsg           <span class="comment"># 运行</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可能会出错：libc.so.6: version “CXX….” not found, 解决办法：更新gcc版本，如上述步骤5.</p>
+</blockquote>
+<p>5: Flash: <code>$ apt-get install flashplugin-installer</code></p>
+<hr>
+<h3 id="3D特效开启"><a href="#3D特效开启" class="headerlink" title="3D特效开启"></a>3D特效开启</h3><p>Linux的3D特效特别的炫酷，参看文档：<a href="http://www.360doc.com/content/14/0919/22/11681374_410808557.shtml" target="_blank" rel="noopener">Ubuntu 14.04 Linux 3D桌面完全教程</a></p>
+<p>我的设置开启少许即可，多了出问题，下面记叙过程和坑：</p>
+<p>1: Docky</p>
+<p>在<strong>Ubuntu软件中心</strong>搜索Docky下载，安装仿Mac任务栏，小而精。微调3D面板，之后长这样的：</p>
+<p><img src="http://img.blog.csdn.net/20160112101509741" alt="Docky任务栏图示"></p>
+<p>2: compiz</p>
+<p>在<strong>Ubuntu软件中心</strong>搜索compiz安装，安装好后，在屏幕左侧Unity程序启动栏中多了一个“CompziConfig设置管理器”，灰色的“扳手窗口”图标。<br>　　<br><strong>提示：不需要安装Compiz Fusion图标，因为Ubuntu 12.04版没有fusion-icon也一样能完成3D桌面特效的调试工作。</strong></p>
+<p>另外，安装额外的部分：<code>sudo apt-get install compiz-plugins-extra</code></p>
+<p>3: Ubuntu特效设置<br>由于该版本已经自带部分3D特效，我只开了部分比较爆款的特效，设置如下：</p>
+<blockquote>
+<ul>
+<li>ubuntu系统设置 -&gt; 外观 -&gt; 行为 -&gt; 自动隐藏启动器（开启）；</li>
+<li>ubuntu系统设置 -&gt; 外观 -&gt; 行为 -&gt; 显示位置（左上角）</li>
+<li>ubuntu系统设置 -&gt; 外观 -&gt; 行为 -&gt; 开启工作区（4个）</li>
+<li>ubuntu系统设置 -&gt; 外观 -&gt; 行为 -&gt; 显示窗口菜单（在菜单栏），见图：</li>
+</ul>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20160112102418378" alt="Ubuntu外观设置图"></p>
+<p>4: compiz特效开启（见下图）</p>
+<p>使用自带的工作区，因此在cimpizconfig管理器中就不要使用桌面立方体特效了，后果真的很严重，解决办法见上文的完全教程。</p>
+<p>下面cimpizconfig管理器中设置（只开2处，就很完美了）：</p>
+<ul>
+<li>cimpizconfig管理器 -&gt; 震颤窗口（点选） -&gt; 进入设置映射效果和聚焦效果： 破碎</li>
+<li>cimpizconfig管理器 -&gt; 进入Animations(动画插件默认已开) -&gt; 将close Animation、Minimize Animation、Unanimation、Shade Animation的随机效果全部点选；Focus Animation: 聚焦效果设置为：Dodge(躲闪)，持续时间： 400；</li>
+<li>其他所有的部分保持默认吧。</li>
+<li>设置结束！！！</li>
+</ul>
+<p><img src="http://img.blog.csdn.net/20160112103340777" alt="compizconfig管理器设置1"></p>
+<p><img src="http://img.blog.csdn.net/20160112103416480" alt="compizconfig管理器设置2"></p>
+<p><img src="http://img.blog.csdn.net/20160112103435392" alt="compizconfig管理器设置3"></p>
+<p><img src="http://img.blog.csdn.net/20160112103451710" alt="工作区效果图"></p>
+<hr>
+<h2 id="常见问题及解决方案"><a href="#常见问题及解决方案" class="headerlink" title="常见问题及解决方案"></a>常见问题及解决方案</h2><p><1>. 报错：E: Sub-process /usr/bin/dpkg returned an error code (1):</1></p>
+<p>解决办法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /var/lib/dpkg/info /var/lib/dpkg/info.bak //现将info文件夹更名</span><br><span class="line">sudo mkdir /var/lib/dpkg/info //再新建一个新的info文件夹</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -f install xxx</span><br><span class="line">sudo mv /var/lib/dpkg/info/* /var/lib/dpkg/info.bak</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 执行完上一步操作后会在新的info文件夹下生成一些文件，现将这些文件全部移到info.bak文件夹下</span><br><span class="line">sudo rm -rf /var/lib/dpkg/info //把自己新建的info文件夹删掉</span><br><span class="line">sudo mv /var/lib/dpkg/info.bak /var/lib/dpkg/info //把以前的info文件夹重新改回名字</span><br></pre></td></tr></table></figure>
+<p>或 2： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// shell</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> /usr/share/fonts/X11/* /usr/share/fonts/truetype/*</span><br><span class="line"><span class="keyword">do</span> sudo touch <span class="string">"<span class="variable">$i</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>或 3：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update --fix-missing</span><br><span class="line">sudo apt-get autoremove &amp;&amp; sudo apt-get clean &amp;&amp; sudo apt-get install -f</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="http://www.ubuntu.org.cn" target="_blank" rel="noopener">http://www.ubuntu.org.cn</a><br>[2]. <a href="http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button" target="_blank" rel="noopener">http://www.pendrivelinux.com/universal-usb-installer-easy-as-1-2-3/#button</a><br>[3]. <a href="http://www.ubuntu.org.cn/download/desktop/create-a-usb-stick-on-windows" target="_blank" rel="noopener">http://www.ubuntu.org.cn/download/desktop/create-a-usb-stick-on-windows</a><br>[4]. <a href="http://www.bkjia.com/xtzh/760107.html" target="_blank" rel="noopener">http://www.bkjia.com/xtzh/760107.html</a><br>[5]. <a href="http://blog.csdn.net/mduanfire/article/details/50492939" target="_blank" rel="noopener">http://blog.csdn.net/mduanfire/article/details/50492939</a><br>[6]. <a href="http://blog.sina.com.cn/s/blog_54dd80920102vvt6.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_54dd80920102vvt6.html</a><br>[7]. <a href="http://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="noopener">http://pinyin.sogou.com/linux/?r=pinyin</a><br>[8]. <a href="http://www.veryhuo.com/down/html/90202.html" target="_blank" rel="noopener">http://www.veryhuo.com/down/html/90202.html</a><br>[9]. <a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">https://github.com/getlantern/lantern</a><br>[10]. <a href="http://www.ipmsg.org.cn/ipmsg/download.html" target="_blank" rel="noopener">http://www.ipmsg.org.cn/ipmsg/download.html</a><br>[11]. <a href="http://www.360doc.com/content/14/0919/22/11681374_410808557.shtml" target="_blank" rel="noopener">http://www.360doc.com/content/14/0919/22/11681374_410808557.shtml</a><br>[12]. <a href="http://yanue.net/post-123.html" target="_blank" rel="noopener">http://yanue.net/post-123.html</a></p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/10/我的vim配置-vimrc：git-github管理/" rel="next" title="我的vim配置[.vimrc：git+github管理]">
+                <i class="fa fa-chevron-left"></i> 我的vim配置[.vimrc：git+github管理]
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/03/Android-studio-安装过程中的问题整理/" rel="prev" title="Android studio 安装过程中的问题整理">
+                Android studio 安装过程中的问题整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+          <p class="site-author-name" itemprop="name">AbsentM</p>
+          <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/absentm123" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/absentm" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/dmicrocosmos" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hanhanfilm.com/" title="憨憨电影" target="_blank">憨憨电影</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.fengxiaochuang.com/" title="晓闯博客" target="_blank">晓闯博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简记"><span class="nav-number">1.</span> <span class="nav-text">简记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu设置相关"><span class="nav-number">3.1.</span> <span class="nav-text">ubuntu设置相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用软件安装"><span class="nav-number">3.2.</span> <span class="nav-text">常用软件安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D特效开启"><span class="nav-number">3.3.</span> <span class="nav-text">3D特效开启</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题及解决方案"><span class="nav-number">4.</span> <span class="nav-text">常见问题及解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'absentm';
+      var disqus_identifier = '2016/01/12/Ubuntu-14-04-LTS-安装与配置/';
+      var disqus_title = "Ubuntu 14.04 LTS 安装与配置";
+      var disqus_url = 'https://absentm.github.io/2016/01/12/Ubuntu-14-04-LTS-安装与配置/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

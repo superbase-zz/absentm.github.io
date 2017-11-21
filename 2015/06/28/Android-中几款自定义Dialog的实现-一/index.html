@@ -1,0 +1,1044 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Android,Mobile Development,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="本文中，将会介绍几款自定义样式的Dialog的实现，包括（单个“确认”按钮的警告框1，含取消和确认按钮的警告框2，），预览样式如下：       Demo主界面的实现：由第1张图片可见：主界面的实现很简单，四个按钮Button，设置No Title, 间隔和按钮的background！ 主界面的activity_mai">
+<meta name="keywords" content="Android,Mobile Development">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 中几款自定义Dialog的实现(一)">
+<meta property="og:url" content="https://absentm.github.io/2015/06/28/Android-中几款自定义Dialog的实现-一/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="本文中，将会介绍几款自定义样式的Dialog的实现，包括（单个“确认”按钮的警告框1，含取消和确认按钮的警告框2，），预览样式如下：       Demo主界面的实现：由第1张图片可见：主界面的实现很简单，四个按钮Button，设置No Title, 间隔和按钮的background！ 主界面的activity_main.xml内容如下：123456789101112131415&amp;lt;Relat">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20150428205220784">
+<meta property="og:image" content="http://img.blog.csdn.net/20150428205152145">
+<meta property="og:image" content="http://img.blog.csdn.net/20150428205327521">
+<meta property="og:image" content="http://img.blog.csdn.net/20150428205343823">
+<meta property="og:image" content="http://img.blog.csdn.net/20150428205247899">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.736Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 中几款自定义Dialog的实现(一)">
+<meta name="twitter:description" content="本文中，将会介绍几款自定义样式的Dialog的实现，包括（单个“确认”按钮的警告框1，含取消和确认按钮的警告框2，），预览样式如下：       Demo主界面的实现：由第1张图片可见：主界面的实现很简单，四个按钮Button，设置No Title, 间隔和按钮的background！ 主界面的activity_main.xml内容如下：123456789101112131415&amp;lt;Relat">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150428205220784">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2015/06/28/Android-中几款自定义Dialog的实现-一/">
+
+  <title> Android 中几款自定义Dialog的实现(一) | AbsentM's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?021d64369b3c401c47c6ab7aa56f7074";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">AbsentM's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 中几款自定义Dialog的实现(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-06-28T20:51:42+08:00" content="2015-06-28">
+              2015-06-28
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Android Notes</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/06/28/Android-中几款自定义Dialog的实现-一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/06/28/Android-中几款自定义Dialog的实现-一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2015/06/28/Android-中几款自定义Dialog的实现-一/" class="leancloud_visitors" data-flag-title="Android 中几款自定义Dialog的实现(一)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文中，将会介绍几款自定义样式的Dialog的实现，包括（单个“确认”按钮的警告框1，含取消和确认按钮的警告框2，），预览样式如下：</p>
+<p><img src="http://img.blog.csdn.net/20150428205220784" alt="Demo主界面"></p>
+<p><img src="http://img.blog.csdn.net/20150428205152145" alt="警告框 1"></p>
+<p><img src="http://img.blog.csdn.net/20150428205327521" alt="警告框 2"></p>
+<p><img src="http://img.blog.csdn.net/20150428205343823" alt="进度条"></p>
+<p><img src="http://img.blog.csdn.net/20150428205247899" alt="选择框"></p>
+<hr>
+<h2 id="Demo主界面的实现："><a href="#Demo主界面的实现：" class="headerlink" title="Demo主界面的实现："></a>Demo主界面的实现：</h2><p>由第1张图片可见：主界面的实现很简单，四个按钮Button，设置No Title, 间隔和按钮的background！</p>
+<h3 id="主界面的activity-main-xml内容如下："><a href="#主界面的activity-main-xml内容如下：" class="headerlink" title="主界面的activity_main.xml内容如下："></a>主界面的activity_main.xml内容如下：</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@color/seashell"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ScrollView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">layout</span>=<span class="string">"@layout/mul_style_content"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>添加ScrollView的目的很明显，只是想在之后的工作中再多些一些Demo集成到一块，那么：mul_style_content.xml的详情如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/button1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"警告框 1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@drawable/login_btn_select_bg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"警告框 2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@drawable/login_btn_select_bg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_below</span>=<span class="string">"@+id/button1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/button3"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"进度条"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@drawable/login_btn_select_bg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_below</span>=<span class="string">"@+id/button2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/button4"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"选择框"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@drawable/login_btn_select_bg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_below</span>=<span class="string">"@+id/button3"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/imageview1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"200dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"200dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:visibility</span>=<span class="string">"invisible"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_centerHorizontal</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">"@drawable/corners_harf_transparent_bg"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_below</span>=<span class="string">"@+id/button4"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="其中，使用到的color-xml如下，请添加到values文件下的color-xml文件中："><a href="#其中，使用到的color-xml如下，请添加到values文件下的color-xml文件中：" class="headerlink" title="其中，使用到的color.xml如下，请添加到values文件下的color.xml文件中："></a>其中，使用到的color.xml如下，请添加到values文件下的color.xml文件中：</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"white"</span>&gt;</span>#FFFFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--白色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"ivory"</span>&gt;</span>#FFFFF0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--象牙色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightyellow"</span>&gt;</span>#FFFFE0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--亮黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"yellow"</span>&gt;</span>#FFFF00<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"snow"</span>&gt;</span>#FFFAFA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--雪白色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"floralwhite"</span>&gt;</span>#FFFAF0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--花白色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lemonchiffon"</span>&gt;</span>#FFFACD<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--柠檬绸色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"cornsilk"</span>&gt;</span>#FFF8DC<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--米绸色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"seashell"</span>&gt;</span>#FFF5EE<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--海贝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lavenderblush"</span>&gt;</span>#FFF0F5<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--淡紫红 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"papayawhip"</span>&gt;</span>#FFEFD5<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--番木色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"blanchedalmond"</span>&gt;</span>#FFEBCD<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--白杏色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mistyrose"</span>&gt;</span>#FFE4E1<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--浅玫瑰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"bisque"</span>&gt;</span>#FFE4C4<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--桔黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"moccasin"</span>&gt;</span>#FFE4B5<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--鹿皮色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"navajowhite"</span>&gt;</span>#FFDEAD<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--纳瓦白 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"peachpuff"</span>&gt;</span>#FFDAB9<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--桃色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"gold"</span>&gt;</span>#FFD700<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--金色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"pink"</span>&gt;</span>#FFC0CB<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--粉红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightpink"</span>&gt;</span>#FFB6C1<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--亮粉红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"orange"</span>&gt;</span>#FFA500<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--橙色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightsalmon"</span>&gt;</span>#FFA07A<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--亮肉色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkorange"</span>&gt;</span>#FF8C00<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗桔黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"coral"</span>&gt;</span>#FF7F50<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--珊瑚色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"hotpink"</span>&gt;</span>#FF69B4<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--热粉红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"tomato"</span>&gt;</span>#FF6347<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--西红柿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"orangered"</span>&gt;</span>#FF4500<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--红橙色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"deeppink"</span>&gt;</span>#FF1493<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--深粉红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"fuchsia"</span>&gt;</span>#FF00FF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--紫红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"magenta"</span>&gt;</span>#FF00FF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--红紫色 --&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"red"</span>&gt;</span>#FF0000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"oldlace"</span>&gt;</span>#FDF5E6<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--老花色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightgoldenyellow"</span>&gt;</span>#FAFAD2<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--亮金黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"linen"</span>&gt;</span>#FAF0E6<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--亚麻色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"antiquewhite"</span>&gt;</span>#FAEBD7<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--古董白 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"salmon"</span>&gt;</span>#FA8072<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--鲜肉色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"ghostwhite"</span>&gt;</span>#F8F8FF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--幽灵白 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mintcream"</span>&gt;</span>#F5FFFA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--薄荷色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"whitesmoke"</span>&gt;</span>#F5F5F5<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--烟白色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"beige"</span>&gt;</span>#F5F5DC<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--米色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"wheat"</span>&gt;</span>#F5DEB3<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--浅黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sandybrown"</span>&gt;</span>#F4A460<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--沙褐色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"azure"</span>&gt;</span>#F0FFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--天蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"honeydew"</span>&gt;</span>#F0FFF0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--蜜色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"aliceblue"</span>&gt;</span>#F0F8FF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--艾利斯兰 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"khaki"</span>&gt;</span>#F0E68C<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--黄褐色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightcoral"</span>&gt;</span>#F08080<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--亮珊瑚色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"palegoldenrod"</span>&gt;</span>#EEE8AA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--苍麒麟色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"violet"</span>&gt;</span>#EE82EE<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--紫罗兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darksalmon"</span>&gt;</span>#E9967A<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗肉色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lavender"</span>&gt;</span>#E6E6FA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--淡紫色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightcyan"</span>&gt;</span>#E0FFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--亮青色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"burlywood"</span>&gt;</span>#DEB887<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--实木色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"plum"</span>&gt;</span>#DDA0DD<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--洋李色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"gainsboro"</span>&gt;</span>#DCDCDC<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--淡灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"crimson"</span>&gt;</span>#DC143C<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗深红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"palevioletred"</span>&gt;</span>#DB7093<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--苍紫罗兰色--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"goldenrod"</span>&gt;</span>#DAA520<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--金麒麟色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"orchid"</span>&gt;</span>#DA70D6<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--淡紫色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"thistle"</span>&gt;</span>#D8BFD8<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--蓟色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightgrey"</span>&gt;</span>#D3D3D3<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--亮灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"tan"</span>&gt;</span>#D2B48C<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--茶色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"chocolate"</span>&gt;</span>#D2691E<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--巧可力色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"peru"</span>&gt;</span>#CD853F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--秘鲁色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"indianred"</span>&gt;</span>#CD5C5C<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--印第安红 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumvioletred"</span>&gt;</span>#C71585<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--中紫罗兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"silver"</span>&gt;</span>#C0C0C0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--银色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkkhaki"</span>&gt;</span>#BDB76B<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!-- 暗黄褐色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"rosybrown"</span>&gt;</span>#BC8F8F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--褐玫瑰红--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumorchid"</span>&gt;</span>#BA55D3<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--中粉紫色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkgoldenrod"</span>&gt;</span>#B8860B<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗金黄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"firebrick"</span>&gt;</span>#B22222<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--火砖色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"powderblue"</span>&gt;</span>#B0E0E6<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--粉蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightsteelblue"</span>&gt;</span>#B0C4DE<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--亮钢兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"paleturquoise"</span>&gt;</span>#AFEEEE<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--苍宝石绿 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"greenyellow"</span>&gt;</span>#ADFF2F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--黄绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightblue"</span>&gt;</span>#ADD8E6<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--亮蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkgray"</span>&gt;</span>#A9A9A9<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"brown"</span>&gt;</span>#A52A2A<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--褐色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sienna"</span>&gt;</span>#A0522D<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--赭色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkorchid"</span>&gt;</span>#9932CC<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗紫色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"palegreen"</span>&gt;</span>#98FB98<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--苍绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkviolet"</span>&gt;</span>#9400D3<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗紫罗兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumpurple"</span>&gt;</span>#9370DB<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--中紫色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightgreen"</span>&gt;</span>#90EE90<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--亮绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkseagreen"</span>&gt;</span>#8FBC8F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗海兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"saddlebrown"</span>&gt;</span>#8B4513<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--重褐色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkmagenta"</span>&gt;</span>#8B008B<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗洋红 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkred"</span>&gt;</span>#8B0000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗红色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"blueviolet"</span>&gt;</span>#8A2BE2<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--紫罗兰蓝色--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightskyblue"</span>&gt;</span>#87CEFA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--亮天蓝色--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"skyblue"</span>&gt;</span>#87CEEB<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--天蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"gray"</span>&gt;</span>#808080<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"olive"</span>&gt;</span>#808000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--橄榄色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"purple"</span>&gt;</span>#800080<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--紫色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"maroon"</span>&gt;</span>#800000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--粟色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"aquamarine"</span>&gt;</span>#7FFFD4<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--碧绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"chartreuse"</span>&gt;</span>#7FFF00<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--黄绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lawngreen"</span>&gt;</span>#7CFC00<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--草绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumslateblue"</span>&gt;</span>#7B68EE<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--中暗蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightslategray"</span>&gt;</span>#778899<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--亮蓝灰 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightslategrey"</span>&gt;</span>#778899<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--亮蓝灰 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"slategray"</span>&gt;</span>#708090<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--灰石色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"slategrey"</span>&gt;</span>#708090<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--灰石色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"olivedrab"</span>&gt;</span>#6B8E23<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--深绿褐色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"slateblue"</span>&gt;</span>#6A5ACD<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--石蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"dimgray"</span>&gt;</span>#696969<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumaquamarine"</span>&gt;</span>#66CDAA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--中绿色--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"cornflowerblue"</span>&gt;</span>#6495ED<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--菊兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"cadetblue"</span>&gt;</span>#5F9EA0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--军兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkolivegreen"</span>&gt;</span>#556B2F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--暗橄榄绿 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"indigo"</span>&gt;</span>#4B0082<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--靛青色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumturquoise"</span>&gt;</span>#48D1CC<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--中绿宝石--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkslateblue"</span>&gt;</span>#483D8B<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗灰蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"steelblue"</span>&gt;</span>#4682B4<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--钢兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"royalblue"</span>&gt;</span>#4169E1<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--皇家蓝 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"turquoise"</span>&gt;</span>#40E0D0<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--青绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumseagreen"</span>&gt;</span>#3CB371<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--中海蓝 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"limegreen"</span>&gt;</span>#32CD32<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--橙绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkslategray"</span>&gt;</span>#2F4F4F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗瓦灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkslategrey"</span>&gt;</span>#2F4F4F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗瓦灰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"seagreen"</span>&gt;</span>#2E8B57<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--海绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"forestgreen"</span>&gt;</span>#228B22<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--森林绿 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lightseagreen"</span>&gt;</span>#20B2AA<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--亮海蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"dodgerblue"</span>&gt;</span>#1E90FF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--闪兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"midnightblue"</span>&gt;</span>#191970<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--中灰兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"aqua"</span>&gt;</span>#00FFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--浅绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"cyan"</span>&gt;</span>#00FFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--青色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"springgreen"</span>&gt;</span>#00FF7F<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--春绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"lime"</span>&gt;</span>#00FF00<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--酸橙色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumspringgreen"</span>&gt;</span>#00FA9A<span class="tag">&lt;/<span class="name">color</span>&gt;</span>		<span class="comment">&lt;!--中春绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkturquoise"</span>&gt;</span>#00CED1<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--暗宝石绿 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"deepskyblue"</span>&gt;</span>#00BFFF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--深天蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkcyan"</span>&gt;</span>#008B8B<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗青色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"teal"</span>&gt;</span>#008080<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--水鸭色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"green"</span>&gt;</span>#008000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkgreen"</span>&gt;</span>#006400<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗绿色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"blue"</span>&gt;</span>#0000FF<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"mediumblue"</span>&gt;</span>#0000CD<span class="tag">&lt;/<span class="name">color</span>&gt;</span>			<span class="comment">&lt;!--中兰色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"darkblue"</span>&gt;</span>#00008B<span class="tag">&lt;/<span class="name">color</span>&gt;</span>				<span class="comment">&lt;!--暗蓝色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"navy"</span>&gt;</span>#000080<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--海军色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"black"</span>&gt;</span>#000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--黑色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"bantuming"</span>&gt;</span>#b0000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span>					<span class="comment">&lt;!--ban黑色 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"light_bantuming"</span>&gt;</span>#50000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"bg_color"</span>&gt;</span>#EDEDED<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"contents_text"</span>&gt;</span>#ff000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"encode_view"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"help_button_view"</span>&gt;</span>#ffcccccc<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"help_view"</span>&gt;</span>#ff404040<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"possible_result_points"</span>&gt;</span>#c0ffff00<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"result_image_border"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"result_minor_text"</span>&gt;</span>#ffc0c0c0<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"result_points"</span>&gt;</span>#c000ff00<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"result_text"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"result_view"</span>&gt;</span>#b0000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sbc_header_text"</span>&gt;</span>#ff808080<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sbc_header_view"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sbc_list_item"</span>&gt;</span>#fffff0e0<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sbc_layout_view"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sbc_page_number_text"</span>&gt;</span>#ff000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"sbc_snippet_text"</span>&gt;</span>#ff4b4b4b<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"share_text"</span>&gt;</span>#ff000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"share_view"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"status_view"</span>&gt;</span>#50000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"status_text"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"transparent"</span>&gt;</span>#00000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"viewfinder_frame"</span>&gt;</span>#ffffffff<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"viewfinder_laser"</span>&gt;</span>#ffff0000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"viewfinder_mask"</span>&gt;</span>#60000000<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"header"</span>&gt;</span>#58567D<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">color</span> <span class="attr">name</span>=<span class="string">"grgray"</span>&gt;</span>#686868<span class="tag">&lt;/<span class="name">color</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="还有一个login-btn-select-bg-xml是按钮的背景样式，将以下内容放到drawable文件夹下："><a href="#还有一个login-btn-select-bg-xml是按钮的背景样式，将以下内容放到drawable文件夹下：" class="headerlink" title="还有一个login_btn_select_bg.xml是按钮的背景样式，将以下内容放到drawable文件夹下："></a>还有一个login_btn_select_bg.xml是按钮的背景样式，将以下内容放到drawable文件夹下：</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 未单击时的背景图片 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">shape</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:bottomLeftRadius</span>=<span class="string">"10dp"</span> <span class="attr">android:bottomRightRadius</span>=<span class="string">"10dp"</span> <span class="attr">android:radius</span>=<span class="string">"30dp"</span> <span class="attr">android:topLeftRadius</span>=<span class="string">"10dp"</span> <span class="attr">android:topRightRadius</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">gradient</span> <span class="attr">android:endColor</span>=<span class="string">"#000000"</span> <span class="attr">android:startColor</span>=<span class="string">"#FFFFFF"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 实心， 且有填充色 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#87CEEB"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 和CSS中的padding应该是一个道理 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">padding</span> <span class="attr">android:bottom</span>=<span class="string">"7dp"</span> <span class="attr">android:left</span>=<span class="string">"7dp"</span> <span class="attr">android:right</span>=<span class="string">"7dp"</span> <span class="attr">android:top</span>=<span class="string">"7dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 单击时的背景图片 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">shape</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">corners</span> <span class="attr">android:bottomLeftRadius</span>=<span class="string">"10dp"</span> <span class="attr">android:bottomRightRadius</span>=<span class="string">"10dp"</span> <span class="attr">android:radius</span>=<span class="string">"30dp"</span> <span class="attr">android:topLeftRadius</span>=<span class="string">"10dp"</span> <span class="attr">android:topRightRadius</span>=<span class="string">"10dp"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">gradient</span> <span class="attr">android:endColor</span>=<span class="string">"#000000"</span> <span class="attr">android:startColor</span>=<span class="string">"#FFFFFF"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 实心， 且有填充色 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"#90EE90"</span> /&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 和CSS中的padding应该是一个道理 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">padding</span> <span class="attr">android:bottom</span>=<span class="string">"7dp"</span> <span class="attr">android:left</span>=<span class="string">"7dp"</span> <span class="attr">android:right</span>=<span class="string">"7dp"</span> <span class="attr">android:top</span>=<span class="string">"7dp"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样主界面的设计就完成，只需在MainActivity设置相应的按钮监听事件即可。</p>
+<p><strong><em>由于篇幅所限，下面每一部分的实现，将会在下一篇文章中讲述！</em></strong></p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag">#Mobile Development</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/20/Android-SwipeRefreshLayout-官方下拉刷新控件介绍/" rel="next" title="Android SwipeRefreshLayout 官方下拉刷新控件介绍">
+                <i class="fa fa-chevron-left"></i> Android SwipeRefreshLayout 官方下拉刷新控件介绍
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/28/Android自定义Dialog之警告框1和警告框2-的实现（二）/" rel="prev" title="Android自定义Dialog之警告框1和警告框2 的实现（二）">
+                Android自定义Dialog之警告框1和警告框2 的实现（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+          <p class="site-author-name" itemprop="name">AbsentM</p>
+          <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/absentm123" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/absentm" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/dmicrocosmos" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hanhanfilm.com/" title="憨憨电影" target="_blank">憨憨电影</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.fengxiaochuang.com/" title="晓闯博客" target="_blank">晓闯博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo主界面的实现："><span class="nav-number">1.</span> <span class="nav-text">Demo主界面的实现：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主界面的activity-main-xml内容如下："><span class="nav-number">1.1.</span> <span class="nav-text">主界面的activity_main.xml内容如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其中，使用到的color-xml如下，请添加到values文件下的color-xml文件中："><span class="nav-number">1.2.</span> <span class="nav-text">其中，使用到的color.xml如下，请添加到values文件下的color.xml文件中：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#还有一个login-btn-select-bg-xml是按钮的背景样式，将以下内容放到drawable文件夹下："><span class="nav-number">1.3.</span> <span class="nav-text">还有一个login_btn_select_bg.xml是按钮的背景样式，将以下内容放到drawable文件夹下：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'absentm';
+      var disqus_identifier = '2015/06/28/Android-中几款自定义Dialog的实现-一/';
+      var disqus_title = "Android 中几款自定义Dialog的实现(一)";
+      var disqus_url = 'https://absentm.github.io/2015/06/28/Android-中几款自定义Dialog的实现-一/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

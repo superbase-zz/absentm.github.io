@@ -1,0 +1,1177 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Ubuntu,Deep Learning,Caffe,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="本文主要笔记自己在ubuntu 14.04.4 LTS版本系统上搭建开源深度学习[Deep Learning]框架: Caffe的详细过程。其中主要包含了Nvidia CUDA 7.5、opencv 3.0、cuDNN的安装配置过程及所遇问题的解决方案。 安装的过程中遇到了很多问题，感谢开源社区、感谢Github大神们">
+<meta name="keywords" content="Ubuntu,Deep Learning,Caffe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战">
+<meta property="og:url" content="https://absentm.github.io/2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="本文主要笔记自己在ubuntu 14.04.4 LTS版本系统上搭建开源深度学习[Deep Learning]框架: Caffe的详细过程。其中主要包含了Nvidia CUDA 7.5、opencv 3.0、cuDNN的安装配置过程及所遇问题的解决方案。 安装的过程中遇到了很多问题，感谢开源社区、感谢Github大神们的分享，学会分享就是很大的善良。  情况说明在搭建该框架前，本系统已经使用Ubu">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214003509">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214132574">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214222685">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214304667">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214425511">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214603689">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214833997">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320214922497">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320220059533">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320215108560">
+<meta property="og:image" content="http://img.blog.csdn.net/20160320220016928">
+<meta property="og:image" content="http://img.blog.csdn.net/20160503155908088">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战">
+<meta name="twitter:description" content="本文主要笔记自己在ubuntu 14.04.4 LTS版本系统上搭建开源深度学习[Deep Learning]框架: Caffe的详细过程。其中主要包含了Nvidia CUDA 7.5、opencv 3.0、cuDNN的安装配置过程及所遇问题的解决方案。 安装的过程中遇到了很多问题，感谢开源社区、感谢Github大神们的分享，学会分享就是很大的善良。  情况说明在搭建该框架前，本系统已经使用Ubu">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160320214003509">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/">
+
+  <title> 64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战 | AbsentM's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?021d64369b3c401c47c6ab7aa56f7074";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">AbsentM's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-03-20T22:02:19+08:00" content="2016-03-20">
+              2016-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Deep Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/" class="leancloud_visitors" data-flag-title="64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">visitors </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要笔记自己在ubuntu 14.04.4 LTS版本系统上搭建开源深度学习[Deep Learning]框架: Caffe的详细过程。其中主要包含了Nvidia CUDA 7.5、opencv 3.0、cuDNN的安装配置过程及所遇问题的解决方案。</p>
+<p>安装的过程中遇到了很多问题，感谢开源社区、感谢Github大神们的分享，学会分享就是很大的善良。</p>
+<hr>
+<h2 id="情况说明"><a href="#情况说明" class="headerlink" title="情况说明"></a>情况说明</h2><p>在搭建该框架前，本系统已经使用Ubuntu自带的”附件驱动”安装了开源驱动，看过网上的很多教程之后，还是毅然决然地卸载这些开源驱动，换回了自带默认的”Nouveau Display Driver”驱动以供基本显示使用（注意：此时安装的Nvidia推荐驱动还没有完全卸载，即尚未安装GPU）。</p>
+<p>这些说明很重要！由于大神的通力劳作，使得现在按照官网安装最新版的Caffe，变得很简单了，下面我们开始一步步的安装吧。</p>
+<hr>
+<h2 id="Caffe-安装"><a href="#Caffe-安装" class="headerlink" title="Caffe 安装"></a>Caffe 安装</h2><p>根据我们前面的情况说明，我们现在机器上没有GPU，按照官网的<a href="http://caffe.berkeleyvision.org/install_apt.html" target="_blank" rel="noopener">Caffe官网安装教程</a>，我们先一步步地进行，之后安装完GPU（CUDA）后再重新编译即可，不用担心。</p>
+<p>(1). 安装依赖库（一）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install --no-install-recommends libboost-all-dev</span><br></pre></td></tr></table></figure>
+<p>(2). 安装BLAS</p>
+<p>也可以安装OpenBLAS或者MKL，以加速CPU性能（有GPU的童鞋可以忽略），这里我按照官网装了BLAS，有兴趣的童鞋可以自己研究另外两种，只需在最后编译caffe的时候修改一下配置文件即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libatlas-base-dev</span><br></pre></td></tr></table></figure>
+<p>(3). Python安装</p>
+<p>Ubuntu 14.04 自带Python 2.7 ，无需自行安装。可以自测：<code>$ python</code>，进入python环境后会有版本提示；如果未出现请使用如下命令进行安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install python</span><br></pre></td></tr></table></figure>
+<p>(4). Opencv3.0安装</p>
+<p>安装方法详见：<a href="https://absentm.github.io/2016/03/19/Ubuntu14-04-LTS-%E7%B3%BB%E7%BB%9F%E4%B8%ADOpencv-3-0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/"> ubuntu14.04 LTS系统中Opencv 3.0开发环境的搭建 </a>，Opencv必须安装，且版本需要大于2.4。—[来自官网说明]</p>
+<p>(5). 安装依赖库（二）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev</span><br></pre></td></tr></table></figure>
+<p>(6). Caffe下载</p>
+<p>使用git进行下载，直接从github上下载最新版本，下载前切换至home目录。注：git的使用方法可参看：<a href="http://blog.csdn.net/mduanfire/article/details/50492939" target="_blank" rel="noopener">我的vim配置（.vimrc：git+github管理） </a>，这篇文章内容进行安装配置。clone后在home中便可以找到Caffe的下载目录了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd</span><br><span class="line">$ git clone git://github.com/BVLC/caffe.git</span><br></pre></td></tr></table></figure>
+<p>(7). 编译Caffe前准备</p>
+<ul>
+<li><p>修改Makefile文件，最新版的Caffe已经帮我们修改好了，可以跳过；如果使用以前的版本则仍需要修改，这个可以自行Google。</p>
+</li>
+<li><p>修改caffe/examples/cpp_classification/classification.cpp文件，加入：</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/imgproc/types_c.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/objdetect/objdetect.hpp&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>(8). 编译Caffe</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/caffe</span><br><span class="line">$ cp Makefile.config.example Makefile.config </span><br><span class="line"></span><br><span class="line"># 修改Makefile.config文件：如果没有GPU，则去掉CPU_ONLY:= 1的注释</span><br><span class="line"># 如果安装了Opencv3.0,去掉 OPENCV_VERSION := 3的注释</span><br><span class="line"></span><br><span class="line">$ make all </span><br><span class="line"># 到这一步可能会出现，缺少cublas_v2.h的错误提示，先不用管，这时以下两步也不需要执行了，这是由于未安装cuda造成的。</span><br><span class="line"></span><br><span class="line">$ make test </span><br><span class="line">$ make runtest</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160320214003509" alt="Makefile配置图"></p>
+<hr>
+<h2 id="Nvidia显卡驱动及Cuda-7-5-的安装"><a href="#Nvidia显卡驱动及Cuda-7-5-的安装" class="headerlink" title="Nvidia显卡驱动及Cuda 7.5 的安装"></a>Nvidia显卡驱动及Cuda 7.5 的安装</h2><p><strong>如果你的机器还没有装GPU，请直接忽略这一步和cuDNN安装</strong></p>
+<p>（1）. 验证你的gpu支持是否支持Cuda </p>
+<p>打开<a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">支持Cuda运算的Gpu列表</a>，只要你的GPU在里面找得到就没问题。</p>
+<p>（2）. 查看当前使用显卡 </p>
+<p>在终端输入以下命令，确认当前使用的是独立显卡，如果使用的是集显，则需要在开机时进入BIOS关闭集显。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lspci | grep -i nvidia</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20160320214132574" alt="显示效果"></p>
+<p>（3）. 确认你的系统是X86架构，可通过下面的命令查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ uname -m &amp;&amp; cat /etc/*release   # 显示X86_64和系统信息即可</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160320214222685" alt="显示结果"></p>
+<p>（4）. 安装gcc </p>
+<p>Ubuntu 14.04已经自带gcc 4.8.5，无需自行下载，检查gcc版本可通过如下方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc --version</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://img.blog.csdn.net/20160320214304667" alt="gcc"></p>
+<p>如果发现还没安装gcc，可以执行：$ sudo apt-get install gcc-版本号</p>
+<p>（5）. 下载Cuda<br>Cuda可以直接到<a href="https://developer.nvidia.com/cuda-toolkit" target="_blank" rel="noopener">Nvidia官网</a>下载，下面官网的下载地址，有两种安装方式（.run 和 .deb），这里只介绍后者，因为比较简单易行。 这里选择下载信息如下图： </p>
+<p><strong>这里给出我的百度云盘下载地址：</strong> 链接：<a href="http://pan.baidu.com/s/1c7nR9G" target="_blank" rel="noopener">http://pan.baidu.com/s/1c7nR9G</a> 密码：sp7z</p>
+<p><img src="http://img.blog.csdn.net/20160320214425511" alt="这里写图片描述"></p>
+<p>（6）. 验证Cuda安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ md5sum 你的filename</span><br></pre></td></tr></table></figure>
+<p>如果下载没出错，那得到的MD5序列号和上图中是一致的，否则只能重新下载。</p>
+<p>（7）. 卸载旧版本Nvidia</p>
+<p>根据官网介绍，之前安装的版本都会有冲突的嫌疑。卸载命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get --purge remove nvidia*</span><br></pre></td></tr></table></figure>
+<p>（8）. 安装Cuda </p>
+<p>cd切换至cuda安装包所在的目录，执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo dpkg -i cuda-repo-ubuntu1404-7-5-local_7.5-18_amd64.deb</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install cuda</span><br></pre></td></tr></table></figure>
+<p>（9）. 添加环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vim /etc/profile # 在末尾添加（注意自己的Cuda版本）：</span><br><span class="line"></span><br><span class="line"># export PATH=/usr/local/cuda-7.5/bin:$PATH</span><br><span class="line"># export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH</span><br><span class="line"></span><br><span class="line">$ source /etc/profile</span><br><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure>
+<p>（10）. 安装例程</p>
+<p>例程本来在<code>/usr/local/cuda-7.5/samples</code>路径下，但不可写，使用如下命令进行复制：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cuda-install-samples-7.5.sh ~/cuda</span><br></pre></td></tr></table></figure></p>
+<p>（11）. 查看GPU驱动版本、Cuda版本： </p>
+<p>正常安装的话，会出现版本信息，如果没出现说明安装出错，官网教程说的很清楚。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat /proc/driver/nvidia/version</span><br><span class="line">$ nvcc -V</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160320214603689" alt="nvidia-version"></p>
+<p>（12）. 编译例程</p>
+<p>cd进NVIDIA_CUDA-7.5_Samples中make:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/cuda/NVIDIA_CUDA-7.5_Samples    </span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译结果在 ~/NVIDIA_CUDA-7.5_Samples/bin/x86_64/linux/release中</p>
+</blockquote>
+<p>（13）. 执行编译结果，确认安装配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd</span><br><span class="line">$ ./cuda/NVIDIA_CUDA-7.5_Samples/bin/x86_64/linux/release/deviceQuery</span><br></pre></td></tr></table></figure>
+<p>顺利的话如下图所示，若出错可<a href="http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html#running-binaries__valid-results-from-sample-cuda-devicequery-program" target="_blank" rel="noopener">参考此处</a> </p>
+<p><img src="http://img.blog.csdn.net/20160320214833997" alt="deviceQuery"></p>
+<p>（14）. bandwidthTest确认</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./cuda/NVIDIA_CUDA-7.5_Samples/bin/x86_64/linux/release/bandwidthTest</span><br></pre></td></tr></table></figure>
+<p>确认结果如下图所示则安装成功 ：</p>
+<p><img src="http://img.blog.csdn.net/20160320214922497" alt="bandwidthTest"></p>
+<hr>
+<h2 id="安装cuDNN"><a href="#安装cuDNN" class="headerlink" title="安装cuDNN"></a>安装cuDNN</h2><p>（1）. 下载cuDNN </p>
+<p>可以从<a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">英伟达官网</a>下载，一般注册第二天就通过。</p>
+<p>注意，<strong>建议使用cudnn v3 或 cudnn v2版本，我试验的v5最新版一直报错</strong>。</p>
+<p><strong>这里给出我的百度云盘下载地址：</strong><br>链接：<a href="http://pan.baidu.com/s/1c2p8NcO" target="_blank" rel="noopener">http://pan.baidu.com/s/1c2p8NcO</a> 密码：em3w</p>
+<p>（2）. 安装<br>解压下载好的文件，一般在文件所在的目录会出现一个cuda的新文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ tar -xzvf cudnn-7.5-linux-x64-v3.0-rc.tgz</span><br><span class="line">$ cd cudnn/lib64/</span><br><span class="line">$ sudo cp lib* /usr/local/cuda/lib64/</span><br><span class="line">$ cd ..</span><br><span class="line">$ cd include</span><br><span class="line">$ sudo cp cudnn.h /usr/local/cuda/include</span><br></pre></td></tr></table></figure>
+<p>（3）. 重新编译caffe<br>在~/caffe/Makefile.config中，去掉 USE_CUDNN := 1的注释，重新加上CPU_ONLY:= 1的注释然后重新编译caffe即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ make clean # 第一次编译不用这句，出错时也可使用这句。</span><br><span class="line">$ make all</span><br><span class="line">$ make test</span><br><span class="line">$ make runtest</span><br></pre></td></tr></table></figure>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>当进行 <code>make all</code> 操作时，可能会出现如下错误：</p>
+<blockquote>
+<p>CXX/LD -o .build_release/tools/convert_imageset.bin<br>.build_release/lib/libcaffe.so: undefined reference to cv::imread(cv::String const&amp;, int)’<br>.build_release/lib/libcaffe.so: undefined reference tocv::imencode(cv::String const&amp;, cv::_InputArray const&amp;, std::vector &gt;&amp;, std::vector &gt; const&amp;)’</p>
+</blockquote>
+<p><strong>原因就是opencv3.0.0把imread相关函数放到imgcodecs.lib中了，而非原来的imgproc.lib</strong></p>
+<p><strong>解决办法：修改Makefile文件（不是Makefile.config）：</strong></p>
+<p><strong>在位置{ (LIBRARIES += glog gflags protobuf leveldb snappy lmdb boost_system hdf5_hl hdf5 m opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs) }处添加opencv_imgcodecs</strong></p>
+<p>修复错误重新执行上述代码，成功后的截图如下所示：</p>
+<p><img src="http://img.blog.csdn.net/20160320220059533" alt="runtest"></p>
+<hr>
+<h2 id="配置pycaffe"><a href="#配置pycaffe" class="headerlink" title="配置pycaffe"></a>配置pycaffe</h2><p>（1）. 安装依赖库 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install python-numpy python-scipy python-matplotlib python-sklearn python-skimage python-h5py python-protobuf python-leveldb python-networkx python-nose python-pandas python-gflags Cython ipython</span><br><span class="line"></span><br><span class="line">$ sudo apt-get install protobuf-c-compiler protobuf-compiler</span><br></pre></td></tr></table></figure>
+<p>（2）. 编译 </p>
+<p>进入caffe目录，编译pycaffe<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/caffe</span><br><span class="line">$ make pycaffe</span><br></pre></td></tr></table></figure></p>
+<p>（3）. 修改环境变量 </p>
+<p>添加caffe目录下的python地址到$PYTHONPATH<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit /etc/profile # 末尾添加： export PYTHONPATH = caffe目录下的python地址:$PYTHONPATH，用完整路径，不要用~</span><br><span class="line"></span><br><span class="line">$ source /etc/profile # 使之生效</span><br></pre></td></tr></table></figure></p>
+<p>（4）. 测试 </p>
+<p>在terminal进入python,import caffe 如果没错说明安装成功，效果如图：</p>
+<p><img src="http://img.blog.csdn.net/20160320215108560" alt="import caffe"></p>
+<hr>
+<h2 id="使用MNIST数据集进行测试"><a href="#使用MNIST数据集进行测试" class="headerlink" title="使用MNIST数据集进行测试"></a>使用MNIST数据集进行测试</h2><p>切换至caffe目录下，下面的工作主要是：用于测试Caffe是否工作正常，不做详细评估。具体设置请参考官网：<a href="http://caffe.berkeleyvision.org/gathered/examples/mnist.html" target="_blank" rel="noopener">MNIST数据集在Caffe中的测试 。</a></p>
+<ul>
+<li>数据预处理</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh data/mnist/get_mnist.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重建lmdb/leveldb文件。Caffe支持三种数据格式输入网络，包括Image(.jpg,<br> .png等)，leveldb，lmdb，根据自己需要选择不同输入吧。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh examples/mnist/create_mnist.sh</span><br></pre></td></tr></table></figure>
+<p>生成mnist-train-lmdb 和 mnist-train-lmdb文件夹，这里包含了lmdb格式的数据集</p>
+<ul>
+<li>训练mnist</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh examples/mnist/train_lenet.sh</span><br></pre></td></tr></table></figure>
+<p>这时你会在终端窗口中看到caffe的训练过程</p>
+<p><img src="http://img.blog.csdn.net/20160320220016928" alt="training"></p>
+<hr>
+<h2 id="使用CIFAR-10数据集进行测试"><a href="#使用CIFAR-10数据集进行测试" class="headerlink" title="使用CIFAR-10数据集进行测试"></a>使用CIFAR-10数据集进行测试</h2><p><strong>CIFAR-10数据集</strong>: 含有6万个32*32的彩色图像，共分为10种类型，由 Alex Krizhevsky, Vinod Nair和 Geoffrey Hinton收集而来。包含50000张训练图片，10000张测试图片, 详细参考地址见:  <a href="http://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="noopener">The CIFAR-10 dataset</a></p>
+<ul>
+<li>首先切换至caffe目录下: <code>$ cd caffe</code>;</li>
+<li>准备数据集( 在caffe目录下执行): <code>$  ./data/cifar10/get_cifar10.sh</code>; </li>
+<li>执行: <code>./examples/cifar10/create_cifar10.sh</code>   ## 将图片库转成leveldb格式，并计算均值二进制文件;</li>
+<li>模型训练: <code>./examples/cifar10/train_quick.sh</code></li>
+</ul>
+<p>结果如下图所示:</p>
+<p><img src="http://img.blog.csdn.net/20160503155908088" alt="cifar10-caffe"></p>
+<hr>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>(1): <a href="http://caffe.berkeleyvision.org/install_apt.html" target="_blank" rel="noopener">http://caffe.berkeleyvision.org/install_apt.html</a><br>(2): <a href="http://blog.csdn.net/mduanfire/article/details/50931989" target="_blank" rel="noopener">http://blog.csdn.net/mduanfire/article/details/50931989</a><br>(3): <a href="http://blog.csdn.net/mduanfire/article/details/50492939" target="_blank" rel="noopener">http://blog.csdn.net/mduanfire/article/details/50492939</a><br>(4): <a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-gpus</a><br>(5): <a href="https://developer.nvidia.com/cuda-toolkit" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-toolkit</a><br>(6): <a href="http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html#running-binaries__valid-results-from-sample-cuda-devicequery-program" target="_blank" rel="noopener">http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html#running-binaries__valid-results-from-sample-cuda-devicequery-program</a><br>(7): <a href="https://developer.nvidia.com/cudnnhttp://caffe.berkeleyvision.org/install_apt.html" target="_blank" rel="noopener">https://developer.nvidia.com/cudnnhttp://caffe.berkeleyvision.org/install_apt.html</a><br>(8): <a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">https://developer.nvidia.com/cudnn</a><br>(9): <a href="http://blog.csdn.net/u013915633/article/details/49867947" target="_blank" rel="noopener">http://blog.csdn.net/u013915633/article/details/49867947</a><br>(10): <a href="http://www.th7.cn/system/lin/201504/103304.shtml" target="_blank" rel="noopener">http://www.th7.cn/system/lin/201504/103304.shtml</a><br>(11): <a href="https://github.com/Zhangjd/graduation-project/issues/1" target="_blank" rel="noopener">https://github.com/Zhangjd/graduation-project/issues/1</a><br>(12): <a href="https://github.com/BVLC/caffe/issues/2348" target="_blank" rel="noopener">https://github.com/BVLC/caffe/issues/2348</a></p>
+<p><strong>END</strong></p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag">#Ubuntu</a>
+          
+            <a href="/tags/Deep-Learning/" rel="tag">#Deep Learning</a>
+          
+            <a href="/tags/Caffe/" rel="tag">#Caffe</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/20/Android使用Fragment实现底部导航栏/" rel="next" title="Android使用Fragment实现底部导航栏">
+                <i class="fa fa-chevron-left"></i> Android使用Fragment实现底部导航栏
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/28/使用U盘安装windows系统教程/" rel="prev" title="使用U盘安装windows系统教程">
+                使用U盘安装windows系统教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+          <p class="site-author-name" itemprop="name">AbsentM</p>
+          <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">52</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/absentm123" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/absentm" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/dmicrocosmos" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.hanhanfilm.com/" title="憨憨电影" target="_blank">憨憨电影</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.fengxiaochuang.com/" title="晓闯博客" target="_blank">晓闯博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#情况说明"><span class="nav-number">1.</span> <span class="nav-text">情况说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Caffe-安装"><span class="nav-number">2.</span> <span class="nav-text">Caffe 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nvidia显卡驱动及Cuda-7-5-的安装"><span class="nav-number">3.</span> <span class="nav-text">Nvidia显卡驱动及Cuda 7.5 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装cuDNN"><span class="nav-number">4.</span> <span class="nav-text">安装cuDNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">4.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置pycaffe"><span class="nav-number">5.</span> <span class="nav-text">配置pycaffe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用MNIST数据集进行测试"><span class="nav-number">6.</span> <span class="nav-text">使用MNIST数据集进行测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用CIFAR-10数据集进行测试"><span class="nav-number">7.</span> <span class="nav-text">使用CIFAR-10数据集进行测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">8.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'absentm';
+      var disqus_identifier = '2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/';
+      var disqus_title = "64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战";
+      var disqus_url = 'https://absentm.github.io/2016/03/20/64位Ubuntu-14-04-LTS-Caffe-CUDA-7-5-Opencv-3-0-安装配置实战/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
