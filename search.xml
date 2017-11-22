@@ -6,7 +6,31 @@
     <entry>
       <title><![CDATA[Eclipse 优化配置项说明]]></title>
       <url>https://absentm.github.io/2017/11/21/Eclipse-%E4%BC%98%E5%8C%96%E9%85%8D%E7%BD%AE%E9%A1%B9%E8%AF%B4%E6%98%8E/</url>
-      <content type="html"><![CDATA[<hr>]]></content>
+      <content type="html"><![CDATA[<hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>好久不更博了，上一次在 github 上提交代码和更新文章还是在学校的时候，那时候真好。</p>
+</blockquote>
+<p>这篇文章中记录一下 Eclipse 的优化配置吧，每一次都上网找不同的链接搜索也挺麻烦的；索性，再做一次搬砖的，整理到这里，留待日后使用。</p>
+<h2 id="Preferences-配置修改"><a href="#Preferences-配置修改" class="headerlink" title="Preferences 配置修改"></a>Preferences 配置修改</h2><ol>
+<li>General &gt; Startup and Shutdown : 移除所有在启动时加载的插件。</li>
+<li>General &gt; Editors &gt; Text Editors &gt; Spelling : 关闭拼写检查。</li>
+<li>General &gt; Validation &gt; 勾选“Suspend all validator”。</li>
+<li>Window &gt; Customize Perspective &gt; 移除所有用不到或不想用的内容（尽量使用快捷键），菜单栏也是如此（你用过几次菜单栏的打印按钮？）。</li>
+<li>Install/Update &gt; Automatic Updates &gt; 取消勾选“Automatically find new updates and notify me”。</li>
+<li>General &gt; Appearance &gt; 取消勾选“Enable Animations”。</li>
+<li>使用默认的主题。其他主题可能会降低运行速度。</li>
+<li>取消 Build Auto。</li>
+</ol>
+<h2 id="修改-eclipse-ini-文件"><a href="#修改-eclipse-ini-文件" class="headerlink" title="修改 eclipse.ini 文件"></a>修改 eclipse.ini 文件</h2><p>eclipse.ini 文件是 Eclipse IDE 的配置文件，也可以通过修改其配置文件提升 Eclipse 的速度。</p>
+<h3 id="文件位置"><a href="#文件位置" class="headerlink" title="文件位置"></a>文件位置</h3><ul>
+<li><p>Windows/Linux：位于$ECLIPSE_HOME（注：$ECLIPSE HOME是Eclipse的路径，这里假设Linux下也是自行安装，而不是通过源安装）</p>
+</li>
+<li><p>MacOS：位于$ECLIPSE_HOME/Eclipse.app/Contents/MacOS</p>
+</li>
+</ul>
+<h3 id="添加如下内容"><a href="#添加如下内容" class="headerlink" title="添加如下内容"></a>添加如下内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 打开编译器性能优化</span><br><span class="line">-XX:+AggressiveOpts</span><br><span class="line"></span><br><span class="line"># 增加永生代空间（分配新对象的地方）（注：在 JDK 8 中，取消了永生代）</span><br><span class="line">-XX:PermSize=512m</span><br><span class="line">-XX:MaxPermSize=512m</span><br><span class="line"></span><br><span class="line"># 增加最小最大堆的空间（含有新生代和年老代）</span><br><span class="line">-Xms2048m</span><br><span class="line">-Xmx2048m</span><br><span class="line"></span><br><span class="line"># 为新生代增加堆的大小</span><br><span class="line">-Xmn512m</span><br><span class="line"></span><br><span class="line"># 为每个线程设置栈大小</span><br><span class="line">-Xss2m</span><br><span class="line"></span><br><span class="line"># 调整垃圾收集</span><br><span class="line">-XX:+UseParallelOldGC</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="http://www.importnew.com/13942.html" target="_blank" rel="noopener">http://www.importnew.com/13942.html</a><br>[2]. <a href="http://rongmayisheng.com/post/eclipse%E5%85%A8%E9%9D%A2%E6%8F%90%E9%80%9F" target="_blank" rel="noopener">http://rongmayisheng.com/post/eclipse%E5%85%A8%E9%9D%A2%E6%8F%90%E9%80%9F</a></p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><hr>]]></content>
       
         <categories>
             
@@ -17,9 +41,7 @@
         
         <tags>
             
-            <tag> sublime text </tag>
-            
-            <tag> 编辑器 </tag>
+            <tag> IDE </tag>
             
         </tags>
         
