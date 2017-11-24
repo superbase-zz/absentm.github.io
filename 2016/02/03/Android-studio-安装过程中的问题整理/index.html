@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://o8zyn0sct.qnssl.com/as3.png">
 <meta property="og:image" content="http://img.blog.csdn.net/20160413114331970">
 <meta property="og:image" content="http://img.blog.csdn.net/20160413114506892">
-<meta property="og:updated_time" content="2017-11-21T11:44:44.734Z">
+<meta property="og:updated_time" content="2017-11-24T08:29:21.289Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android studio 安装过程中的问题整理">
 <meta name="twitter:description" content="JDK的安装(Ubuntu 版本)：使用oracle jdk7以上的版本，使用apt-get方式安装，安装方法见上篇Blog 12345sudo add-apt-repository ppa:webupd8team/javasudo apt-get updatesudo apt-get install oracle-java7-installer或sudo apt-get install ora">
@@ -412,7 +412,18 @@
 <li>注意：<strong>创建android模拟器后可能打不开，设置BIOS开启虚拟化功能，开机进入BIOS -&gt; Virtualization -&gt; enabled</strong>，各个主板可能不同</li>
 </ul>
 <hr>
-<h2 id="快捷键设置"><a href="#快捷键设置" class="headerlink" title="快捷键设置"></a>快捷键设置</h2><p>1: java类注释：Fix doc comment -&gt; “Alt + Shift + j”；<br>2: 自动匹配：Basic -&gt; “Alt + /“；<br>3: 格式化代码：Reformat code -&gt; “Ctrl + Shift + F”；<br>4: 驼峰选择：Editor | General | Smart Keys | Use “CamelHumps” words；<br>5: 如果你仍然希望当鼠标在单词上双击之后选中整个单词，需要作如下设置：Editor | General | 取消选中‘Honor Camel Humps words settings when selecting on double click’；<br>6: 命名前缀：Editor | Code Style | Java | Code Generation， 给普通Field 添加一个’m’前缀，给Static filed 添加一个’s’前缀；<br>7: 快速导包：Editor | General | Auto Import，勾选Optimize imports on the fly，勾选Add unambiguous imports on the fly；<br>8: 插件: Markdown, .gitignore, minimap(CodeGlance)；<br>9: Http Proxy: Plugins | HTTP Proxy Settings | Manual proxy configuration | HTTP | HostName: 127.0.0.1 | Port: 1080 | No proxy for: 127.0.0.1 。</p>
+<h2 id="快捷键设置"><a href="#快捷键设置" class="headerlink" title="快捷键设置"></a>快捷键设置</h2><ol>
+<li>java类注释：Fix doc comment -&gt; “Alt + Shift + j”；</li>
+<li>自动匹配：Basic -&gt; “Alt + /“；</li>
+<li>格式化代码：Reformat code -&gt; “Ctrl + Shift + F”；</li>
+<li>驼峰选择：Editor | General | Smart Keys | Use “CamelHumps” words；</li>
+<li>如果你仍然希望当鼠标在单词上双击之后选中整个单词，需要作如下设置：Editor | General | 取消选中‘Honor Camel Humps words settings when selecting on double click’；</li>
+<li>命名前缀：Editor | Code Style | Java | Code Generation， 给普通Field 添加一个’m’前缀，给Static filed 添加一个’s’前缀；</li>
+<li>快速导包：Editor | General | Auto Import，勾选Optimize imports on the fly，勾选Add unambiguous imports on the fly；</li>
+<li>插件: Markdown, .gitignore, minimap(CodeGlance)；</li>
+<li>Http Proxy: Plugins | HTTP Proxy Settings | Manual proxy configuration | HTTP | HostName: 127.0.0.1 | Port: 1080 | No proxy for: 127.0.0.1 。</li>
+<li>多行同时编辑：修改 Edit -&gt; Find -&gt; “Add Selection for Next Occurrence” 的默认快捷键 “Alt+J” 为 “Ctrl + D” [与 sublime text 编辑器保持同步]</li>
+</ol>
 <p>详细配置参见：<br><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html</a></p>
 <hr>
 <h2 id="AS-Gradle-Build-Running-卡顿、慢等问题"><a href="#AS-Gradle-Build-Running-卡顿、慢等问题" class="headerlink" title="AS Gradle Build Running 卡顿、慢等问题"></a>AS Gradle Build Running 卡顿、慢等问题</h2><p>主要是因为缺少相关的32位依赖库, 可通过一下方法解决: 终端输入以下命令, 安装完成后, 重启as即可。</p>
