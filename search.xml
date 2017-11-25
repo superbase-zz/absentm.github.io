@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title><![CDATA[mysql-5.7.19-winx64.zip 安装与配置]]></title>
+      <title><![CDATA[Mysql-5.7.19-winx64.zip 安装与配置]]></title>
       <url>https://absentm.github.io/2017/11/25/mysql-5-7-19-winx64-zip-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<hr>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇记录一下 Windows 环境下 Mysql .zip版的安装配置流程。推荐使用 Mysql 的童鞋都使用 .zip 免安装版的配置方法。（.exe 直接安装的话，如果安装失败经常出现卸载不干净，重装失败的情况）</p>
