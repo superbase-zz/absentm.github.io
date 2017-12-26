@@ -95,6 +95,10 @@
 <blockquote>
 <p>Window -&gt; Preferences -&gt; Maven -&gt; User Settings -&gt; User settings Browse 选择上面创建的 setting.xml -&gt; ok</p>
 </blockquote>
+<h2 id="Eclipse-Tomcat-不输入项目名称直接访问项目配置"><a href="#Eclipse-Tomcat-不输入项目名称直接访问项目配置" class="headerlink" title="Eclipse-Tomcat 不输入项目名称直接访问项目配置"></a>Eclipse-Tomcat 不输入项目名称直接访问项目配置</h2><p>使用 Eclipse 和 Tomcat 开发的 Javaweb 项目发布后浏览器的访问路径中默认会加上项目名称，如果想去掉项目名称，可以做如下配置：</p>
+<blockquote>
+<p>eclipse -&gt; 右键项目名称 -&gt; 选择 Properties -&gt; Web Project Settings -&gt; Context root 选项 -&gt; 将 Context root 的值改为 / -&gt; ok</p>
+</blockquote>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="http://www.importnew.com/13942.html" target="_blank" rel="noopener">http://www.importnew.com/13942.html</a><br>[2]. <a href="http://rongmayisheng.com/post/eclipse%E5%85%A8%E9%9D%A2%E6%8F%90%E9%80%9F" target="_blank" rel="noopener">http://rongmayisheng.com/post/eclipse%E5%85%A8%E9%9D%A2%E6%8F%90%E9%80%9F</a><br>[3]. <a href="https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/" target="_blank" rel="noopener">https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</a></p>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><hr>]]></content>
       
@@ -783,9 +787,9 @@
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Deep Learning </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Caffe </tag>
             
@@ -820,9 +824,9 @@
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -2633,9 +2637,9 @@ sudo git push
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Deep Learning </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Caffe </tag>
             
@@ -2848,9 +2852,9 @@ sudo git push
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
             <tag> Mobile Development </tag>
             
@@ -2958,9 +2962,9 @@ sudo git push
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
