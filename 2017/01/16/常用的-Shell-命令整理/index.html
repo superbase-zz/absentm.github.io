@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="AbsentM&#39;s Notes">
 <meta property="og:description" content="想法这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 …… 统计文件个数1: 统计某文件夹下文件的个数 12# 注： 参数 &apos;-l&apos;， 是小写的英文字母 l, 不是数字 1ls -l | grep &quot;^-&quot; | wc -">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-11-21T11:44:44.753Z">
+<meta property="og:updated_time" content="2017-12-26T09:06:31.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的 Shell 命令整理">
 <meta name="twitter:description" content="想法这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 …… 统计文件个数1: 统计某文件夹下文件的个数 12# 注： 参数 &apos;-l&apos;， 是小写的英文字母 l, 不是数字 1ls -l | grep &quot;^-&quot; | wc -">
@@ -377,6 +377,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -lR 目录路径 | grep 关键字 | wc -l</span><br><span class="line">或：</span><br><span class="line">ls -l <span class="string">"目录路径"</span> | grep <span class="string">"关键字"</span> | wc -l</span><br></pre></td></tr></table></figure>
 <p>例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计 /home/xxxx 下所有文件名称包含关键字"shell"的文件个数</span></span><br><span class="line">ls -lR /home/xxxx | grep shell | wc -l</span><br><span class="line">或：</span><br><span class="line">ls -l <span class="string">"/home/xxxx"</span> | grep <span class="string">"shell"</span> | wc -l</span><br></pre></td></tr></table></figure>
+<h3 id="统计代码行数"><a href="#统计代码行数" class="headerlink" title="统计代码行数"></a>统计代码行数</h3><blockquote>
+<p>年底又要统计代码工作量了，总不能一个一个文件找吧。 试试 wc 这个命令吧。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wc -l /usr/bin/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 /usr/bin/ 目录下所有代码文件的代码行数</span></span><br><span class="line"><span class="comment"># 该命令会输出该目录下每个代码文件的代码行数，最后输出总代码行数</span></span><br></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html</a></p>
 <hr>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
@@ -609,7 +613,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">1.</span> <span class="nav-text">想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#统计文件个数"><span class="nav-number">1.1.</span> <span class="nav-text">统计文件个数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">3.</span> <span class="nav-text">END</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#想法"><span class="nav-number">1.</span> <span class="nav-text">想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#统计文件个数"><span class="nav-number">1.1.</span> <span class="nav-text">统计文件个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计代码行数"><span class="nav-number">1.2.</span> <span class="nav-text">统计代码行数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">3.</span> <span class="nav-text">END</span></a></li></ol></div>
             
           </div>
         </section>
