@@ -28,7 +28,8 @@
 <p>如图所示：</p>
 <p><img src="https://o8zyn0sct.qnssl.com/adb-platform-tools%20%E7%9B%AE%E5%BD%95.png" alt="ADB-platform-tools"></p>
 <p><img src="https://o8zyn0sct.qnssl.com/adb-tools%20%E7%9B%AE%E5%BD%95.png" alt="ADB-tools"></p>
-<p>新建变量名: ANDROID_TOOL_HOME<br>变量值: E:\DevEnvironment\android-sdk-windows\platform-tools;E:\DevEnvironment\android-sdk-windows\tools</p>
+<p>新建变量名:<br>ANDROID_TOOL_HOME</p>
+<p>变量值:<br>E:\DevEnvironment\android-sdk-windows\platform-tools;E:\DevEnvironment\android-sdk-windows\tools</p>
 <p><strong>注意：</strong> 不同的目录间使用 『 ; 』 隔开。</p>
 <p><img src="https://o8zyn0sct.qnssl.com/adb-ANDROID_TOOL_HOME%20%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="ADB-ANDROID_TOOL_HOME"></p>
 <h2 id="添加到-Path"><a href="#添加到-Path" class="headerlink" title="添加到 Path"></a>添加到 Path</h2><p>将新建的 『 ANDROID_TOOL_HOME 』 环境变量添加的系统变量的 『 Path 』 中：</p>
