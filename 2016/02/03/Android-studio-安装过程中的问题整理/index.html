@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://o8zyn0sct.qnssl.com/as3.png">
 <meta property="og:image" content="http://img.blog.csdn.net/20160413114331970">
 <meta property="og:image" content="http://img.blog.csdn.net/20160413114506892">
-<meta property="og:updated_time" content="2017-11-24T08:29:21.289Z">
+<meta property="og:updated_time" content="2018-01-04T05:53:41.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android studio 安装过程中的问题整理">
 <meta name="twitter:description" content="JDK的安装(Ubuntu 版本)：使用oracle jdk7以上的版本，使用apt-get方式安装，安装方法见上篇Blog 12345sudo add-apt-repository ppa:webupd8team/javasudo apt-get updatesudo apt-get install oracle-java7-installer或sudo apt-get install ora">
@@ -387,7 +387,7 @@
 <p><img src="http://img.blog.csdn.net/20160203210721918" alt="新建JAVA_HOME环境变量"></p>
 <p>2: 新建：<br>变量名：CLASSPATH；<br>变量值：<code>.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar;</code>（注意前方的“ . ” 英文格式），如图：</p>
 <p><img src="http://img.blog.csdn.net/20160203210845919" alt="新建CLASSPATH环境变量"></p>
-<p>3: 在Path环境变量的末尾中添加： <code>;%JAVA_HOME%\bin ;%JAVA_HOME%\jre\bin;C:\Program Files\Java\jdk1.8.0_20\bin</code> （注意最前边个的“ ; ” 英文分号），如图:</p>
+<p>3: 在Path环境变量的末尾中添加： <code>;%JAVA_HOME%\bin ;%JAVA_HOME%\jre\bin</code> （注意最前边个的“ ; ” 英文分号），如图:</p>
 <p><img src="http://img.blog.csdn.net/20160203210945263" alt="Path环境变量的设置"></p>
 <p>4: 测试jdk的安装：win + R -&gt; cmd -&gt; 打开命令提示符，键入如下代码：<code>java</code> 和 <code>javac</code> 来测试是否成功，若成功，如图所示：</p>
 <p><img src="http://img.blog.csdn.net/20160203211334768" alt="java命令测试效果"></p>
@@ -451,7 +451,7 @@
 <p><img src="http://img.blog.csdn.net/20160413114331970" alt="hosts注释掉"></p>
 <p>修改完后, 注意重启一下网络啊:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/networking restart 	# ubuntu下</span><br></pre></td></tr></table></figure>
-<p>之后变可以更新了! 瞅瞅!</p>
+<p>之后便可以更新了! 瞅瞅!</p>
 <p><img src="http://img.blog.csdn.net/20160413114506892" alt="update"></p>
 <hr>
 <h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><p>[1]. <a href="http://blog.csdn.net/double2hao/article/details/49582585" target="_blank" rel="noopener">http://blog.csdn.net/double2hao/article/details/49582585</a><br>[2]. <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html</a><br>[3]. <a href="http://www.jianshu.com/p/2a58fd896214" target="_blank" rel="noopener">http://www.jianshu.com/p/2a58fd896214</a><br>[4]. <a href="http://blog.isming.me/2015/03/18/android-build-speed-up/" target="_blank" rel="noopener">http://blog.isming.me/2015/03/18/android-build-speed-up/</a></p>
