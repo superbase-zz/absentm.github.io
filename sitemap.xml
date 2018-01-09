@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://absentm.github.io/2017/11/25/mysql-5-7-19-winx64-zip-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2018-01-09T11:55:51.937Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://absentm.github.io/2016/08/31/The-note-of-how-to-rebuild-hexo-next-blogs-when-switch-to-another-PC-or-reinstall-system/</loc>
     
     <lastmod>2018-01-05T06:18:53.040Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://absentm.github.io/2016/05/17/Sublime-text-3-%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2017-11-28T11:38:41.666Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://absentm.github.io/2017/11/25/mysql-5-7-19-winx64-zip-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2017-11-25T07:16:31.933Z</lastmod>
     
   </url>
   
@@ -142,14 +142,14 @@
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2016/05/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE%E6%95%B4%E7%90%86%E5%8F%8A%E8%AF%A6%E8%A7%A3%E4%B8%AD%E6%96%87%E7%89%88%EF%BC%88%E4%BA%94%EF%BC%89/</loc>
+    <loc>https://absentm.github.io/2016/01/10/%E6%88%91%E7%9A%84vim%E9%85%8D%E7%BD%AE-vimrc%EF%BC%9Agit-github%E7%AE%A1%E7%90%86/</loc>
     
     <lastmod>2017-11-21T11:44:44.754Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2016/01/10/%E6%88%91%E7%9A%84vim%E9%85%8D%E7%BD%AE-vimrc%EF%BC%9Agit-github%E7%AE%A1%E7%90%86/</loc>
+    <loc>https://absentm.github.io/2016/05/14/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE%E6%95%B4%E7%90%86%E5%8F%8A%E8%AF%A6%E8%A7%A3%E4%B8%AD%E6%96%87%E7%89%88%EF%BC%88%E4%BA%94%EF%BC%89/</loc>
     
     <lastmod>2017-11-21T11:44:44.754Z</lastmod>
     
@@ -191,6 +191,13 @@
   </url>
   
   <url>
+    <loc>https://absentm.github.io/2015/12/02/python%E5%AE%89%E8%A3%85%E7%AE%80%E8%AE%B0/</loc>
+    
+    <lastmod>2017-11-21T11:44:44.750Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://absentm.github.io/2016/06/18/%E5%85%B3%E4%BA%8E/</loc>
     
     <lastmod>2017-11-21T11:44:44.750Z</lastmod>
@@ -205,21 +212,14 @@
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/12/02/python%E5%AE%89%E8%A3%85%E7%AE%80%E8%AE%B0/</loc>
-    
-    <lastmod>2017-11-21T11:44:44.750Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://absentm.github.io/2016/03/19/Ubuntu14-04-LTS-%E7%B3%BB%E7%BB%9F%E4%B8%ADOpencv-3-0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://absentm.github.io/2016/06/18/hello-new-world/</loc>
     
     <lastmod>2017-11-21T11:44:44.749Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2016/06/18/hello-new-world/</loc>
+    <loc>https://absentm.github.io/2016/03/19/Ubuntu14-04-LTS-%E7%B3%BB%E7%BB%9F%E4%B8%ADOpencv-3-0%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/</loc>
     
     <lastmod>2017-11-21T11:44:44.749Z</lastmod>
     
@@ -282,7 +282,7 @@
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/10/29/Java%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B%E7%B1%BB/</loc>
+    <loc>https://absentm.github.io/2015/03/24/Java%E4%B8%ADGson%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2017-11-21T11:44:44.742Z</lastmod>
     
@@ -296,21 +296,21 @@
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/03/24/Java%E4%B8%ADGson%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://absentm.github.io/2015/10/29/Java%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BE%8B%E7%B1%BB/</loc>
     
     <lastmod>2017-11-21T11:44:44.742Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2016/12/30/In-me-past-present-future-meet/</loc>
+    <loc>https://absentm.github.io/2015/12/12/Github%E5%BC%80%E6%BA%90%E7%BC%96%E8%BE%91%E5%99%A8Atom%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E5%8F%8A%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/</loc>
     
     <lastmod>2017-11-21T11:44:44.741Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/12/12/Github%E5%BC%80%E6%BA%90%E7%BC%96%E8%BE%91%E5%99%A8Atom%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6%E5%8F%8A%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95/</loc>
+    <loc>https://absentm.github.io/2016/12/30/In-me-past-present-future-meet/</loc>
     
     <lastmod>2017-11-21T11:44:44.741Z</lastmod>
     
@@ -359,13 +359,6 @@
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/09/16/Android%E4%B8%ADgithub%E5%BC%80%E6%BA%90%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%B1%BB%E6%A1%86%E6%9E%B6SmoothProgressBar%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2017-11-21T11:44:44.737Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://absentm.github.io/2015/08/16/Android-%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E9%9C%87%E5%8A%A8%E5%8A%9F%E8%83%BD/</loc>
     
     <lastmod>2017-11-21T11:44:44.737Z</lastmod>
@@ -373,14 +366,21 @@
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/04/20/Android-%E4%BD%BF%E7%94%A8Thread-Handler%E5%AE%9E%E7%8E%B0%E9%9D%9EUI%E7%BA%BF%E7%A8%8B%E6%9B%B4%E6%96%B0UI%E7%95%8C%E9%9D%A2/</loc>
+    <loc>https://absentm.github.io/2015/09/16/Android%E4%B8%ADgithub%E5%BC%80%E6%BA%90%E8%BF%9B%E5%BA%A6%E6%9D%A1%E7%B1%BB%E6%A1%86%E6%9E%B6SmoothProgressBar%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2017-11-21T11:44:44.737Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://absentm.github.io/2015/06/28/Android-%E4%B8%AD%E5%87%A0%E6%AC%BE%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E7%9A%84%E5%AE%9E%E7%8E%B0-%E4%B8%80/</loc>
     
     <lastmod>2017-11-21T11:44:44.736Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://absentm.github.io/2015/06/28/Android-%E4%B8%AD%E5%87%A0%E6%AC%BE%E8%87%AA%E5%AE%9A%E4%B9%89Dialog%E7%9A%84%E5%AE%9E%E7%8E%B0-%E4%B8%80/</loc>
+    <loc>https://absentm.github.io/2015/04/20/Android-%E4%BD%BF%E7%94%A8Thread-Handler%E5%AE%9E%E7%8E%B0%E9%9D%9EUI%E7%BA%BF%E7%A8%8B%E6%9B%B4%E6%96%B0UI%E7%95%8C%E9%9D%A2/</loc>
     
     <lastmod>2017-11-21T11:44:44.736Z</lastmod>
     

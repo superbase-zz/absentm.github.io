@@ -68,7 +68,7 @@
       <content type="html"><![CDATA[<hr>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇记录一下 Windows 环境下 Mysql .zip版的安装配置流程。推荐使用 Mysql 的童鞋都使用 .zip 免安装版的配置方法。（.exe 直接安装的话，如果安装失败经常出现卸载不干净，重装失败的情况）</p>
 <blockquote>
-<p>本文已授权 <a href="http://www.apecoding.com/" target="_blank" rel="noopener">源代码</a> 同步发布。</p>
+<p>本文已授权 <a href="http://www.apecoding.com/" target="_blank" rel="noopener">猿代码</a> 同步发布。</p>
 </blockquote>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>从 Mysql 官网直接下载：<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a> ，目前最新版是 5.7.19 。也可以适合自己的版本进行下载，其中 “Archive” 表示下载后直接解压即可，不需要安装，操作方便。</p>
 <p><img src="http://media.apecoding.com/apc_59b7d9473277b.png" alt="Mysql 官网下载地址展示图"></p>
@@ -95,8 +95,7 @@
 <p><img src="http://media.apecoding.com/apc_59b7da10a6b79.png" alt="Navcat 破解"></p>
 <p><strong>安装成功打开软件如下图所示：</strong></p>
 <p><img src="http://media.apecoding.com/apc_59b7da443173d.png" alt="Navcat 界面"></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></p>
-<p>[2]. <a href="http://www.navicat.com.cn/products/navicat-for-mysql/" target="_blank" rel="noopener">http://www.navicat.com.cn/products/navicat-for-mysql/</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a><br>[2]. <a href="http://www.navicat.com.cn/products/navicat-for-mysql/" target="_blank" rel="noopener">http://www.navicat.com.cn/products/navicat-for-mysql/</a></p>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2><hr>]]></content>
       
         <categories>
