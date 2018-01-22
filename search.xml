@@ -331,11 +331,11 @@
 <p><strong>2/</strong> 从本地复制文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r local_folder remote_username@remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp -r local_folder remote_ip:remote_folder</span><br></pre></td></tr></table></figure>
 <p>eg:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp -r /home/space/music/ root@www.runoob.com:/home/root/others/ </span><br><span class="line">scp -r /home/space/music/ www.runoob.com:/home/root/others/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp -r /home/space/music/ root@1.1.1.6:/home/root/others/ </span><br><span class="line">scp -r /home/space/music/ 1.1.1.6:/home/root/others/</span><br></pre></td></tr></table></figure>
 <p><strong>3/</strong> 复制文件到远程</p>
 <p>从远程复制到本地，只要将从本地复制到远程的命令的后 2 个参数调换顺序即可，如下实例</p>
 <p>eg：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp root@www.runoob.com:/home/root/others/music /home/space/music/1.mp3 </span><br><span class="line">scp -r www.runoob.com:/home/root/others/ /home/space/music/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp root@1.1.1.6:/home/root/others/music /home/space/music/1.mp3 </span><br><span class="line">scp -r 1.1.1.6:/home/root/others/ /home/space/music/</span><br></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html</a></p>
 <hr>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>]]></content>
@@ -873,9 +873,9 @@
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Deep Learning </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Caffe </tag>
             
@@ -910,9 +910,9 @@
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         
@@ -2723,9 +2723,9 @@ sudo git push
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Deep Learning </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Caffe </tag>
             
@@ -2938,11 +2938,11 @@ sudo git push
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
             
             <tag> Mobile Development </tag>
+            
+            <tag> Linux </tag>
             
             <tag> Android Studio </tag>
             
@@ -3048,9 +3048,9 @@ sudo git push
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
         

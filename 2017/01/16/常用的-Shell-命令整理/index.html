@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="AbsentM&#39;s Notes">
 <meta property="og:description" content="想法这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 …… 统计文件个数1: 统计某文件夹下文件的个数 12# 注： 参数 &apos;-l&apos;， 是小写的英文字母 l, 不是数字 1ls -l | grep &quot;^-&quot; | wc -">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-01-22T07:52:09.470Z">
+<meta property="og:updated_time" content="2018-01-22T08:00:47.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的 Shell 命令整理">
 <meta name="twitter:description" content="想法这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 …… 统计文件个数1: 统计某文件夹下文件的个数 12# 注： 参数 &apos;-l&apos;， 是小写的英文字母 l, 不是数字 1ls -l | grep &quot;^-&quot; | wc -">
@@ -392,11 +392,11 @@
 <p><strong>2/</strong> 从本地复制文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r local_folder remote_username@remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp -r local_folder remote_ip:remote_folder</span><br></pre></td></tr></table></figure>
 <p>eg:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp -r /home/space/music/ root@www.runoob.com:/home/root/others/ </span><br><span class="line">scp -r /home/space/music/ www.runoob.com:/home/root/others/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp -r /home/space/music/ root@1.1.1.6:/home/root/others/ </span><br><span class="line">scp -r /home/space/music/ 1.1.1.6:/home/root/others/</span><br></pre></td></tr></table></figure>
 <p><strong>3/</strong> 复制文件到远程</p>
 <p>从远程复制到本地，只要将从本地复制到远程的命令的后 2 个参数调换顺序即可，如下实例</p>
 <p>eg：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp root@www.runoob.com:/home/root/others/music /home/space/music/1.mp3 </span><br><span class="line">scp -r www.runoob.com:/home/root/others/ /home/space/music/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp root@1.1.1.6:/home/root/others/music /home/space/music/1.mp3 </span><br><span class="line">scp -r 1.1.1.6:/home/root/others/ /home/space/music/</span><br></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html</a></p>
 <hr>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
