@@ -4,6 +4,76 @@
   
     
     <entry>
+      <title><![CDATA[Linux 磁盘监控命令解析]]></title>
+      <url>https://absentm.github.io/2018/03/02/Linux-%E7%A3%81%E7%9B%98%E7%9B%91%E6%8E%A7%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 …</p>
+<h2 id="主线"><a href="#主线" class="headerlink" title="主线"></a>主线</h2><p>一个目标：</p>
+<blockquote>
+<p>罗列出 Linux 设备中所有的磁盘设备信息，包括: 磁盘名称、磁盘状态、槽位号等。</p>
+</blockquote>
+<h2 id="涉及命令"><a href="#涉及命令" class="headerlink" title="涉及命令"></a>涉及命令</h2><ul>
+<li>lsblk</li>
+<li>smartctl</li>
+<li>sas2ircu/sas3iru</li>
+</ul>
+<h2 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h2><p>由于受硬件驱动的影响，想要封装一个完成的磁盘信息需要使用很多命令罗列；那么，整体思路可以是这样的：</p>
+<ul>
+<li>使用 lsblk 获得磁盘盘符名称及分区情况</li>
+<li>使用 smartctl 命令获取相应盘符的磁盘健康状态</li>
+<li>使用 ll /dev/disk/by-id/ | grep xxx 命令获取</li>
+</ul>]]></content>
+      
+        <categories>
+            
+            <category> Linux Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Linux 磁盘监控命令解析]]></title>
+      <url>https://absentm.github.io/2018/03/02/Linux-%E7%A3%81%E7%9B%98%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 『 磁盘监控 』 相关主线的命令行备份，记录在这里留作备忘 …</p>
+<h2 id="主线"><a href="#主线" class="headerlink" title="主线"></a>主线</h2><p>一个目标：</p>
+<blockquote>
+<p>罗列出 Linux 设备中所有的磁盘设备信息，包括: 磁盘名称、磁盘状态、槽位号等。</p>
+</blockquote>
+<h2 id="涉及命令"><a href="#涉及命令" class="headerlink" title="涉及命令"></a>涉及命令</h2><ul>
+<li>lsblk</li>
+<li>smartctl</li>
+<li>sas2ircu/sas3iru</li>
+</ul>
+<h2 id="整体思路"><a href="#整体思路" class="headerlink" title="整体思路"></a>整体思路</h2><p>由于受硬件驱动的影响，想要封装一个完成的磁盘信息需要使用很多命令罗列；那么，整体思路可以是这样的：</p>
+<ul>
+<li>使用 lsblk 获得磁盘盘符名称及分区情况</li>
+<li>使用 smartctl 命令获取相应盘符的磁盘健康状态</li>
+<li>使用 ll /dev/disk/by-id/ | grep xxx 命令获取</li>
+</ul>]]></content>
+      
+        <categories>
+            
+            <category> Linux Notes </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Shell </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Windows10 Android adb 环境变量配置]]></title>
       <url>https://absentm.github.io/2018/01/04/Windows10-Android-adb-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<hr>
@@ -306,6 +376,7 @@
       <title><![CDATA[常用的 Shell 命令整理]]></title>
       <url>https://absentm.github.io/2017/01/16/%E5%B8%B8%E7%94%A8%E7%9A%84-Shell-%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/</url>
       <content type="html"><![CDATA[<h2 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h2><p>这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。<strong>整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 ……</strong></p>
+<h2 id="wc-命令"><a href="#wc-命令" class="headerlink" title="wc 命令"></a>wc 命令</h2><p>wc 命令是一个统计命令，使用方式可以使用 「 man wc 」 查看。</p>
 <h3 id="统计文件个数"><a href="#统计文件个数" class="headerlink" title="统计文件个数"></a>统计文件个数</h3><p>1: 统计某文件夹下文件的个数</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注： 参数 '-l'， 是小写的英文字母 l, 不是数字 1</span></span><br><span class="line">ls -l | grep <span class="string">"^-"</span> | wc -l</span><br></pre></td></tr></table></figure>
 <p>2: 统计某文件夹下目录的个数</p>
@@ -320,23 +391,60 @@
 <p>年底又要统计代码工作量了，总不能一个一个文件找吧。 试试 wc 这个命令吧。</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">wc -l /usr/bin/*</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 /usr/bin/ 目录下所有代码文件的代码行数</span></span><br><span class="line"><span class="comment"># 该命令会输出该目录下每个代码文件的代码行数，最后输出总代码行数</span></span><br></pre></td></tr></table></figure>
-<h3 id="不同节点间复制文件或者文件夹"><a href="#不同节点间复制文件或者文件夹" class="headerlink" title="不同节点间复制文件或者文件夹"></a>不同节点间复制文件或者文件夹</h3><blockquote>
+<h2 id="scp-命令：不同节点间复制文件或者文件夹"><a href="#scp-命令：不同节点间复制文件或者文件夹" class="headerlink" title="scp 命令：不同节点间复制文件或者文件夹"></a>scp 命令：不同节点间复制文件或者文件夹</h2><blockquote>
 <p>Linux scp 命令用于 Linux 之间复制文件和目录。<br>scp 是 secure copy的缩写, scp 是 linux 系统下基于 ssh 登陆进行安全的远程文件拷贝命令。</p>
 </blockquote>
 <p><strong>Note:</strong> 请先确保集群中的各个节点间可以使用 SSH 免密登录。</p>
-<p><strong>1/</strong> 从本地复制文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp local_file remote_username@remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp local_file remote_username@remote_ip:remote_file </span><br><span class="line">或者 </span><br><span class="line">scp local_file remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp local_file remote_ip:remote_file</span><br></pre></td></tr></table></figure>
+<h3 id="从本地复制文件"><a href="#从本地复制文件" class="headerlink" title="从本地复制文件"></a>从本地复制文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp local_file remote_username@remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp local_file remote_username@remote_ip:remote_file </span><br><span class="line">或者 </span><br><span class="line">scp local_file remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp local_file remote_ip:remote_file</span><br></pre></td></tr></table></figure>
 <p>eg:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp /home/space/music/1.mp3 root@1.1.1.5:/home/root/others/music </span><br><span class="line">scp /home/space/music/1.mp3 root@1.1.1.5:/home/root/others/music/001.mp3 </span><br><span class="line">scp /home/space/music/1.mp3 1.1.1.5:/home/root/others/music </span><br><span class="line">scp /home/space/music/1.mp3 1.1.1.5:/home/root/others/music/001.mp3</span><br></pre></td></tr></table></figure>
-<p><strong>2/</strong> 从本地复制文件夹</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r local_folder remote_username@remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp -r local_folder remote_ip:remote_folder</span><br></pre></td></tr></table></figure>
+<h3 id="从本地复制文件夹"><a href="#从本地复制文件夹" class="headerlink" title="从本地复制文件夹"></a>从本地复制文件夹</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r local_folder remote_username@remote_ip:remote_folder </span><br><span class="line">或者 </span><br><span class="line">scp -r local_folder remote_ip:remote_folder</span><br></pre></td></tr></table></figure>
 <p>eg:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp -r /home/space/music/ root@1.1.1.6:/home/root/others/ </span><br><span class="line">scp -r /home/space/music/ 1.1.1.6:/home/root/others/</span><br></pre></td></tr></table></figure>
-<p><strong>3/</strong> 复制文件到远程</p>
-<p>从远程复制到本地，只要将从本地复制到远程的命令的后 2 个参数调换顺序即可，如下实例</p>
+<h3 id="复制文件到远程"><a href="#复制文件到远程" class="headerlink" title="复制文件到远程"></a>复制文件到远程</h3><p>从远程复制到本地，只要将从本地复制到远程的命令的后 2 个参数调换顺序即可，如下实例</p>
 <p>eg：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">scp root@1.1.1.6:/home/root/others/music /home/space/music/1.mp3 </span><br><span class="line">scp -r 1.1.1.6:/home/root/others/ /home/space/music/</span><br></pre></td></tr></table></figure>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html</a></p>
+<h2 id="tail-命令"><a href="#tail-命令" class="headerlink" title="tail 命令"></a>tail 命令</h2><p>tail 命令依照要求将指定的文件的最后部分输出到标准设备，通常是终端，通俗讲来，就是把某个文件的最后几行显示到终端上，假设该文件有更新，tail 会自己主动刷新，确保你看到最新的输出内容，常用于监控 log 日志的输出等。</p>
+<p>eg：</p>
+<h3 id="tail-f"><a href="#tail-f" class="headerlink" title="tail -f"></a>tail -f</h3><p><strong>1/</strong> tail -f filename</p>
+<p>监控 filename 文件的尾部内容（默认 10 行，相当于增加参数 -n 10），实时刷新显示在屏幕上。 按下 「 CTRL + C 」 退出，。</p>
+<p><strong>2/</strong> tail -n 20 filename</p>
+<p>显示 filename 最后 20 行。</p>
+<p><strong>3/</strong> tail -r -n 10 filename</p>
+<p>逆序显示 filename 最后 10 行。</p>
+<h2 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h2><p>Linux grep 命令用于查找文件里符合条件的字符串。</p>
+<p>常用的几个参数：</p>
+<p>-v : 反转匹配输出。<br>-w : 精确匹配输出。<br>-c : 输出能匹配到的列数。</p>
+<p>eg: /etc/hosts 文件中包含如下内容 [cat /etc/hosts]：</p>
+<blockquote>
+<p>127.0.0.1 xxxx xxxx xxxx xxxx<br>::1       xxxx xxxx xxxx xxxx<br>x.x.x.x   xxxx xxxx xxxx xxxx<br>x.x.x.x   xxxx xxxx xxxx xxxx</p>
+</blockquote>
+<p>则使用举例和输出如下：</p>
+<p><strong>1</strong> 使用 -v 过滤</p>
+<blockquote>
+<p>$ cat /etc/hosts | grep -v 127 | grep -v ::1</p>
+</blockquote>
+<p>则输出将前两行过滤了，输出如下：</p>
+<blockquote>
+<p>x.x.x.x   xxxx xxxx xxxx xxxx<br>x.x.x.x   xxxx xxxx xxxx xxxx</p>
+</blockquote>
+<p><strong>2</strong> 使用 -w 精确匹配</p>
+<blockquote>
+<p>$ cat /etc/hosts | grep -w 127 </p>
+</blockquote>
+<p>则精确匹配搭配包含 「 127 」 的行，输出如下：</p>
+<blockquote>
+<p>127.0.0.1 xxxx xxxx xxxx xxxx</p>
+</blockquote>
+<p><strong>3</strong> 使用 -c 输出匹配的行数</p>
+<blockquote>
+<p>$ cat /etc/hosts | grep -c 127 </p>
+</blockquote>
+<p>则精确匹配搭配包含 「 127 」 的行数为 1 ，输出如下：</p>
+<blockquote>
+<p>$ 1</p>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html</a><br>[2] <a href="http://www.runoob.com/linux/linux-comm-scp.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-comm-scp.html</a><br>[3] <a href="https://www.jianshu.com/p/4131d09ff592" target="_blank" rel="noopener">https://www.jianshu.com/p/4131d09ff592</a><br>[4] <a href="http://www.runoob.com/linux/linux-comm-grep.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-comm-grep.html</a></p>
 <hr>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>]]></content>
       
