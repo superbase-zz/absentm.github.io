@@ -5,8 +5,8 @@
     
     <entry>
       <title><![CDATA[Linux 磁盘监控命令解析]]></title>
-      <url>https://absentm.github.io/2018/03/02/Linux-%E7%A3%81%E7%9B%98%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/</url>
-      <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 『 磁盘监控 』 相关主线的命令行备份，记录在这里留作备忘 …</p>
+      <url>https://absentm.github.io/2018/03/02/Linux-%E7%A3%81%E7%9B%98%E7%9B%91%E6%8E%A7%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 …</p>
 <h2 id="主线"><a href="#主线" class="headerlink" title="主线"></a>主线</h2><p>一个目标：</p>
 <blockquote>
 <p>罗列出 Linux 设备中所有的磁盘设备信息，包括: 磁盘名称、磁盘状态、槽位号等。</p>
@@ -40,8 +40,8 @@
     
     <entry>
       <title><![CDATA[Linux 磁盘监控命令解析]]></title>
-      <url>https://absentm.github.io/2018/03/02/Linux-%E7%A3%81%E7%9B%98%E7%9B%91%E6%8E%A7%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/</url>
-      <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 …</p>
+      <url>https://absentm.github.io/2018/03/02/Linux-%E7%A3%81%E7%9B%98%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 『 磁盘监控 』 相关主线的命令行备份，记录在这里留作备忘 …</p>
 <h2 id="主线"><a href="#主线" class="headerlink" title="主线"></a>主线</h2><p>一个目标：</p>
 <blockquote>
 <p>罗列出 Linux 设备中所有的磁盘设备信息，包括: 磁盘名称、磁盘状态、槽位号等。</p>
@@ -981,9 +981,9 @@
         
         <tags>
             
-            <tag> Deep Learning </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Deep Learning </tag>
             
             <tag> Caffe </tag>
             
@@ -1018,9 +1018,9 @@
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         
@@ -2831,9 +2831,9 @@ sudo git push
         
         <tags>
             
-            <tag> Deep Learning </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Deep Learning </tag>
             
             <tag> Caffe </tag>
             
@@ -3046,11 +3046,11 @@ sudo git push
         
         <tags>
             
+            <tag> Linux </tag>
+            
             <tag> Ubuntu </tag>
             
             <tag> Mobile Development </tag>
-            
-            <tag> Linux </tag>
             
             <tag> Android Studio </tag>
             
@@ -3156,9 +3156,9 @@ sudo git push
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         
