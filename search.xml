@@ -1066,9 +1066,9 @@
         
         <tags>
             
-            <tag> Deep Learning </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Deep Learning </tag>
             
             <tag> Caffe </tag>
             
@@ -1103,9 +1103,9 @@
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         
@@ -1487,9 +1487,9 @@ sudo git push
         
         <tags>
             
-            <tag> Deep Learning </tag>
-            
             <tag> 图像处理 </tag>
+            
+            <tag> Deep Learning </tag>
             
             <tag> Keras </tag>
             
@@ -2922,9 +2922,9 @@ sudo git push
         
         <tags>
             
-            <tag> Deep Learning </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Deep Learning </tag>
             
             <tag> Caffe </tag>
             
@@ -2993,9 +2993,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3095,6 +3095,7 @@ sudo git push
 <li>插件: Markdown, .gitignore, minimap(CodeGlance)；</li>
 <li>Http Proxy: Plugins | HTTP Proxy Settings | Manual proxy configuration | HTTP | HostName: 127.0.0.1 | Port: 1080 | No proxy for: 127.0.0.1 。</li>
 <li>多行同时编辑：修改 Edit -&gt; Find -&gt; “Add Selection for Next Occurrence” 的默认快捷键 “Alt+J” 为 “Ctrl + D” [与 sublime text 编辑器保持同步]</li>
+<li>设置每行显示字符个数限制：设置 File -&gt;  Settings  -&gt;  Code Style -&gt; Right margin (columns) 的值为 80</li>
 </ol>
 <p>详细配置参见：<br><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html" target="_blank" rel="noopener">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0411/4131.html</a></p>
 <hr>
@@ -3137,11 +3138,11 @@ sudo git push
         
         <tags>
             
+            <tag> Linux </tag>
+            
             <tag> Ubuntu </tag>
             
             <tag> Mobile Development </tag>
-            
-            <tag> Linux </tag>
             
             <tag> Android Studio </tag>
             
@@ -3247,9 +3248,9 @@ sudo git push
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Ubuntu </tag>
             
         </tags>
         
@@ -3643,9 +3644,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
             <tag> 图像处理 </tag>
             
@@ -3727,9 +3728,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
             <tag> 开源框架 </tag>
             
@@ -3760,9 +3761,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3792,9 +3793,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3827,9 +3828,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3861,9 +3862,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3897,9 +3898,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3925,9 +3926,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
@@ -3968,9 +3969,9 @@ sudo git push
         
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Android </tag>
             
         </tags>
         
