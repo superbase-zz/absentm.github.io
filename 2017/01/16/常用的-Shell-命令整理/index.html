@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="AbsentM&#39;s Notes">
 <meta property="og:description" content="想法这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 …… wc 命令wc 命令是一个统计命令，使用方式可以使用 「 man wc 」 查看。 统计文件个数1: 统计某文件夹下文件的个数 12# 注： 参数 &apos;-l&apos;，">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-19T01:49:01.092Z">
+<meta property="og:updated_time" content="2018-03-19T01:54:25.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用的 Shell 命令整理">
 <meta name="twitter:description" content="想法这篇主要记录一下在 Linux 终端下常用的 Shell 命令， 像 ls， cd, cp, mv 等基本的就不做整理介绍了，之后遇到了会一点点追加，算是一个整理吧。整理的命令都在 Ubuntu 14.04 LTS 系统亲测通过 …… wc 命令wc 命令是一个统计命令，使用方式可以使用 「 man wc 」 查看。 统计文件个数1: 统计某文件夹下文件的个数 12# 注： 参数 &apos;-l&apos;，">
@@ -493,29 +493,17 @@
 </blockquote>
 <p>则使用举例和输出如下：</p>
 <p><strong>1</strong> 使用 -v 过滤</p>
-<blockquote>
-<p>$ cat /etc/hosts | grep -v 127 | grep -v ::1</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/hosts | grep -v 127 | grep -v ::1</span><br></pre></td></tr></table></figure>
 <p>则输出将前两行过滤了，输出如下：</p>
-<blockquote>
-<p>x.x.x.x   xxxx xxxx xxxx xxxx<br>x.x.x.x   xxxx xxxx xxxx xxxx</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.x.x.x   xxxx xxxx xxxx xxxx</span><br><span class="line">x.x.x.x   xxxx xxxx xxxx xxxx</span><br></pre></td></tr></table></figure>
 <p><strong>2</strong> 使用 -w 精确匹配</p>
-<blockquote>
-<p>$ cat /etc/hosts | grep -w 127 </p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/hosts | grep -w 127</span><br></pre></td></tr></table></figure>
 <p>则精确匹配搭配包含 「 127 」 的行，输出如下：</p>
-<blockquote>
-<p>127.0.0.1 xxxx xxxx xxxx xxxx</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 xxxx xxxx xxxx xxxx</span><br></pre></td></tr></table></figure>
 <p><strong>3</strong> 使用 -c 输出匹配的行数</p>
-<blockquote>
-<p>$ cat /etc/hosts | grep -c 127 </p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/hosts | grep -c 127</span><br></pre></td></tr></table></figure>
 <p>则精确匹配搭配包含 「 127 」 的行数为 1 ，输出如下：</p>
-<blockquote>
-<p>$ 1</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ 1</span><br></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_464f6dba01012vwv.html</a><br>[2] <a href="http://www.runoob.com/linux/linux-comm-scp.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-comm-scp.html</a><br>[3] <a href="https://www.jianshu.com/p/4131d09ff592" target="_blank" rel="noopener">https://www.jianshu.com/p/4131d09ff592</a><br>[4] <a href="http://www.runoob.com/linux/linux-comm-grep.html" target="_blank" rel="noopener">http://www.runoob.com/linux/linux-comm-grep.html</a></p>
 <hr>
 <h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
