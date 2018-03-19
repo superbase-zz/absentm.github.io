@@ -425,8 +425,89 @@
 <p>显示 filename 最后 20 行。</p>
 <p><strong>3/</strong> tail -r -n 10 filename</p>
 <p>逆序显示 filename 最后 10 行。</p>
-<h2 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h2><p>Linux grep 命令用于查找文件里符合条件的字符串。</p>
-<p>常用的几个参数：</p>
+<h2 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h2><p>Linux grep 命令用于查找文件里符合条件的字符串。常见的几个配置参数使用说明如下表格：</p>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th style="text-align:right">params</th>
+<th style="text-align:center">explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:right">–version or -V</td>
+<td style="text-align:center">该命令的版本号</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:right">-A N</td>
+<td style="text-align:center">找到所有的匹配行，并显示匹配行后 N 行</td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align:right">-B N</td>
+<td style="text-align:center">找到所有的匹配行，并显示匹配行前面 N 行</td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align:right">-b</td>
+<td style="text-align:center">显示匹配到的字符在文件中的偏移地址</td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align:right">-c</td>
+<td style="text-align:center">显示有多少行被匹配到</td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align:right">–color</td>
+<td style="text-align:center">把匹配到的字符用颜色显示出来</td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align:right">-e</td>
+<td style="text-align:center">可以使用多个正则表达式</td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align:right">-f FILEA FILEB</td>
+<td style="text-align:center">FILEA 在 FILEAB 中的匹配</td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align:right">-i</td>
+<td style="text-align:center">不区分大小写针对单个字符</td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align:right">-m N</td>
+<td style="text-align:center">最多匹配 N 个后停止</td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align:right">-n</td>
+<td style="text-align:center">打印行号</td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align:right">-o</td>
+<td style="text-align:center">只打印出匹配到的字符</td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align:right">-R</td>
+<td style="text-align:center">搜索子目录</td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align:right">-v</td>
+<td style="text-align:center">显示不包括查找字符的所有行</td>
+</tr>
+</tbody>
+</table>
+<p>这里举这几个常用的参数的例子：</p>
 <p>-v : 反转匹配输出。<br>-w : 精确匹配输出。<br>-c : 输出能匹配到的列数。</p>
 <p>eg: /etc/hosts 文件中包含如下内容 [cat /etc/hosts]：</p>
 <blockquote>
@@ -3068,9 +3149,9 @@ sudo git push
         
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Mobile Development </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Linux </tag>
             
