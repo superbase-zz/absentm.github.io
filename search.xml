@@ -58,8 +58,10 @@
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 …</p>
 <h2 id="涉及命令"><a href="#涉及命令" class="headerlink" title="涉及命令"></a>涉及命令</h2><ul>
 <li>lsblk: 罗列所有可用块设备的信息</li>
+<li>blkid: 显示关于可用块设备的信息</li>
+<li>sgdisk: </li>
 <li>smartctl: </li>
-<li>sas2ircu/sas3iru</li>
+<li>sas2ircu/sas3iru:</li>
 </ul>
 <h2 id="lsblk-命令"><a href="#lsblk-命令" class="headerlink" title="lsblk 命令"></a>lsblk 命令</h2><blockquote>
 <p>lsblk（列出块设备）命令用于列出所有可用块设备的信息，但是，它不会列出RAM盘的信息。块设备有硬盘，闪存盘，CD-ROM等等。 <a href="https://linux.cn/article-3340-1.html" target="_blank" rel="noopener">引用自：参考资料 1</a></p>
@@ -112,7 +114,33 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/block/xxxx/device/delete   <span class="comment"># 其中，xxxx 表示磁盘名称，如 sdb.</span></span><br></pre></td></tr></table></figure>
 <p>插盘：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">" - - - "</span> &gt; /sys/class/scsi_host/host0/scan    </span><br><span class="line"><span class="comment"># 其中，host0 中的数字 「 0 」 表示：使用 lsscsi 命令查看的 xxxx 盘第一列 [0:0:0:1] 中的第一个数字</span></span><br></pre></td></tr></table></figure>
-<h2 id="blkid-命令"><a href="#blkid-命令" class="headerlink" title="blkid 命令"></a>blkid 命令</h2><hr>
+<h2 id="blkid-命令"><a href="#blkid-命令" class="headerlink" title="blkid 命令"></a>blkid 命令</h2><p>blkid 命令可以显示关于可用块设备的信息，如：设备名称、UUID(文件系统唯一标示符)、Type（文件系统类型）、PARTLABEL、PARTUUID 等信息。</p>
+<p>在终端输入以下命令，列出所有可用块设备的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">blkid</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/dev/sda2: UUID=<span class="string">"0733f5c1-cb85-4f98-9d4f-122cfcee9806"</span> TYPE=<span class="string">"ext4"</span></span><br><span class="line">/dev/sda3: UUID=<span class="string">"41a18221-6b1f-4ca2-9bc3-dc353c87d932"</span> TYPE=<span class="string">"ext4"</span></span><br><span class="line">/dev/sda4: UUID=<span class="string">"57183ff9-d4a5-4623-a47f-f8f17339be03"</span> TYPE=<span class="string">"swap"</span></span><br><span class="line">/dev/sdb1: UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span> TYPE=<span class="string">"xfs"</span></span><br><span class="line">/dev/sdb2: UUID=<span class="string">"6bdf487f-cad7-4197-b0d9-4ddc6df1de2d"</span> PARTUUID=<span class="string">"f9fe0b69-a280-415d-a03a-a32752370dee"</span> TYPE=<span class="string">"xfs"</span></span><br></pre></td></tr></table></figure>
+<p>在终端输入以下命令，列出指定块设备的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">blkid /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/dev/sdb1: UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span> TYPE=<span class="string">"xfs"</span></span><br></pre></td></tr></table></figure>
+<p>列出几个 blkid 命令支持的可用参数：</p>
+<ul>
+<li>-o : output format; can be one of: value, device, export or full; (default: full)</li>
+<li>-s : show specified tag(s) (default show all tags)</li>
+<li>-t : find device with a specified token (NAME=value pair)</li>
+<li>-L : convert LABEL to device name</li>
+<li>-U : convert UUID to device name</li>
+</ul>
+<p><strong>1/</strong> 使用 -o 参数格式化输出 sdb1 的块设备信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">blkid -o value /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">0a3407de-014b-458b-b5c1-848e92a327a3</span><br><span class="line">xfs</span><br><span class="line">b411dc99-f0a0-4c87-9e05-184977be8539</span><br></pre></td></tr></table></figure>
+<p><strong>2/</strong> 使用 -o 参数格式化输出 sdb1 的块设备信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">blkid -o <span class="built_in">export</span> /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DEVNAME=/dev/sdb1</span><br><span class="line">UUID=0a3407de-014b-458b-b5c1-848e92a327a3</span><br><span class="line">TYPE=xfs</span><br><span class="line">PARTUUID=b411dc99-f0a0-4c87-9e05-184977be8539</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="sgdisk-命令"><a href="#sgdisk-命令" class="headerlink" title="sgdisk 命令"></a>sgdisk 命令</h2><hr>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://linux.cn/article-3340-1.html" target="_blank" rel="noopener">https://linux.cn/article-3340-1.html</a><br>[2] <a href="https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87</a>)<br>[3] <a href="https://wiki.debian.org/Part-UUID" target="_blank" rel="noopener">https://wiki.debian.org/Part-UUID</a><br>[4] <a href="https://blog.csdn.net/sch0120/article/details/77725658" target="_blank" rel="noopener">https://blog.csdn.net/sch0120/article/details/77725658</a></p>]]></content>
       
         <categories>
