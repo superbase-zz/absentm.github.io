@@ -115,15 +115,15 @@
 <p>插盘：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">" - - - "</span> &gt; /sys/class/scsi_host/host0/scan    </span><br><span class="line"><span class="comment"># 其中，host0 中的数字 「 0 」 表示：使用 lsscsi 命令查看的 xxxx 盘第一列 [0:0:0:1] 中的第一个数字</span></span><br></pre></td></tr></table></figure>
 <h2 id="blkid-命令"><a href="#blkid-命令" class="headerlink" title="blkid 命令"></a>blkid 命令</h2><p>blkid 命令可以显示关于可用块设备的信息，如：设备名称、UUID(文件系统唯一标示符)、Type（文件系统类型）、PARTLABEL、PARTUUID 等信息。</p>
-<p>在终端输入以下命令，列出所有可用块设备的信息：</p>
+<h3 id="列出所有可用块设备的信息"><a href="#列出所有可用块设备的信息" class="headerlink" title="列出所有可用块设备的信息"></a>列出所有可用块设备的信息</h3><p>在终端输入以下命令，列出所有可用块设备的信息：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid</span><br></pre></td></tr></table></figure>
 <p>输出结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda2: UUID=<span class="string">"0733f5c1-cb85-4f98-9d4f-122cfcee9806"</span> TYPE=<span class="string">"ext4"</span></span><br><span class="line">/dev/sda3: UUID=<span class="string">"41a18221-6b1f-4ca2-9bc3-dc353c87d932"</span> TYPE=<span class="string">"ext4"</span></span><br><span class="line">/dev/sda4: UUID=<span class="string">"57183ff9-d4a5-4623-a47f-f8f17339be03"</span> TYPE=<span class="string">"swap"</span></span><br><span class="line">/dev/sdb1: UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span> TYPE=<span class="string">"xfs"</span></span><br><span class="line">/dev/sdb2: UUID=<span class="string">"6bdf487f-cad7-4197-b0d9-4ddc6df1de2d"</span> PARTUUID=<span class="string">"f9fe0b69-a280-415d-a03a-a32752370dee"</span> TYPE=<span class="string">"xfs"</span></span><br></pre></td></tr></table></figure>
-<p>在终端输入以下命令，列出指定块设备的信息：</p>
+<h3 id="列出指定块设备的信息"><a href="#列出指定块设备的信息" class="headerlink" title="列出指定块设备的信息"></a>列出指定块设备的信息</h3><p>在终端输入以下命令，列出指定块设备的信息：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid /dev/sdb1</span><br></pre></td></tr></table></figure>
 <p>输出结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sdb1: UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span> TYPE=<span class="string">"xfs"</span></span><br></pre></td></tr></table></figure>
-<p>列出几个 blkid 命令支持的可用参数：</p>
+<h3 id="可用参数及格式化输出"><a href="#可用参数及格式化输出" class="headerlink" title="可用参数及格式化输出"></a>可用参数及格式化输出</h3><p>列出几个 blkid 命令支持的可用参数：</p>
 <ul>
 <li>-o : output format; can be one of: value, device, export or full; (default: full)</li>
 <li>-s : show specified tag(s) (default show all tags)</li>
