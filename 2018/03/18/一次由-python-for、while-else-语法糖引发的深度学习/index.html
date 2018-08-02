@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="故事昨儿，一天迷离。 手忙脚乱，写了一段代码；误打误撞，通过了测试用例；迷迷糊糊，提交入库了。 今儿醒来 review， 觉得是 bug， 结果却获得了意外… 因此就有了这个，一次由 python for/while-else 「 语法糖 」 引发的 「 深度学习 」。 故事开头是这样的： 判断一个「 , 」分割的字符串，如果是 None，则返回「 * 」；如果不是，则遍历验证每一个元素是否在列">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次由 python for、while-else 语法糖引发的深度学习">
+<meta property="og:url" content="https://absentm.github.io/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="故事昨儿，一天迷离。 手忙脚乱，写了一段代码；误打误撞，通过了测试用例；迷迷糊糊，提交入库了。 今儿醒来 review， 觉得是 bug， 结果却获得了意外… 因此就有了这个，一次由 python for/while-else 「 语法糖 」 引发的 「 深度学习 」。 故事开头是这样的： 判断一个「 , 」分割的字符串，如果是 None，则返回「 * 」；如果不是，则遍历验证每一个元素是否在列">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/python-loop-else-Q1.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/python-loop-else-Q2.png">
+<meta property="og:updated_time" content="2018-03-19T00:43:46.219Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次由 python for、while-else 语法糖引发的深度学习">
+<meta name="twitter:description" content="故事昨儿，一天迷离。 手忙脚乱，写了一段代码；误打误撞，通过了测试用例；迷迷糊糊，提交入库了。 今儿醒来 review， 觉得是 bug， 结果却获得了意外… 因此就有了这个，一次由 python for/while-else 「 语法糖 」 引发的 「 深度学习 」。 故事开头是这样的： 判断一个「 , 」分割的字符串，如果是 None，则返回「 * 」；如果不是，则遍历验证每一个元素是否在列">
+<meta name="twitter:image" content="https://o8zyn0sct.qnssl.com/python-loop-else-Q1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>一次由 python for、while-else 语法糖引发的深度学习 | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一次由 python for、while-else 语法糖引发的深度学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-03-18 13:44:29" itemprop="dateCreated datePublished" datetime="2018-03-18T13:44:29+08:00">2018-03-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-03-19 08:43:46" itemprop="dateModified" datetime="2018-03-19T08:43:46+08:00">2018-03-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Python-Notes/" itemprop="url" rel="index"><span itemprop="name">Python Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/" class="leancloud_visitors" data-flag-title="一次由 python for、while-else 语法糖引发的深度学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="故事"><a href="#故事" class="headerlink" title="故事"></a>故事</h2><p>昨儿，一天迷离。</p>
+<p>手忙脚乱，写了一段代码；<br>误打误撞，通过了测试用例；<br>迷迷糊糊，提交入库了。</p>
+<p>今儿醒来 review， 觉得是 bug， 结果却获得了意外…</p>
+<p>因此就有了这个，一次由 python for/while-else 「 语法糖 」 引发的 「 深度学习 」。</p>
+<p>故事开头是这样的：</p>
+<p>判断一个「 , 」分割的字符串，如果是 None，则返回「 * 」；如果不是，则遍历验证每一个元素是否在列表中，不存在则错误输出，存在则返回列表。</p>
+<p>非常简单的逻辑，可我写成了这个样子：</p>
+<p><img src="https://o8zyn0sct.qnssl.com/python-loop-else-Q1.png" alt="Python loop with else Question"></p>
+<p>写过一段 C/C++ 或者 Java 的我，review 时看到这个，瞬间懵逼了。</p>
+<p>bug 呀，那个 else 不应该出现呀，缩进应该往前提一下呀，语法错误呀…</p>
+<p>可是测试用例的处理逻辑却跑的没问题呀，二脸懵逼… </p>
+<p>赶紧 Google…</p>
+<h2 id="Python-for-while-else-语法"><a href="#Python-for-while-else-语法" class="headerlink" title="Python for/while-else 语法"></a>Python for/while-else 语法</h2><p>搜索文档才发现：</p>
+<p><img src="https://o8zyn0sct.qnssl.com/python-loop-else-Q2.png" alt="Python loop with else doc"></p>
+<p>Python 的 for…else 和 while…else 语法，是 Python 中最不常用、最为误解的语法特性之一。</p>
+<p>Python 中的 for、while 循环都可以有一个可选的 else 分支（类似 if 语句和 try 语句那样），在循环迭代正常完成之后执行。也就是说，如果我们不是以非正常方式以外的其他任意方式退出循环，那么 else 分支将被执行。也就是在循环体内没有 break 语句、没有 return 语句，或者没有异常出现。</p>
+<p>那么，写一个 demo 测试一下这个语法糖吧。</p>
+<h2 id="Demo-测试"><a href="#Demo-测试" class="headerlink" title="Demo 测试"></a>Demo 测试</h2><p>把代码写成这样，验证一下这个语法糖。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"> # test_loop_with_else.py</span></span><br><span class="line"><span class="string"> # </span></span><br><span class="line"><span class="string"> # Copyright(C) By AbsentM. 2018</span></span><br><span class="line"><span class="string"> # </span></span><br><span class="line"><span class="string"> # Author: AbsentM</span></span><br><span class="line"><span class="string"> # Date: 2018/03/18</span></span><br><span class="line"><span class="string"> # </span></span><br><span class="line"><span class="string"> # Description: Test python loop with else demo</span></span><br><span class="line"><span class="string"> #</span></span><br><span class="line"><span class="string"> # Change Log:</span></span><br><span class="line"><span class="string"> # 2018/03/18 AbsentM Create the file</span></span><br><span class="line"><span class="string"> # 2018/03/18 AbsentM Add test demo</span></span><br><span class="line"><span class="string"> #</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_for_else_validation</span><span class="params">(fruits)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Test python for else</span></span><br><span class="line"><span class="string">    :param fruits: A string of fruits split with ','</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> fruits <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        fruits_result = <span class="string">"*"</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        fruits = fruits.split(<span class="string">","</span>)</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"fruits &gt;&gt;&gt; &#123;&#125;"</span>.format(fruits)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> fruits:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"item &gt;&gt;&gt; &#123;&#125;"</span>.format(item)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            fruits_result = fruits</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"total &gt;&gt;&gt; &#123;&#125;"</span>.format(fruits_result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_while_else_validation</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Test python while else</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index &lt;= <span class="number">10</span>:</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"index &#123;&#125;: &#123;&#125; "</span>.format(index, index)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"in while else"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"---------------------------"</span></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"Run first test..."</span></span><br><span class="line">	test_1 = <span class="keyword">None</span></span><br><span class="line">	run_for_else_validation(test_1)</span><br><span class="line">	<span class="keyword">print</span> <span class="string">"Run first test finished"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"---------------------------"</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Run second test..."</span></span><br><span class="line">    test_2 = <span class="string">"apple"</span></span><br><span class="line">    run_for_else_validation(test_2)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Run second test finished"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"---------------------------"</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Run third test..."</span></span><br><span class="line">    test_3 = <span class="string">"apple,pear,orange"</span></span><br><span class="line">    run_for_else_validation(test_3)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Run third test finished"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">print</span> <span class="string">"---------------------------"</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Run fourth test..."</span></span><br><span class="line">    run_while_else_validation()</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Run fourth test finished"</span></span><br></pre></td></tr></table></figure>
+<p>输出的结果是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">---------------------------</span><br><span class="line">Run first test...</span><br><span class="line">total &gt;&gt;&gt; *</span><br><span class="line">Run first test finished</span><br><span class="line">---------------------------</span><br><span class="line">Run second test...</span><br><span class="line">fruits &gt;&gt;&gt; [&apos;apple&apos;]</span><br><span class="line">item &gt;&gt;&gt; apple</span><br><span class="line">total &gt;&gt;&gt; [&apos;apple&apos;]</span><br><span class="line">Run second test finished</span><br><span class="line">---------------------------</span><br><span class="line">Run third test...</span><br><span class="line">fruits &gt;&gt;&gt; [&apos;apple&apos;, &apos;pear&apos;, &apos;orange&apos;]</span><br><span class="line">item &gt;&gt;&gt; apple</span><br><span class="line">item &gt;&gt;&gt; pear</span><br><span class="line">item &gt;&gt;&gt; orange</span><br><span class="line">total &gt;&gt;&gt; [&apos;apple&apos;, &apos;pear&apos;, &apos;orange&apos;]</span><br><span class="line">Run third test finished</span><br><span class="line">---------------------------</span><br><span class="line">Run fourth test...</span><br><span class="line">index 1: 1 </span><br><span class="line">index 2: 2 </span><br><span class="line">index 3: 3 </span><br><span class="line">index 4: 4 </span><br><span class="line">index 5: 5 </span><br><span class="line">index 6: 6 </span><br><span class="line">index 7: 7 </span><br><span class="line">index 8: 8 </span><br><span class="line">index 9: 9 </span><br><span class="line">index 10: 10 </span><br><span class="line">index 11: 11 </span><br><span class="line">in while else</span><br><span class="line">Run fourth test finished</span><br><span class="line">[Finished in 0.3s]</span><br></pre></td></tr></table></figure>
+<p>完整代码地址：<a href="https://github.com/absentm/Demo/blob/master/Python-demo/test-demo/test_loop_with_else.py" target="_blank" rel="noopener">python-loop-with-else-demo</a></p>
+<blockquote>
+<p>庆幸每一次懵逼后的不知所措<br>庆幸每一次 fix 后的醍醐灌顶。</p>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://docs.python.org/2/tutorial/controlflow.html#for-statements" target="_blank" rel="noopener">https://docs.python.org/2/tutorial/controlflow.html#for-statements</a><br>[2] <a href="http://book.pythontips.com/en/latest/for_-_else.html" target="_blank" rel="noopener">http://book.pythontips.com/en/latest/for_-_else.html</a><br>[3] <a href="http://python.jobbole.com/81063/" target="_blank" rel="noopener">http://python.jobbole.com/81063/</a></p>
+<hr>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/Linux-磁盘相关命令整理/" rel="next" title="Linux 磁盘相关命令整理">
+                <i class="fa fa-chevron-left"></i> Linux 磁盘相关命令整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#故事"><span class="nav-number">1.</span> <span class="nav-text">故事</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-for-while-else-语法"><span class="nav-number">2.</span> <span class="nav-text">Python for/while-else 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-测试"><span class="nav-number">3.</span> <span class="nav-text">Demo 测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">5.</span> <span class="nav-text">END</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/';
+        this.page.identifier = '2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/';
+        this.page.title = '一次由 python for、while-else 语法糖引发的深度学习';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

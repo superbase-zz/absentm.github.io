@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="介绍近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 … 涉及命令 lsblk: 罗列所有可用块设备的信息 blkid: 显示关于可用块设备的信息 sgdisk:  smartctl:  sas2ircu/sas3iru:  lsblk 命令 lsblk（列出块设备）命令用于列出所有可用块设备的信息，但是，它不会列出RAM盘的信息。块设备有硬盘，闪">
+<meta name="keywords" content="Shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 磁盘相关命令整理">
+<meta property="og:url" content="https://absentm.github.io/2018/02/10/Linux-磁盘相关命令整理/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="介绍近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 … 涉及命令 lsblk: 罗列所有可用块设备的信息 blkid: 显示关于可用块设备的信息 sgdisk:  smartctl:  sas2ircu/sas3iru:  lsblk 命令 lsblk（列出块设备）命令用于列出所有可用块设备的信息，但是，它不会列出RAM盘的信息。块设备有硬盘，闪">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-25T02:21:57.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux 磁盘相关命令整理">
+<meta name="twitter:description" content="介绍近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 … 涉及命令 lsblk: 罗列所有可用块设备的信息 blkid: 显示关于可用块设备的信息 sgdisk:  smartctl:  sas2ircu/sas3iru:  lsblk 命令 lsblk（列出块设备）命令用于列出所有可用块设备的信息，但是，它不会列出RAM盘的信息。块设备有硬盘，闪">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2018/02/10/Linux-磁盘相关命令整理/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Linux 磁盘相关命令整理 | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2018/02/10/Linux-磁盘相关命令整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux 磁盘相关命令整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-10 10:12:48" itemprop="dateCreated datePublished" datetime="2018-02-10T10:12:48+08:00">2018-02-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-03-25 10:21:57" itemprop="dateModified" datetime="2018-03-25T10:21:57+08:00">2018-03-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux-Notes/" itemprop="url" rel="index"><span itemprop="name">Linux Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/10/Linux-磁盘相关命令整理/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/02/10/Linux-磁盘相关命令整理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/10/Linux-磁盘相关命令整理/" class="leancloud_visitors" data-flag-title="Linux 磁盘相关命令整理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>近来，接触底层的内容多了一些，顺手撸一个 「 磁盘 」 相关主线的命令行备份，记录在这里留作备忘 …</p>
+<h2 id="涉及命令"><a href="#涉及命令" class="headerlink" title="涉及命令"></a>涉及命令</h2><ul>
+<li>lsblk: 罗列所有可用块设备的信息</li>
+<li>blkid: 显示关于可用块设备的信息</li>
+<li>sgdisk: </li>
+<li>smartctl: </li>
+<li>sas2ircu/sas3iru:</li>
+</ul>
+<h2 id="lsblk-命令"><a href="#lsblk-命令" class="headerlink" title="lsblk 命令"></a>lsblk 命令</h2><blockquote>
+<p>lsblk（列出块设备）命令用于列出所有可用块设备的信息，但是，它不会列出RAM盘的信息。块设备有硬盘，闪存盘，CD-ROM等等。 <a href="https://linux.cn/article-3340-1.html" target="_blank" rel="noopener">引用自：参考资料 1</a></p>
+</blockquote>
+<p>lsblk 命令默认情况下将以 「 树状 」 列出所有块设备。在终端输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@AbsentM ~]<span class="comment"># lsblk</span></span><br><span class="line">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda      8:0    0 557.9G  0 disk </span><br><span class="line">├─sda1   8:1    0     1M  0 part </span><br><span class="line">├─sda2   8:2    0   500M  0 part /boot</span><br><span class="line">├─sda3   8:3    0 299.4G  0 part </span><br><span class="line">├─sda4   8:4    0     1K  0 part </span><br><span class="line">├─sda5   8:5    0  97.7G  0 part /</span><br><span class="line">├─sda6   8:6    0  97.7G  0 part /var/<span class="built_in">log</span></span><br><span class="line">├─sda7   8:7    0  62.5G  0 part [SWAP]</span><br><span class="line">└─sda8   8:8    0   196M  0 part /boot/efi</span><br><span class="line">sdb      8:16   0   200G  0 disk </span><br><span class="line">├─sdb1   8:17   0   150G  0 part /var/lib/cache</span><br><span class="line">└─sdb2   8:18   0    50G  0 part</span><br></pre></td></tr></table></figure>
+<p>7 个列的名称解释如下：</p>
+<ul>
+<li>NAME : 块设备名称。</li>
+<li>MAJ:MIN : 显示主要和次要设备号。</li>
+<li>RM : 显示设备是否可移动设备。 RM 值为 1, 表示为可移动设备。</li>
+<li>SIZE : 列出设备的容量大小信息。</li>
+<li>RO : 表明设备是否为只读。 RO 值为 0, 表示只读。</li>
+<li>TYPE : 显示块设备是否是磁盘或磁盘上的一个分区。 disk 表示磁盘，part 表示分区，rom 表示只读存储器。</li>
+<li>MOUNTPOINT : 显示设备挂载的挂载点。</li>
+</ul>
+<p>为了更直观的定制列、格式化输出展示信息，可以使用如下参数格式化输出：</p>
+<ul>
+<li>-o : output columns，定制列</li>
+<li>-b : print SIZE in bytes rather than in human readable format</li>
+<li>-l : use list format output</li>
+<li>-p : print complate device path</li>
+<li>-P : use key=”value” output format</li>
+</ul>
+<p>可定制的列名称为：</p>
+<ul>
+<li>NAME : device name</li>
+<li>MOUNTPOINT : where the device is mounted</li>
+<li>UUID : filesystem UUID</li>
+<li>PARTUUID : partition UUID</li>
+<li>SIZE : size of the device</li>
+<li>TYPE : device type</li>
+<li>STATE : state of the device</li>
+<li>ROTA : rotational device, 可旋转磁盘标志位，可用于区分 HDD 盘和 SSD 盘: 0 - 不可旋转，SSD; 1 - 可旋转，HDD</li>
+</ul>
+<p>如，以键值对的形式列出 /dev/sdb 盘的名称，大小，挂载点，类型，ROTA 位，分区 UUID，文件系统 UUID: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk /dev/sdb -b -p -P -o NAME,SIZE,MOUNTPOINT,TYPE,ROTA,UUID,PARTUUID</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@AbsentM ~]<span class="comment"># lsblk /dev/sdb -b -p -P -o NAME,SIZE,MOUNTPOINT,TYPE,ROTA,UUID,PARTUUID</span></span><br><span class="line">NAME=<span class="string">"/dev/sdb"</span> SIZE=<span class="string">"214748364800"</span> MOUNTPOINT=<span class="string">""</span> TYPE=<span class="string">"disk"</span> ROTA=<span class="string">"1"</span> UUID=<span class="string">""</span> PARTUUID=<span class="string">""</span></span><br><span class="line">NAME=<span class="string">"/dev/sdb1"</span> SIZE=<span class="string">"161061273600"</span> MOUNTPOINT=<span class="string">""</span> TYPE=<span class="string">"part"</span> ROTA=<span class="string">"1"</span> UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span></span><br><span class="line">NAME=<span class="string">"/dev/sdb2"</span> SIZE=<span class="string">"53687091200"</span> MOUNTPOINT=<span class="string">""</span> TYPE=<span class="string">"part"</span> ROTA=<span class="string">"1"</span> UUID=<span class="string">""</span> PARTUUID=<span class="string">"f9fe0b69-a280-415d-a03a-a32752370dee"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Disk-UUID、PARTUUID-解释"><a href="#Disk-UUID、PARTUUID-解释" class="headerlink" title="Disk UUID、PARTUUID 解释"></a>Disk UUID、PARTUUID 解释</h3><p>关于磁盘 UUID、PARTUUID 等磁盘持久化命名解释可参看：<a href="https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">参考资料 2：Persistent block device naming (简体中文)</a>) 和 <a href="https://wiki.debian.org/Part-UUID" target="_blank" rel="noopener">参考资料 3：Part-UUID</a></p>
+<h3 id="SSD、HDD-的-Linux-判断方法"><a href="#SSD、HDD-的-Linux-判断方法" class="headerlink" title="SSD、HDD 的 Linux 判断方法"></a>SSD、HDD 的 Linux 判断方法</h3><p>除 lsblk 命令的 ROTA 属性值可以作为 HDD 盘和 SSD 盘的判断方式( 1 - HDD, 0 - SSD) 外，还可以使用如下命令来判断：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /sys/block/xxxx/queue/rotational</span><br></pre></td></tr></table></figure>
+<p>如果返回值为：1，则表示为 HDD 盘；如果返回值为：0，则表示为 SSD 盘。其他方法可参看：<a href="https://blog.csdn.net/sch0120/article/details/77725658" target="_blank" rel="noopener">参考资料 4：Linux下判断磁盘是SSD还是HDD的几种方法</a></p>
+<h3 id="将-HDD-盘模拟为-SSD-盘"><a href="#将-HDD-盘模拟为-SSD-盘" class="headerlink" title="将 HDD 盘模拟为 SSD 盘"></a>将 HDD 盘模拟为 SSD 盘</h3><p>可以通过如下命令，将 HDD 盘模拟为非旋转块设备（SSD）:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 0 &gt; /sys/block/xxxx/queue/rotational   <span class="comment"># 其中，xxxx 表示磁盘名称，如 sdb.</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟插拔盘动作"><a href="#模拟插拔盘动作" class="headerlink" title="模拟插拔盘动作"></a>模拟插拔盘动作</h3><p>Linux 下可以使用如下命令模拟插拔盘动作，但应注意与实际物理插拔盘仍可能不太一样。</p>
+<p>拔盘：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /sys/block/xxxx/device/delete   <span class="comment"># 其中，xxxx 表示磁盘名称，如 sdb.</span></span><br></pre></td></tr></table></figure>
+<p>插盘：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">" - - - "</span> &gt; /sys/class/scsi_host/host0/scan    </span><br><span class="line"><span class="comment"># 其中，host0 中的数字 「 0 」 表示：使用 lsscsi 命令查看的 xxxx 盘第一列 [0:0:0:1] 中的第一个数字</span></span><br></pre></td></tr></table></figure>
+<h2 id="blkid-命令"><a href="#blkid-命令" class="headerlink" title="blkid 命令"></a>blkid 命令</h2><p>blkid 命令可以显示关于可用块设备的信息，如：设备名称、UUID(文件系统唯一标示符)、Type（文件系统类型）、PARTLABEL、PARTUUID 等信息。</p>
+<h3 id="列出所有可用块设备的信息"><a href="#列出所有可用块设备的信息" class="headerlink" title="列出所有可用块设备的信息"></a>列出所有可用块设备的信息</h3><p>在终端输入以下命令，列出所有可用块设备的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda2: UUID=<span class="string">"0733f5c1-cb85-4f98-9d4f-122cfcee9806"</span> TYPE=<span class="string">"ext4"</span></span><br><span class="line">/dev/sda3: UUID=<span class="string">"41a18221-6b1f-4ca2-9bc3-dc353c87d932"</span> TYPE=<span class="string">"ext4"</span></span><br><span class="line">/dev/sda4: UUID=<span class="string">"57183ff9-d4a5-4623-a47f-f8f17339be03"</span> TYPE=<span class="string">"swap"</span></span><br><span class="line">/dev/sdb1: UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span> TYPE=<span class="string">"xfs"</span></span><br><span class="line">/dev/sdb2: UUID=<span class="string">"6bdf487f-cad7-4197-b0d9-4ddc6df1de2d"</span> PARTUUID=<span class="string">"f9fe0b69-a280-415d-a03a-a32752370dee"</span> TYPE=<span class="string">"xfs"</span></span><br></pre></td></tr></table></figure>
+<h3 id="列出指定块设备的信息"><a href="#列出指定块设备的信息" class="headerlink" title="列出指定块设备的信息"></a>列出指定块设备的信息</h3><p>在终端输入以下命令，列出指定块设备的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sdb1: UUID=<span class="string">"0a3407de-014b-458b-b5c1-848e92a327a3"</span> PARTUUID=<span class="string">"b411dc99-f0a0-4c87-9e05-184977be8539"</span> TYPE=<span class="string">"xfs"</span></span><br></pre></td></tr></table></figure>
+<h3 id="可用参数及格式化输出"><a href="#可用参数及格式化输出" class="headerlink" title="可用参数及格式化输出"></a>可用参数及格式化输出</h3><p>列出几个 blkid 命令支持的可用参数：</p>
+<ul>
+<li>-o : output format; can be one of: value, device, export or full; (default: full)</li>
+<li>-s : show specified tag(s) (default show all tags)</li>
+<li>-t : find device with a specified token (NAME=value pair)</li>
+<li>-L : convert LABEL to device name</li>
+<li>-U : convert UUID to device name</li>
+</ul>
+<p><strong>1/</strong> 使用 -o 参数格式化输出 sdb1 的块设备信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid -o value /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0a3407de-014b-458b-b5c1-848e92a327a3</span><br><span class="line">xfs</span><br><span class="line">b411dc99-f0a0-4c87-9e05-184977be8539</span><br></pre></td></tr></table></figure>
+<p><strong>2/</strong> 使用 -o 参数格式化输出 sdb1 的块设备信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid -o <span class="built_in">export</span> /dev/sdb1</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DEVNAME=/dev/sdb1</span><br><span class="line">UUID=0a3407de-014b-458b-b5c1-848e92a327a3</span><br><span class="line">TYPE=xfs</span><br><span class="line">PARTUUID=b411dc99-f0a0-4c87-9e05-184977be8539</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="sgdisk-命令"><a href="#sgdisk-命令" class="headerlink" title="sgdisk 命令"></a>sgdisk 命令</h2><hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://linux.cn/article-3340-1.html" target="_blank" rel="noopener">https://linux.cn/article-3340-1.html</a><br>[2] <a href="https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)" target="_blank" rel="noopener">https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)</a><br>[3] <a href="https://wiki.debian.org/Part-UUID" target="_blank" rel="noopener">https://wiki.debian.org/Part-UUID</a><br>[4] <a href="https://blog.csdn.net/sch0120/article/details/77725658" target="_blank" rel="noopener">https://blog.csdn.net/sch0120/article/details/77725658</a></p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Shell/" rel="tag"># Shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/04/Windows10-Android-adb-环境变量配置/" rel="next" title="Windows10 Android adb 环境变量配置">
+                <i class="fa fa-chevron-left"></i> Windows10 Android adb 环境变量配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/18/一次由-python-for、while-else-语法糖引发的深度学习/" rel="prev" title="一次由 python for、while-else 语法糖引发的深度学习">
+                一次由 python for、while-else 语法糖引发的深度学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#涉及命令"><span class="nav-number">2.</span> <span class="nav-text">涉及命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lsblk-命令"><span class="nav-number">3.</span> <span class="nav-text">lsblk 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Disk-UUID、PARTUUID-解释"><span class="nav-number">3.1.</span> <span class="nav-text">Disk UUID、PARTUUID 解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSD、HDD-的-Linux-判断方法"><span class="nav-number">3.2.</span> <span class="nav-text">SSD、HDD 的 Linux 判断方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将-HDD-盘模拟为-SSD-盘"><span class="nav-number">3.3.</span> <span class="nav-text">将 HDD 盘模拟为 SSD 盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟插拔盘动作"><span class="nav-number">3.4.</span> <span class="nav-text">模拟插拔盘动作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blkid-命令"><span class="nav-number">4.</span> <span class="nav-text">blkid 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列出所有可用块设备的信息"><span class="nav-number">4.1.</span> <span class="nav-text">列出所有可用块设备的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出指定块设备的信息"><span class="nav-number">4.2.</span> <span class="nav-text">列出指定块设备的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可用参数及格式化输出"><span class="nav-number">4.3.</span> <span class="nav-text">可用参数及格式化输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sgdisk-命令"><span class="nav-number">5.</span> <span class="nav-text">sgdisk 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2018/02/10/Linux-磁盘相关命令整理/';
+        this.page.identifier = '2018/02/10/Linux-磁盘相关命令整理/';
+        this.page.title = 'Linux 磁盘相关命令整理';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

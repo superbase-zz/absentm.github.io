@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="前言—李冠《蝶恋花·春暮》  遥夜亭皋闲信步。才过清明，渐觉伤春暮。数点雨声风约住。朦胧淡月云来去。 桃杏依稀香暗渡。谁在秋千，笑里轻轻语。一寸相思千万绪。人间没个安排处。  大早, 喜见枯草堆中顽强的四叶草:   说明 接着之前的SQL语句继续整理, 内容大多参考了互联网上的很多内容, 好多都相似, 结尾缀上出处, 感谢分享. 这一部分内容, 在mysql中也亲自测试了, 带有截图. 这一部分主">
+<meta name="keywords" content="Mysql,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库题目整理及详解（三）">
+<meta property="og:url" content="https://absentm.github.io/2016/04/05/数据库题目整理及详解（三）/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="前言—李冠《蝶恋花·春暮》  遥夜亭皋闲信步。才过清明，渐觉伤春暮。数点雨声风约住。朦胧淡月云来去。 桃杏依稀香暗渡。谁在秋千，笑里轻轻语。一寸相思千万绪。人间没个安排处。  大早, 喜见枯草堆中顽强的四叶草:   说明 接着之前的SQL语句继续整理, 内容大多参考了互联网上的很多内容, 好多都相似, 结尾缀上出处, 感谢分享. 这一部分内容, 在mysql中也亲自测试了, 带有截图. 这一部分主">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405180856569">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405183025452">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405192543536">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405192710364">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405193127882">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405193155663">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405193210741">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405193230866">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405194035135">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405194720575">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405195858345">
+<meta property="og:image" content="http://img.blog.csdn.net/20160405200932709">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库题目整理及详解（三）">
+<meta name="twitter:description" content="前言—李冠《蝶恋花·春暮》  遥夜亭皋闲信步。才过清明，渐觉伤春暮。数点雨声风约住。朦胧淡月云来去。 桃杏依稀香暗渡。谁在秋千，笑里轻轻语。一寸相思千万绪。人间没个安排处。  大早, 喜见枯草堆中顽强的四叶草:   说明 接着之前的SQL语句继续整理, 内容大多参考了互联网上的很多内容, 好多都相似, 结尾缀上出处, 感谢分享. 这一部分内容, 在mysql中也亲自测试了, 带有截图. 这一部分主">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160405180856569">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/04/05/数据库题目整理及详解（三）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据库题目整理及详解（三） | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2016/04/05/数据库题目整理及详解（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库题目整理及详解（三）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-05 20:11:26" itemprop="dateCreated datePublished" datetime="2016-04-05T20:11:26+08:00">2016-04-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-21 19:44:44" itemprop="dateModified" datetime="2017-11-21T19:44:44+08:00">2017-11-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database-Notes/" itemprop="url" rel="index"><span itemprop="name">Database Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/05/数据库题目整理及详解（三）/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/05/数据库题目整理及详解（三）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/04/05/数据库题目整理及详解（三）/" class="leancloud_visitors" data-flag-title="数据库题目整理及详解（三）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>—李冠《蝶恋花·春暮》</p>
+<blockquote>
+<p>遥夜亭皋闲信步。<br>才过清明，渐觉伤春暮。<br>数点雨声风约住。朦胧淡月云来去。</p>
+<p>桃杏依稀香暗渡。<br>谁在秋千，笑里轻轻语。<br>一寸相思千万绪。人间没个安排处。</p>
+</blockquote>
+<p>大早, 喜见枯草堆中顽强的四叶草:</p>
+<p><img src="http://img.blog.csdn.net/20160405180856569" alt="枯草堆中顽强的四叶草"></p>
+<hr>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><blockquote>
+<p>接着之前的SQL语句继续整理, 内容大多参考了互联网上的很多内容, 好多都相似, 结尾缀上出处, 感谢分享. 这一部分内容, 在mysql中也亲自测试了, 带有截图.</p>
+<p>这一部分主要内容为：mysql数据库改变表结构相关的SQL语句, 在书写上的格式、规范及环境配置等，详见：<a href="https://absentm.github.io/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%A2%98%E7%9B%AE%E6%95%B4%E7%90%86%E5%8F%8A%E8%AF%A6%E8%A7%A3%EF%BC%88%E4%B8%80%EF%BC%89/">数据库题目整理及详解（一），说明部分 </a> .</p>
+</blockquote>
+<hr>
+<h2 id="题目详情"><a href="#题目详情" class="headerlink" title="题目详情"></a>题目详情</h2><ol>
+<li>设某图书馆借阅系统数据库包含如下关系:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">T_CARD(Cno, Cname, Class)</span><br><span class="line">T_BOOKS(Bno, Bname, Author, Price, Quantity)</span><br><span class="line">T_BORROW(Cno, Bno, Rdate)</span><br><span class="line"></span><br><span class="line">Cno, Cname, Class 分别表示借书卡的卡号、名称和所在班级;</span><br><span class="line">Bno, Bname, Author, Price, Quantity 分别表示图书的编号、名称、作者、价格和数量;</span><br><span class="line">Cno, Bno, Rdate 分别表示借阅条目的借书卡号、图书编号和还书日期。请使用 SQL 语句表示如下功能:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(1)  写出建立该数据库表的 SQL 语句,要求定义主码完整性约束和引用完整性约束。</span><br><span class="line">(2)  找出借书超过 3 本的读者,输出借书卡号及所借图书册数。</span><br><span class="line">(3)  查询借阅了&quot;Chinese Book&quot;一书的读者,输出姓名及班级。</span><br><span class="line">(4)  查询过期未还图书,输出借阅者(卡号)、书号及还书日期。</span><br><span class="line">(5)  查询书名包括&quot;Chinese&quot;关键词的图书,输出书号、书名、作者。</span><br><span class="line">(6)  查询现有图书中价格最高的图书,输出书名及作者。</span><br><span class="line">(7)  查询当前借了&quot;Chinese Book&quot;但没有借&quot;English Book&quot;的读者,</span><br><span class="line">     输出其借书卡号,并按卡号降序排序输出。</span><br><span class="line">(8)  将&quot;class_1&quot;班同学所借图书的还期都延长一周。</span><br><span class="line">(9)  从 T_BOOKS 表中删除当前无人借阅的图书记录。</span><br><span class="line">(10) 如果经常按书名查询图书信息,请建立合适的索引。</span><br><span class="line">(11) 在 BORROW 表上建立一个触发器,完成如下功能:</span><br><span class="line">     如果读者借阅的书名是&quot;Computer Book&quot;, 就将该读者的借阅记录</span><br><span class="line">     保存在 BORROW_SAVE 表中(注ORROW_SAVE表结构同 BORROW 表)。</span><br><span class="line">(12) 建立一个视图,显示&quot;力 01&quot;班学生的借书信息(只要求显示姓名和书名)。</span><br><span class="line">(13) 查询当前同时借有&quot;Computer Book&quot;和&quot;Math Book&quot;两本书的读者,</span><br><span class="line">     输出其借书卡号,并按卡号升序排序输出。</span><br><span class="line">(14) 假定在建BOOKS表时没有定义主码,写出为BOOKS表追加定义主码的语句。</span><br><span class="line">(15) 对 CARD 表做如下修改:</span><br><span class="line">	 a. 将 NAME 最大列宽增加到10个字符(假定原为6个字符);</span><br><span class="line">	 b. 为该表增加1列NAME(系名), 可变长, 最大20个字符。</span><br></pre></td></tr></table></figure>
+<h2 id="解前初始化"><a href="#解前初始化" class="headerlink" title="解前初始化"></a>解前初始化</h2><p>1&gt;, 创建表结构:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">create database books;         ## 创建名为：books的数据库</span><br><span class="line">use books;                     ## 使用emp数据库</span><br><span class="line"></span><br><span class="line">## 创建t_card表</span><br><span class="line">create table t_card (cno int(10) primary key, name varchar(100), class varchar(100));           </span><br><span class="line"></span><br><span class="line">## 创建t_books表</span><br><span class="line">create table t_books (bno int(10) primary key, bname varchar(100), author varchar(100), price numeric(10,2), quantity int(10));					     </span><br><span class="line"></span><br><span class="line">## 创建t_books表</span><br><span class="line">create table t_borrow (cno int(10), bno int(10), rdate date);</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160405183025452" alt="create_table"></p>
+<hr>
+<p>2&gt;,  完善表结构:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## 添加主键(t_borrow表)</span><br><span class="line">alter table t_borrow add constraint borrow_pk primary key (cno, bno);</span><br><span class="line"></span><br><span class="line">## 添加外键(t_borrow表)</span><br><span class="line">alter table t_borrow add constraint borrow_fk_cno foreign key (cno) references t_card(cno);</span><br><span class="line"></span><br><span class="line">alter table t_borrow add constraint borrow_fk_bno foreign key (bno) references t_books(bno);</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160405192543536" alt="修改表结构"></p>
+<p><img src="http://img.blog.csdn.net/20160405192710364" alt="desc显示表结构"></p>
+<hr>
+<p>3&gt;,  插入数据:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">## 向t_card插入9条数据</span><br><span class="line">insert into t_card values(1, &apos;bryant&apos;, &apos;class_1&apos;);</span><br><span class="line">insert into t_card VALUES(2, &apos;foxus&apos;, &apos;class_1&apos;);</span><br><span class="line">insert into T_CARD VALUES(3, &apos;ennel&apos;, &apos;class_2&apos;);</span><br><span class="line">insert into T_CARD VALUES(4, &apos;keliy&apos;, &apos;class_3&apos;);</span><br><span class="line">insert into t_card VALUES(3, &apos;ennel&apos;, &apos;class_2&apos;);</span><br><span class="line">insert into t_card VALUES(4, &apos;keliy&apos;, &apos;class_3&apos;);</span><br><span class="line">insert into T_CARD VALUES(5, &apos;cinal&apos;, &apos;class_2&apos;);</span><br><span class="line">insert into t_card VALUES(6, &apos;oopp&apos;, &apos;class_3&apos;);</span><br><span class="line">insert into t_card VALUES(5, &apos;cinal&apos;, &apos;class_2&apos;);</span><br><span class="line">select * from t_card;</span><br><span class="line"></span><br><span class="line">## 向t_books插入10条数据</span><br><span class="line">insert into t_books values (1, &apos;Chinese Book&apos;, &apos;Mr.mao&apos;, 35.8, 20);</span><br><span class="line">insert into t_books values (2, &apos;Math Book&apos;, &apos;Mr.xiao&apos;, 55.4, 20);</span><br><span class="line">insert into t_books values (3, &apos;English Book&apos;, &apos;Mr.li&apos;, 22.6, 20);</span><br><span class="line">insert into t_books values (4, &apos;Computer Book&apos;, &apos;Mr.yang&apos;, 78.8, 15);</span><br><span class="line">insert into t_books values (5, &apos;Music Book&apos;, &apos;Mr.wang&apos;, 25.3, 15);</span><br><span class="line">insert into t_books values (6, &apos;History Book&apos;, &apos;Mr.mao&apos;, 40.8, 12);</span><br><span class="line">insert into t_books values (7, &apos;Physics Book&apos;, &apos;Mr.tang&apos;, 46.6, 10);</span><br><span class="line">insert into t_books values (8, &apos;Chemistry Book&apos;, &apos;Mr.zou&apos;, 33.9, 10);</span><br><span class="line">insert into t_books values (9, &apos;Biology Book&apos;, &apos;Mr.tu&apos;, 23, 10);</span><br><span class="line">insert into t_books values (10, &apos;Political Book&apos;, &apos;Mr.ke&apos;, 36.2, 10);</span><br><span class="line">select * from t_books</span><br><span class="line"></span><br><span class="line">## 向t_borrow插入23条数据</span><br><span class="line">insert into t_borrow values(1, 1, &apos;2015-5-21&apos;);</span><br><span class="line">insert into t_borrow values(2, 1, &apos;2015-5-21&apos;);</span><br><span class="line">insert into t_borrow values(3, 3, &apos;2015-5-28&apos;);</span><br><span class="line">insert into t_borrow values(4, 8, &apos;2015-6-21&apos;);</span><br><span class="line">insert into t_borrow values(5, 4, &apos;2015-5-11&apos;);</span><br><span class="line">insert into t_borrow values(6, 10, &apos;2015-5-31&apos;);</span><br><span class="line">insert into t_borrow values(1, 9, &apos;2015-6-10&apos;);</span><br><span class="line">insert into t_borrow values(2, 3, &apos;2015-7-2&apos;);</span><br><span class="line">insert into t_borrow values(3, 5, &apos;2015-6-5&apos;);</span><br><span class="line">insert into t_borrow values(4, 6, &apos;2015-6-2&apos;);</span><br><span class="line">insert into t_borrow values(5, 9, &apos;2015-5-22&apos;);</span><br><span class="line">insert into t_borrow values(6, 1, &apos;2015-6-1&apos;);</span><br><span class="line">insert into t_borrow values(1, 3, &apos;2015-6-1&apos;);</span><br><span class="line">insert into t_borrow values(2, 4, &apos;2015-6-15&apos;);</span><br><span class="line">insert into t_borrow values(3, 8, &apos;2015-5-15&apos;);</span><br><span class="line">insert into t_borrow values(4, 10, &apos;2015-6-22&apos;);</span><br><span class="line">insert into t_borrow values(5, 7, &apos;2015-6-13&apos;);</span><br><span class="line">insert into t_borrow values(6, 6, &apos;2015-5-18&apos;);</span><br><span class="line">insert into t_borrow values(1, 8, &apos;2015-5-19&apos;);</span><br><span class="line">insert into t_borrow values(2, 9, &apos;2015-5-20&apos;);</span><br><span class="line">insert into t_borrow values(3, 6, &apos;2015-6-15&apos;);</span><br><span class="line">insert into t_borrow values(4, 2, &apos;2015-6-15&apos;);</span><br><span class="line">insert into t_borrow values(5, 2, &apos;2015-6-15&apos;);</span><br><span class="line">select * from t_borrow;</span><br></pre></td></tr></table></figure>
+<p>运行截图:</p>
+<p><img src="http://img.blog.csdn.net/20160405193127882" alt="card_values"></p>
+<p><img src="http://img.blog.csdn.net/20160405193155663" alt="books_values"></p>
+<p><img src="http://img.blog.csdn.net/20160405193210741" alt="borrow_values1"></p>
+<p><img src="http://img.blog.csdn.net/20160405193230866" alt="borrow_values2"></p>
+<hr>
+<h2 id="题目详解"><a href="#题目详解" class="headerlink" title="题目详解"></a>题目详解</h2><p>1)  写出建立该数据库表的 SQL 语句,要求定义主码完整性约束和引用完整性约束。</p>
+<blockquote>
+<p>见前部分的解前初始化内容.</p>
+</blockquote>
+<hr>
+<p>2)  找出借书超过 3 本的读者,输出借书卡号及所借图书册数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select cno, count(*) cs from t_borrow br group by cno having count(*) &gt; 3;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>3) 查询借阅了”Chinese Book”一书的读者,输出姓名及班级。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select c.cno, c.name cname, c.class classname </span><br><span class="line">from t_card c, t_books b, t_borrow bo </span><br><span class="line">where c.cno=bo.cno and </span><br><span class="line">      b.bno=bo.bno and </span><br><span class="line">	  b.bname=&apos;Chinese Book&apos;;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>4) 查询过期未还图书,输出借阅者(卡号)、书号及还书日期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select cno, bno, rdate from t_borrow where rdate &lt; current_date();</span><br><span class="line">## 注意:current_date()函数是当前日期, 相当于oracle中的sysdate.</span><br></pre></td></tr></table></figure>
+<hr>
+<p>附上2 ~ 4 运行截图:</p>
+<p><img src="http://img.blog.csdn.net/20160405194035135" alt="2-4"></p>
+<hr>
+<p>5) 查询书名包括”Chinese”关键词的图书,输出书号、书名、作者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select bno, bname, author from t_books where bname like &apos;%Chinese%&apos;;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>6) 查询现有图书中价格最高的图书,输出书名及作者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select bname, author from t_books where price =(select max(price) from t_books);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>7) 查询当前借了”Chinese Book”但没有借”English Book”的读者,输出其借书<br>卡号,并按卡号降序排序输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">select cno </span><br><span class="line">from t_borrow br2 </span><br><span class="line">where exists (</span><br><span class="line">	select cno </span><br><span class="line">	from t_borrow br, t_books b </span><br><span class="line">	where b.bname=&apos;Chinese Book&apos; and </span><br><span class="line">		  br.bno=b.bno and </span><br><span class="line">		  br.cno=br2.cno) and </span><br><span class="line">		  not exists (</span><br><span class="line">			  select cno </span><br><span class="line">			  from t_borrow br, t_books b </span><br><span class="line">			  where b.bname=&apos;English Book&apos; and </span><br><span class="line">				  br.bno=b.bno and </span><br><span class="line">				  br.cno=br2.cno) </span><br><span class="line">group by cno </span><br><span class="line">order by cno desc;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>8) 将”class_1”班同学所借图书的还期都延长一周。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">update t_borrow br set br.rdate=br.rdate + 7 </span><br><span class="line">where exists (</span><br><span class="line">	select cno </span><br><span class="line">	from t_card </span><br><span class="line">	where class=&apos;class_1&apos; and cno=br.cno);  </span><br><span class="line"></span><br><span class="line">## 查看一下更新详情	</span><br><span class="line">select * from t_borrow;</span><br></pre></td></tr></table></figure>
+<p>附上5 ~ 8 截图:</p>
+<p><img src="http://img.blog.csdn.net/20160405194720575" alt="5-8"></p>
+<hr>
+<p>9) 从 T_BOOKS 表中删除当前无人借阅的图书记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">delete from t_books </span><br><span class="line">where t_books.bno not in (</span><br><span class="line">	select distinct c.bno from t_borrow c);</span><br><span class="line"></span><br><span class="line">## 注意: 如果使用not exist语句将会产生如下错误提示:</span><br><span class="line">ERROR 1093 (HY000): You can&apos;t specify target table &apos;t_books&apos; for update in FROM clause , 推荐使用in语句.</span><br></pre></td></tr></table></figure>
+<hr>
+<p>10) 如果经常按书名查询图书信息,请建立合适的索引。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index index_t_books_name on t_books(bname);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>11) 在 BORROW 表上建立一个触发器, 完成如下功能:如果读者借阅的书名是”Computer Book”, 就将该读者的借阅记录保存在 BORROW_SAVE 表中(注ORROW_SAVE 表结构同 BORROW 表) 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">## 先创建t_borrow_save表</span><br><span class="line">create table t_borrow_save(cno int(10), bno int(10), rdate date);</span><br><span class="line"></span><br><span class="line">## 创建触发器</span><br><span class="line">create or replace trigger trg_borrow </span><br><span class="line">after insert </span><br><span class="line">on t_borrow </span><br><span class="line">for each row </span><br><span class="line">	begin </span><br><span class="line">		if :new.bno=4 </span><br><span class="line">		then  </span><br><span class="line">			insert into t_borrow_save(cno, bno, rdate)</span><br><span class="line">			values(:new.cno, :new.bno, :new.rdate); </span><br><span class="line">		end if;</span><br><span class="line">	end;</span><br><span class="line"></span><br><span class="line">## 删除触发器</span><br><span class="line">drop trigger trg_borrow;</span><br><span class="line"></span><br><span class="line">## 注意此处, 在oracle数据运行通过.</span><br></pre></td></tr></table></figure>
+<p>附上9 ~ 11 运行截图:</p>
+<p><img src="http://img.blog.csdn.net/20160405195858345" alt="9-11"></p>
+<hr>
+<p>12) 建立一个视图,显示”力 01”班学生的借书信息(只要求显示姓名和书名)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create view view_t_borrow as</span><br><span class="line">select c.name cname, b.bname bname</span><br><span class="line">from t_borrow br, t_card c, t_books b</span><br><span class="line">where br.cno=c.cno and </span><br><span class="line">	br.bno=b.bno and c.class=&apos;class_1&apos;;</span><br><span class="line"></span><br><span class="line">## 显示结果</span><br><span class="line">select * from view_t_borrow;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>13) 查询当前同时借有”Computer Book”和”Math Book”两本书的读者,输出其借书卡号,并按卡号升序排序输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select a.cno </span><br><span class="line">from t_borrow a, t_books b</span><br><span class="line">where a.bno=b.bno and b.bname in (&apos;Computer Book&apos;, &apos;Math Book&apos;)</span><br><span class="line">group by a.cno having count(*)=2 </span><br><span class="line">order by a.cno desc;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>14) 假定在建 BOOKS 表时没有定义主码,写出为 BOOKS 表追加定义主码的语句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table t_books </span><br><span class="line">add constraint pk_t_books primary key (bno);</span><br></pre></td></tr></table></figure>
+<hr>
+<p>15) 对 CARD 表做如下修改:</p>
+<blockquote>
+<p>a. 将 NAME 最大列宽增加到 10 个字符(假定原为 6 个字符);<br>b. 为该表增加 1 列 NAME(系名),可变长,最大 20 个字符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table t_card modify name varchar(50);</span><br><span class="line">alter table t_card add name1 varchar(20);</span><br><span class="line">alter table t_Card drop column name1;</span><br></pre></td></tr></table></figure>
+<p> 附上12 ~ 15运行截图:</p>
+<p><img src="http://img.blog.csdn.net/20160405200932709" alt="12-15"></p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="http://blog.csdn.net/tu451953337/article/details/45190849" target="_blank" rel="noopener">http://blog.csdn.net/tu451953337/article/details/45190849</a><br>[2]. <a href="http://mrxiong.blog.51cto.com/287318/1651098/" target="_blank" rel="noopener">http://mrxiong.blog.51cto.com/287318/1651098/</a><br>[3]. <a href="http://blog.csdn.net/jeamking/article/details/5953986" target="_blank" rel="noopener">http://blog.csdn.net/jeamking/article/details/5953986</a><br>[4]. <a href="http://blog.163.com/yang_jianli/blog/static/1619900062011282225274/" target="_blank" rel="noopener">http://blog.163.com/yang_jianli/blog/static/1619900062011282225274/</a><br>[5]. <a href="http://www.111cn.net/database/mysql/36105.htm" target="_blank" rel="noopener">http://www.111cn.net/database/mysql/36105.htm</a><br>[6]. <a href="http://blog.csdn.net/wjeson/article/details/17166205" target="_blank" rel="noopener">http://blog.csdn.net/wjeson/article/details/17166205</a><br>[7]. <a href="http://www.cnblogs.com/zzwlovegfj/archive/2012/07/04/2576989.html" target="_blank" rel="noopener">http://www.cnblogs.com/zzwlovegfj/archive/2012/07/04/2576989.html</a><br>[8]. <a href="http://www.jb51.net/article/49207.htm" target="_blank" rel="noopener">http://www.jb51.net/article/49207.htm</a> </p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/Database/" rel="tag"># Database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/03/数据库题目整理及详解（二）/" rel="next" title="数据库题目整理及详解（二）">
+                <i class="fa fa-chevron-left"></i> 数据库题目整理及详解（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/16/数据库题目整理及详解（四）/" rel="prev" title="数据库题目整理及详解（四）">
+                数据库题目整理及详解（四） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目详情"><span class="nav-number">3.</span> <span class="nav-text">题目详情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解前初始化"><span class="nav-number">4.</span> <span class="nav-text">解前初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目详解"><span class="nav-number">5.</span> <span class="nav-text">题目详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2016/04/05/数据库题目整理及详解（三）/';
+        this.page.identifier = '2016/04/05/数据库题目整理及详解（三）/';
+        this.page.title = '数据库题目整理及详解（三）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

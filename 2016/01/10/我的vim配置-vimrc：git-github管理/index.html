@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="简记每次配置vim, 都耗时耗力，这次终于在github中找到了一个简单快捷的方式，使用git来和github来管理自己的vim配置. 尊重原创的劳动成果，坠上出处:humiaozuzu的dot-vimrc 下面来详细记录：  先前准备1: 我的配置环境：Ubuntu 14.04.3 LTS 版2: vim 安装： sudo apt-get install vim3: git 安装:  sudo">
+<meta name="keywords" content="Git,Vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的vim配置[.vimrc：git+github管理]">
+<meta property="og:url" content="https://absentm.github.io/2016/01/10/我的vim配置-vimrc：git-github管理/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="简记每次配置vim, 都耗时耗力，这次终于在github中找到了一个简单快捷的方式，使用git来和github来管理自己的vim配置. 尊重原创的劳动成果，坠上出处:humiaozuzu的dot-vimrc 下面来详细记录：  先前准备1: 我的配置环境：Ubuntu 14.04.3 LTS 版2: vim 安装： sudo apt-get install vim3: git 安装:  sudo">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160110173008249">
+<meta property="og:image" content="http://img.blog.csdn.net/20160110173043433">
+<meta property="og:image" content="http://img.blog.csdn.net/20160110173119945">
+<meta property="og:image" content="http://img.blog.csdn.net/20160113142034009">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/terminal.png">
+<meta property="og:image" content="https://o8zyn0sct.qnssl.com/vim-sol.png">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我的vim配置[.vimrc：git+github管理]">
+<meta name="twitter:description" content="简记每次配置vim, 都耗时耗力，这次终于在github中找到了一个简单快捷的方式，使用git来和github来管理自己的vim配置. 尊重原创的劳动成果，坠上出处:humiaozuzu的dot-vimrc 下面来详细记录：  先前准备1: 我的配置环境：Ubuntu 14.04.3 LTS 版2: vim 安装： sudo apt-get install vim3: git 安装:  sudo">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160110173008249">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/01/10/我的vim配置-vimrc：git-github管理/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>我的vim配置[.vimrc：git+github管理] | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2016/01/10/我的vim配置-vimrc：git-github管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">我的vim配置[.vimrc：git+github管理]
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-01-10 17:33:49" itemprop="dateCreated datePublished" datetime="2016-01-10T17:33:49+08:00">2016-01-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-21 19:44:44" itemprop="dateModified" datetime="2017-11-21T19:44:44+08:00">2017-11-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/01/10/我的vim配置-vimrc：git-github管理/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/10/我的vim配置-vimrc：git-github管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/01/10/我的vim配置-vimrc：git-github管理/" class="leancloud_visitors" data-flag-title="我的vim配置[.vimrc：git+github管理]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简记"><a href="#简记" class="headerlink" title="简记"></a>简记</h2><p>每次配置vim, 都耗时耗力，这次终于在github中找到了一个简单快捷的方式，使用git来和github来管理自己的vim配置.</p>
+<p>尊重原创的劳动成果，坠上出处:<br><a href="https://github.com/humiaozuzu/dot-vimrc" target="_blank" rel="noopener">humiaozuzu的dot-vimrc</a></p>
+<p>下面来详细记录：</p>
+<hr>
+<h2 id="先前准备"><a href="#先前准备" class="headerlink" title="先前准备"></a>先前准备</h2><p>1: 我的配置环境：Ubuntu 14.04.3 LTS 版<br>2: vim 安装： <code>sudo apt-get install vim</code><br>3: git 安装:</p>
+<ul>
+<li><code>sudo apt-get update</code></li>
+<li><code>sudo apt-get install git</code></li>
+<li>git 配置：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看git的配置信息： <code>git config --list</code><br>  将会显示如下信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user.name=你的用户名</span><br><span class="line">user.email=你的邮箱名称，如：youremail@domain.com</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="相关依赖的安装"><a href="#相关依赖的安装" class="headerlink" title="相关依赖的安装"></a>相关依赖的安装</h2><p>ctags的相关使用这里不做介绍了。<br>ctags： <code>sudo apt-get install ack-grep ctags</code></p>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>1: 备份旧的vim配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv ~/.vim ~/.vim.orig</span><br><span class="line">mv ~/.vimrc ~/.vimrc.orig</span><br></pre></td></tr></table></figure>
+<p>2: 使用Git克隆github上的dot-vimrc仓库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/humiaozuzu/dot-vimrc.git ~/.vim</span><br><span class="line">ln -s ~/.vim/vimrc ~/.vimrc</span><br></pre></td></tr></table></figure>
+<p>3: 设置 Vundle:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle</span><br></pre></td></tr></table></figure>
+<p>4: 安装 bundles, 由git管理的vim插件：</p>
+<p>在终端使用vim 打开任意文本文件，之后在vim的命令状态下 run:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:BundleInstall</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="使用Bundle命令管理-vimrc"><a href="#使用Bundle命令管理-vimrc" class="headerlink" title="使用Bundle命令管理 vimrc"></a>使用Bundle命令管理 vimrc</h2><p>vim 相关的所有插件都存放在 bundles.vim中，可以自己向其中添加喜爱的插件，</p>
+<p>使用命令如下：</p>
+<p>1: <code>:BundleClean</code> 清理所有失效或无用的插件<br>2: <code>:BundleInstall</code> 安装新添加的vim插件<br>3: <code>:BundleInstall!</code> 更新所有插件</p>
+<hr>
+<h2 id="遇到的问题及解决"><a href="#遇到的问题及解决" class="headerlink" title="遇到的问题及解决"></a>遇到的问题及解决</h2><p>按照以上的安装过程很顺利，但是在我的系统上使用monokai主题和solarized主题时却总是不尽人意，想要的主题颜色未能得到完美的渲染，欲罢不能。</p>
+<h3 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h3><p>（钟爱于高亮当前行的设置，之后有时间在这上面优化一下），选择了个折中的方案，受分辨率和系统的限制，部分设置可能无效。</p>
+<p>在.vimrc配置文件中找到如下几行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">au WinLeave * set nocursorline nocursorcolumn</span><br><span class="line">au WinEnter * set cursorline cursorcolumn</span><br><span class="line">set cursorline set cursorcolumn</span><br></pre></td></tr></table></figure>
+<p>在后面添加两行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hi CursorLine cterm=NONE ctermbg=darkgray ctermfg=white</span><br><span class="line">hi CursorColumn cterm=NONE ctermbg=darkgray ctermfg=white</span><br></pre></td></tr></table></figure>
+<p>之后可以使用任意主题， 如<code>color default，color monokai</code>等。</p>
+<hr>
+<h3 id="方案二：-使用monokai主题（推荐）"><a href="#方案二：-使用monokai主题（推荐）" class="headerlink" title="方案二： 使用monokai主题（推荐）"></a>方案二： 使用monokai主题（推荐）</h3><p><strong>但原装的方案可能需要稍作修改，效果更佳！</strong> ，具体设置如下：</p>
+<p>1: 直接在.vimrc配置文件中设置主题: <code>color monokai</code><br>2: 切换文件目录：<code>$ cd .vim/bundle/vim-monokai/colors</code><br>3: 修改monokai.vim文件：<code>$ vim monokai.vim</code><br>4: 修改高亮当前行和列配置：</p>
+<p>注释掉如下行，（使用英文双引号）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;hi Cursor guibg=fg</span><br><span class="line">&quot;hi CursorLine   guibg=#3E3D32 gui=none ctermbg=9 cterm=none</span><br><span class="line">&quot;hi ColorColumn  guibg=#3E3D32 gui=none ctermbg=9 cterm=none</span><br></pre></td></tr></table></figure></p>
+<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;设置高亮当前行和列</span><br><span class="line"> hi CursorLine cterm=NONE ctermbg=darkgray ctermfg=white</span><br><span class="line"> hi hi ColorColumn  cterm=NONE ctermbg=darkgray ctermfg=white</span><br></pre></td></tr></table></figure></p>
+<p> 5： 修改行号前景和背景色：</p>
+<p>注释掉：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;配置行号前景色和背景色</span><br><span class="line">&quot;hi LineNr guifg=#75715E guibg=#3E3D32 gui=none ctermfg=8 ctermbg=9 cterm=none</span><br></pre></td></tr></table></figure></p>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hi LineNr ctermbg=none &quot;或8</span><br></pre></td></tr></table></figure>
+<p>6： 修改下拉菜单栏，和选项配色：<br>注释掉：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&quot;hi Pmenu guifg=fg guibg=#3E3D32 ctermfg=fg ctermbg=9</span><br><span class="line">&quot;hi PmenuSel guifg=fg guibg=bg ctermfg=fg ctermbg=bg</span><br></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;设置弹出菜单和当前选择项</span><br><span class="line">hi Pmenu ctermfg=white ctermbg=darkgray</span><br><span class="line">hi PmenuSel ctermfg=Black ctermbg=LightYellow</span><br></pre></td></tr></table></figure>
+<p>7： 去掉高亮列显示，简单为美：修改完以上部分，编辑.vimrc文件，注释掉如下两行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;au WinEnter * set cursorcolumn</span><br><span class="line">&quot;set cursorcolumn</span><br></pre></td></tr></table></figure></p>
+<p>8： 详细的修改原理及语法格式，请参考这篇Blog，感谢：<br><a href="http://blog.csdn.net/mdl13412/article/details/8129904" target="_blank" rel="noopener">.vim主题代码语法格式说明</a> 和 <a href="http://www.cnblogs.com/li-hao/archive/2012/04/13/2446397.html" target="_blank" rel="noopener">Linux终端颜色设置说明</a></p>
+<hr>
+<h3 id="vim效果图1（使用default配色方案）"><a href="#vim效果图1（使用default配色方案）" class="headerlink" title="vim效果图1（使用default配色方案）"></a>vim效果图1（使用default配色方案）</h3><p><img src="http://img.blog.csdn.net/20160110173008249" alt="全屏模式"></p>
+<hr>
+<p><img src="http://img.blog.csdn.net/20160110173043433" alt="带左侧导航"></p>
+<hr>
+<p><img src="http://img.blog.csdn.net/20160110173119945" alt="双侧导航"></p>
+<hr>
+<h3 id="vim效果图2（使用monokai主题）"><a href="#vim效果图2（使用monokai主题）" class="headerlink" title="vim效果图2（使用monokai主题）"></a>vim效果图2（使用monokai主题）</h3><p><img src="http://img.blog.csdn.net/20160113142034009" alt="monokai主题"></p>
+<h2 id="Terminal-＆＆-Vim-Solarized配色"><a href="#Terminal-＆＆-Vim-Solarized配色" class="headerlink" title="Terminal ＆＆ Vim Solarized配色"></a>Terminal ＆＆ Vim Solarized配色</h2><p><1> 使终端支持256色：</1></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">vim .bashrc     <span class="comment"># add</span></span><br><span class="line"><span class="built_in">export</span> TERM=xterm-256color</span><br><span class="line">:wq</span><br><span class="line"><span class="built_in">source</span> .bashrc</span><br></pre></td></tr></table></figure>
+<p><2> Terminal</2></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dev_env</span><br><span class="line">mkdir terminal-themes</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> terminal-themes</span><br><span class="line">sudo git <span class="built_in">clone</span> git://github.com/seebi/dircolors-solarized.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line">sudo cp dev_env/terminal-themes/dircolors-solarized/dircolors.256dark ~/.dircolors</span><br><span class="line"><span class="built_in">eval</span> <span class="string">'dircolors .dircolors'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> dev_env/terminal-themes</span><br><span class="line">sudo git <span class="built_in">clone</span> git://github.com/sigurdga/gnome-terminal-colors-solarized.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> gnome-terminal-colors-solarized</span><br><span class="line">./set_dark.sh</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">./set_light.sh   <span class="comment"># 可以自由切换深色和浅色。</span></span><br></pre></td></tr></table></figure>
+<p><3> 效果图</3></p>
+<p><img src="https://o8zyn0sct.qnssl.com/terminal.png" alt="terminal with solarized"></p>
+<p><img src="https://o8zyn0sct.qnssl.com/vim-sol.png" alt="vim with solarized"></p>
+<h2 id="END"><a href="#END" class="headerlink" title="END"></a>END</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/Vim/" rel="tag"># Vim</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/12/Github开源编辑器Atom常用插件及安装方法/" rel="next" title="Github开源编辑器Atom常用插件及安装方法">
+                <i class="fa fa-chevron-left"></i> Github开源编辑器Atom常用插件及安装方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/12/Ubuntu-14-04-LTS-安装与配置/" rel="prev" title="Ubuntu 14.04 LTS 安装与配置">
+                Ubuntu 14.04 LTS 安装与配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简记"><span class="nav-number">1.</span> <span class="nav-text">简记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先前准备"><span class="nav-number">2.</span> <span class="nav-text">先前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关依赖的安装"><span class="nav-number">3.</span> <span class="nav-text">相关依赖的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">4.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Bundle命令管理-vimrc"><span class="nav-number">5.</span> <span class="nav-text">使用Bundle命令管理 vimrc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的问题及解决"><span class="nav-number">6.</span> <span class="nav-text">遇到的问题及解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方案一："><span class="nav-number">6.1.</span> <span class="nav-text">方案一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案二：-使用monokai主题（推荐）"><span class="nav-number">6.2.</span> <span class="nav-text">方案二： 使用monokai主题（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim效果图1（使用default配色方案）"><span class="nav-number">6.3.</span> <span class="nav-text">vim效果图1（使用default配色方案）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim效果图2（使用monokai主题）"><span class="nav-number">6.4.</span> <span class="nav-text">vim效果图2（使用monokai主题）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminal-＆＆-Vim-Solarized配色"><span class="nav-number">7.</span> <span class="nav-text">Terminal ＆＆ Vim Solarized配色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#END"><span class="nav-number">8.</span> <span class="nav-text">END</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2016/01/10/我的vim配置-vimrc：git-github管理/';
+        this.page.identifier = '2016/01/10/我的vim配置-vimrc：git-github管理/';
+        this.page.title = '我的vim配置[.vimrc：git+github管理]';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

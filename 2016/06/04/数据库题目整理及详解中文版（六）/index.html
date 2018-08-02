@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="前言 圆乎乎，光灼灼，亘古常存人怎学？入火不能焚，入水何曾溺？光明一颗摩尼珠，剑戟刀枪伤不着。 也能善，也能恶，眼前善恶凭他作。善时成佛与成仙，恶处披毛并带角。无穷变化闹天宫，雷将神兵不可捉。  今者，　奉上美猴王！   说明和同系列的上篇文章一样，题目来自于卡内基.梅隆大学的数据库技术课程的Homework, 在数据库postgresql中亲测通过; 各版本的SQL环境差别不大, 看看下文就知">
+<meta name="keywords" content="Mysql,Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库题目整理及详解中文版（六）">
+<meta property="og:url" content="https://absentm.github.io/2016/06/04/数据库题目整理及详解中文版（六）/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="前言 圆乎乎，光灼灼，亘古常存人怎学？入火不能焚，入水何曾溺？光明一颗摩尼珠，剑戟刀枪伤不着。 也能善，也能恶，眼前善恶凭他作。善时成佛与成仙，恶处披毛并带角。无穷变化闹天宫，雷将神兵不可捉。  今者，　奉上美猴王！   说明和同系列的上篇文章一样，题目来自于卡内基.梅隆大学的数据库技术课程的Homework, 在数据库postgresql中亲测通过; 各版本的SQL环境差别不大, 看看下文就知">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160604144418048">
+<meta property="og:image" content="http://img.blog.csdn.net/20160604134750614">
+<meta property="og:image" content="http://img.blog.csdn.net/20160604134810099">
+<meta property="og:image" content="http://img.blog.csdn.net/20160604135227589">
+<meta property="og:image" content="http://img.blog.csdn.net/20160604135557936">
+<meta property="og:image" content="http://img.blog.csdn.net/20160604135951456">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库题目整理及详解中文版（六）">
+<meta name="twitter:description" content="前言 圆乎乎，光灼灼，亘古常存人怎学？入火不能焚，入水何曾溺？光明一颗摩尼珠，剑戟刀枪伤不着。 也能善，也能恶，眼前善恶凭他作。善时成佛与成仙，恶处披毛并带角。无穷变化闹天宫，雷将神兵不可捉。  今者，　奉上美猴王！   说明和同系列的上篇文章一样，题目来自于卡内基.梅隆大学的数据库技术课程的Homework, 在数据库postgresql中亲测通过; 各版本的SQL环境差别不大, 看看下文就知">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160604144418048">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/06/04/数据库题目整理及详解中文版（六）/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>数据库题目整理及详解中文版（六） | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2016/06/04/数据库题目整理及详解中文版（六）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库题目整理及详解中文版（六）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-04 15:50:40" itemprop="dateCreated datePublished" datetime="2016-06-04T15:50:40+08:00">2016-06-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-21 19:44:44" itemprop="dateModified" datetime="2017-11-21T19:44:44+08:00">2017-11-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Database-Notes/" itemprop="url" rel="index"><span itemprop="name">Database Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/06/04/数据库题目整理及详解中文版（六）/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/04/数据库题目整理及详解中文版（六）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/06/04/数据库题目整理及详解中文版（六）/" class="leancloud_visitors" data-flag-title="数据库题目整理及详解中文版（六）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>圆乎乎，光灼灼，亘古常存人怎学？入火不能焚，入水何曾溺？<br>光明一颗摩尼珠，剑戟刀枪伤不着。</p>
+<p>也能善，也能恶，眼前善恶凭他作。<br>善时成佛与成仙，恶处披毛并带角。无穷变化闹天宫，雷将神兵不可捉。</p>
+</blockquote>
+<p>今者，　奉上美猴王！</p>
+<p><img src="http://img.blog.csdn.net/20160604144418048" alt="美猴王"></p>
+<hr>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>和同系列的上篇文章一样，题目来自于卡内基.梅隆大学的数据库技术课程的Homework, 在数据库postgresql中亲测通过; 各版本的SQL环境差别不大, 看看下文就知道, 在其他版本的数据库, 如MySQL等都能通过.</p>
+<p>这部分主要是使用SQL语句进行查询相关操作, 涉及到sql的视图, 索引等, 本文提供英文原版和中文版.</p>
+<p><a href="https://absentm.github.io/2016/06/02/The-solution-of-Databases-Query-problems-Sixth/">英文版</a></p>
+<hr>
+<h2 id="题目详述"><a href="#题目详述" class="headerlink" title="题目详述"></a>题目详述</h2><p>本文的数据来源同样和上篇的一样，来自2011年５月发布的MoviesLens数据集．数据集的详细介绍请参考：<a href="http://www.cs.cmu.edu/~christos/courses/dbms.S12/hws/HW2/movielens-readme.txt" target="_blank" rel="noopener">movielens-readme</a></p>
+<p>原始的数据经过了预处理，我们可以将下述的两张表导入PostgreSQL中：</p>
+<ul>
+<li>movies(mid, title, year, num ratings, rating) , 主键: mid</li>
+<li>play in(mid, name, cast_position), 主键: mid, name</li>
+</ul>
+<p>这两张表包含如下信息: 哪个演员出演哪部电影, 以及在电影中位置; 对于每一部电影, 都包含title(标题), year(上映时间), num ratings(收到的评分数目), rating(以及这些评分的平均值, 是一个float型的数字, 在0~10之间, 10代表’’excellent’’).</p>
+<hr>
+<p>请在你的机器上使用PostgreSQL, 根据以上信息回答如下问题:</p>
+<p><strong>[Q1 – 演员池]</strong> 在数据库中查找所有不同演员的总数. <strong>[5 points]</strong></p>
+<hr>
+<p><strong>[Q2 – 最佳影片]</strong> 所有电影的评分次数至少达到了 10,000 次, 请筛选出选评分数目最高的前10部影片(mid, title, and rating) <strong>[5 points]</strong></p>
+<hr>
+<p><strong>[Q3 – 规模最大的影片]</strong> 筛选出雇佣演员人数最多的影片(mid, title). 如果包含多部，按照电影ID 升序排列. <strong>[10 points]</strong></p>
+<hr>
+<p><strong>[Q4 – 活跃演员池]</strong> 从数据库中筛选出活跃演员的总数．活跃演员是指：他最近所演的电影是从2006年以后上映的．(i.e. year&gt;2006). <strong>[10 points]</strong></p>
+<hr>
+<p><strong>[Q5 – 和Cruise一起工作的演员]</strong> 筛选出多次和Tom Cruise合作的演员. 如果包含多个，按照姓名升序排列.  <strong>[10 points]</strong></p>
+<hr>
+<p><strong>[Q6 – 和新组合一块工作的演员]</strong> 筛选出和Tom Cruise and Katie Holmes都一同合作过的演员. 如果包含多个，按照姓名升序排列. <strong>[10 points]</strong></p>
+<hr>
+<p><strong>[Q7 – 最有名的演员]</strong> 筛选出排名前10的活跃演员（如Ｑ4所定义的），按他们收到的评分总数来说．例如，如果Tom Hanks出演了３部电影，且评分数目分别是30, 20, 和 10, 那么他的总评分数为： 30+20+10=60. <strong>[10 points]</strong></p>
+<hr>
+<p><strong>[Q8 – 最佳领衔演员]</strong> 我们定义领先主演为：演员在电影演员表的位置是１或２(如，电影泰坦尼克号的主演是Leonardo DiCaprio 和 Kate Winslet).那么我就说每个演员获得的星际评分数为他们领先主演的电影的平均评分． 如, 如果 Leonardo DiCaprio 在三部电影中出演, 且评分分别为 7.0, 7.5 and 8.0， 但是他只在前两部电影中最为主演，那么他的星级评分为： (7.0 + 7.5) / 2 = 7.25.</p>
+<p>请筛选出星级评分数目排名前10的演员．为了减少计算噪声，演员领衔主演的电影数目至少为5次．<strong>[10 points]</strong></p>
+<hr>
+<p><strong>[Q9 – 2008年为转折点的演员]</strong> 请筛选出以2008为事业转折点的演员的数量，即他们在2008年出演的电影数目多于其他年份. <strong>[15 points]</strong></p>
+<hr>
+<p><strong>[Q10 – Dual Favorite Movies]</strong> 一个分析家想要找到一个在任何时期都被称为最好的电影的集合．他同时考虑两个因素: 平均得分（average rating ）and 获得的评分数目(num_ratings). 他使用如下规则决定一部影片是否好于另外一部：如２部电影分别命名为 m 1 和 m 2 , 我们定义m1主导m2为：当且仅当m 1 相比ｍ2具有更高的平均得分和评分数目.</p>
+<p>请筛选出一个电影集合<strong>M</strong>(title, num_ratings, rating) , 在集合中的每一部电影都相互独立，不能由另一部电影所主导．返回的结果按照电影的标题升序排列. (FYI: 这种查询被称为<strong>轮廓查询（Skyline Query）</strong>) <strong>[15 points]</strong></p>
+<hr>
+<h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><p>本文给出了所有在Postgres中测试过的答案, 相信大家可以很容易地在Mysql 或 Sqlite中进行转化.</p>
+<p>相关数据库，表以及数据导入的操作请详见同系列上篇博客：<a href="http://blog.csdn.net/mduanfire/article/details/51408102" target="_blank" rel="noopener">数据库题目整理及详解中文版（五）</a></p>
+<p>初始化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo su - postgres          # 登录 postgres</span><br><span class="line">psql</span><br><span class="line"></span><br><span class="line">select current_database();  # ===&gt; 相当于mysql下的show databases;</span><br><span class="line">\l;                         # 列出所有的数据库</span><br><span class="line">\c testdb;                  # 切换到testdb数据库下，相当于mysql中的 use testdb</span><br></pre></td></tr></table></figure>
+<p>操作截图如下所示：</p>
+<p><img src="http://img.blog.csdn.net/20160604134750614" alt="０．０"></p>
+<p><img src="http://img.blog.csdn.net/20160604134810099" alt="０．１"></p>
+<hr>
+<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答 1"></a>解答 1</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(DISTINCT name) FROM play_in;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答 2"></a>解答 2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT mid, title, rating FROM movies</span><br><span class="line">WHERE num_ratings &gt;= 10000</span><br><span class="line">ORDER BY rating DESC LIMIT 10;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-3"><a href="#解答-3" class="headerlink" title="解答 3"></a>解答 3</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW freq</span><br><span class="line">AS</span><br><span class="line">SELECT mid FROM play_in</span><br><span class="line">GROUP BY mid</span><br><span class="line">HAVING COUNT(*) &gt;= ALL (SELECT COUNT(*)</span><br><span class="line">    FROM play_in GROUP BY mid);</span><br><span class="line"></span><br><span class="line">SELECT freq.mid, title FROM freq, movies WHERE freq.mid = movies.mid ORDER BY mid DESC;</span><br></pre></td></tr></table></figure>
+<p>下图为题目１，２，３，在我的ubuntu系统下的测试结果:</p>
+<p><img src="http://img.blog.csdn.net/20160604135227589" alt="１２３"></p>
+<hr>
+<h3 id="解答４"><a href="#解答４" class="headerlink" title="解答４"></a>解答４</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW latest</span><br><span class="line">AS</span><br><span class="line">SELECT name, max(year) FROM play_in, movies</span><br><span class="line">WHERE play_in.mid = movies.mid</span><br><span class="line">GROUP BY name</span><br><span class="line">HAVING max(year) &gt; 2006;</span><br><span class="line"></span><br><span class="line">SELECT COUNT(*) FROM latest;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-５"><a href="#解答-５" class="headerlink" title="解答 ５"></a>解答 ５</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW cruise_list</span><br><span class="line">AS</span><br><span class="line">SELECT a1.name, COUNT(*) as C FROM play_in AS a1, play_in AS a2</span><br><span class="line">WHERE a1.mid = a2.mid</span><br><span class="line">AND a2.name = &apos;Tom Cruise&apos;</span><br><span class="line">AND a1.name &lt;&gt; &apos;Tom Cruise&apos;</span><br><span class="line">GROUP BY a1.name;</span><br><span class="line"></span><br><span class="line">SELECT name FROM cruise_list where C &gt;= ALL(SELECT C FROM cruise_list) ORDER BY name;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-６"><a href="#解答-６" class="headerlink" title="解答 ６"></a>解答 ６</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT a1.name FROM play_in AS a1, play_in AS a2</span><br><span class="line">WHERE a1.mid = a2.mid AND a2.name = &apos;Tom Cruise&apos; AND a1.name &lt;&gt; &apos;Tom Cruise&apos;</span><br><span class="line">INTERSECT</span><br><span class="line">SELECT a1.name FROM play_in AS a1, play_in AS a2</span><br><span class="line">WHERE a1.mid = a2.mid AND a2.name = &apos;Katie Holmes&apos; AND a1.name &lt;&gt; &apos;Katie Holmes&apos;</span><br><span class="line">ORDER BY name;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-７"><a href="#解答-７" class="headerlink" title="解答 ７"></a>解答 ７</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT play_in.name, SUM(num_ratings) </span><br><span class="line">FROM play_in, movies</span><br><span class="line">WHERE play_in.mid = movies.mid</span><br><span class="line">GROUP BY name HAVING MAX(year) &gt; 2006</span><br><span class="line">ORDER BY SUM(num_ratings)</span><br><span class="line">DESC LIMIT 10;</span><br></pre></td></tr></table></figure>
+<p>下图为题目４，５，６，７在我的ubuntu系统下的测试结果:</p>
+<p><img src="http://img.blog.csdn.net/20160604135557936" alt="４５６７"></p>
+<hr>
+<h3 id="解答-８"><a href="#解答-８" class="headerlink" title="解答 ８"></a>解答 ８</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT play_in.name, AVG(movies.rating) </span><br><span class="line">FROM play_in, movies</span><br><span class="line">WHERE cast_position&lt;3 AND play_in.mid = movies.mid</span><br><span class="line">GROUP BY play_in.name</span><br><span class="line">HAVING count(*) &gt;= 5</span><br><span class="line">ORDER BY avg(movies.rating)</span><br><span class="line">DESC LIMIT 10;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-９"><a href="#解答-９" class="headerlink" title="解答 ９"></a>解答 ９</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW helptable(name, year, num_movies) AS</span><br><span class="line">SELECT name, year, count(*) FROM movies AS m, play_in AS p</span><br><span class="line">WHERE m.mid = p.mid</span><br><span class="line">GROUP BY name, year;</span><br><span class="line"></span><br><span class="line">SELECT COUNT(t1.name) FROM helptable AS t1</span><br><span class="line">WHERE t1.year = 2008 AND t1.num_movies &gt; ALL (</span><br><span class="line">SELECT num_movies FROM helptable AS t2</span><br><span class="line">WHERE t1.name = t2.name AND t2.year &lt;&gt; 2008);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解答-10"><a href="#解答-10" class="headerlink" title="解答 10"></a>解答 10</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT title, num_ratings, rating FROM movies</span><br><span class="line">WHERE mid NOT IN</span><br><span class="line">(SELECT a2.mid FROM movies AS a1, movies AS a2</span><br><span class="line">WHERE a1.mid&lt;&gt;a2.mid</span><br><span class="line">AND a1.num_ratings &gt; a2.num_ratings</span><br><span class="line">AND a1.rating &gt; a2.rating)</span><br><span class="line">ORDER BY title;</span><br></pre></td></tr></table></figure>
+<p>下图为题目8，9，10在我的ubuntu系统下的测试结果:</p>
+<p><img src="http://img.blog.csdn.net/20160604135951456" alt="8910"></p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1]. <a href="http://www.cs.cmu.edu/~christos/courses/dbms.S12/hws/HW2/PostgreSQLReadme.htm" target="_blank" rel="noopener">http://www.cs.cmu.edu/~christos/courses/dbms.S12/hws/HW2/PostgreSQLReadme.htm</a><br>[2]. <a href="http://blog.chinaunix.net/uid-26642180-id-3485465.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-26642180-id-3485465.html</a><br>[3]. <a href="http://www.cnblogs.com/gaojian/archive/2013/07/04/3170989.html" target="_blank" rel="noopener">http://www.cnblogs.com/gaojian/archive/2013/07/04/3170989.html</a></p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/Database/" rel="tag"># Database</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/02/The-solution-of-Databases-Query-problems-Sixth/" rel="next" title="The solution of Databases Query problems(Sixth)">
+                <i class="fa fa-chevron-left"></i> The solution of Databases Query problems(Sixth)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/14/深度学习中的Data-Augmentation方法和代码实现/" rel="prev" title="深度学习中的Data Augmentation方法和代码实现">
+                深度学习中的Data Augmentation方法和代码实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目详述"><span class="nav-number">3.</span> <span class="nav-text">题目详述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解答"><span class="nav-number">4.</span> <span class="nav-text">解答</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-1"><span class="nav-number">4.1.</span> <span class="nav-text">解答 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-2"><span class="nav-number">4.2.</span> <span class="nav-text">解答 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-3"><span class="nav-number">4.3.</span> <span class="nav-text">解答 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答４"><span class="nav-number">4.4.</span> <span class="nav-text">解答４</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-５"><span class="nav-number">4.5.</span> <span class="nav-text">解答 ５</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-６"><span class="nav-number">4.6.</span> <span class="nav-text">解答 ６</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-７"><span class="nav-number">4.7.</span> <span class="nav-text">解答 ７</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-８"><span class="nav-number">4.8.</span> <span class="nav-text">解答 ８</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-９"><span class="nav-number">4.9.</span> <span class="nav-text">解答 ９</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解答-10"><span class="nav-number">4.10.</span> <span class="nav-text">解答 10</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2016/06/04/数据库题目整理及详解中文版（六）/';
+        this.page.identifier = '2016/06/04/数据库题目整理及详解中文版（六）/';
+        this.page.title = '数据库题目整理及详解中文版（六）';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

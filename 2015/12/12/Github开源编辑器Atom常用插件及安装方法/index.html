@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="简记 工欲善其事，必先利其器！   这款被称为“21世纪”的代码编辑器——Atom， 是开源免费跨平台的，并且整合 GIT 并提供类似 SublimeText 的包管理功能，   同时，支持插件扩展，可配置性非常高……，乍一看，像极了Sublime Text，但当你在使用时却感觉还是特别爽！！！  更多：Atom中文简介  预览先放几张靓图，感受一下！      基于Github的常用插件目前At">
+<meta name="keywords" content="Github,Git,编辑器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github开源编辑器Atom常用插件及安装方法">
+<meta property="og:url" content="https://absentm.github.io/2015/12/12/Github开源编辑器Atom常用插件及安装方法/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="简记 工欲善其事，必先利其器！   这款被称为“21世纪”的代码编辑器——Atom， 是开源免费跨平台的，并且整合 GIT 并提供类似 SublimeText 的包管理功能，   同时，支持插件扩展，可配置性非常高……，乍一看，像极了Sublime Text，但当你在使用时却感觉还是特别爽！！！  更多：Atom中文简介  预览先放几张靓图，感受一下！      基于Github的常用插件目前At">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212173244975">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212173324031">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212173343548">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212173438671">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212174328081">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212175151649">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212190657197">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212190721643">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212190802893">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212191447866">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212193134591">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212194756869">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212195539843">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212195931694">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212200120631">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212210039475">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212201057750">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212201948831">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212202453252">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212202852669">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212203239498">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212203547305">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212203953928">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212204448735">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212205023421">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212210400251">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212221051429">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212221117675">
+<meta property="og:image" content="http://img.blog.csdn.net/20151212221541635">
+<meta property="og:updated_time" content="2017-11-21T11:44:44.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Github开源编辑器Atom常用插件及安装方法">
+<meta name="twitter:description" content="简记 工欲善其事，必先利其器！   这款被称为“21世纪”的代码编辑器——Atom， 是开源免费跨平台的，并且整合 GIT 并提供类似 SublimeText 的包管理功能，   同时，支持插件扩展，可配置性非常高……，乍一看，像极了Sublime Text，但当你在使用时却感觉还是特别爽！！！  更多：Atom中文简介  预览先放几张靓图，感受一下！      基于Github的常用插件目前At">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20151212173244975">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2015/12/12/Github开源编辑器Atom常用插件及安装方法/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Github开源编辑器Atom常用插件及安装方法 | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2015/12/12/Github开源编辑器Atom常用插件及安装方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Github开源编辑器Atom常用插件及安装方法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-12-12 22:19:37" itemprop="dateCreated datePublished" datetime="2015-12-12T22:19:37+08:00">2015-12-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-11-21 19:44:44" itemprop="dateModified" datetime="2017-11-21T19:44:44+08:00">2017-11-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/12/12/Github开源编辑器Atom常用插件及安装方法/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/12/Github开源编辑器Atom常用插件及安装方法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/12/12/Github开源编辑器Atom常用插件及安装方法/" class="leancloud_visitors" data-flag-title="Github开源编辑器Atom常用插件及安装方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简记"><a href="#简记" class="headerlink" title="简记"></a>简记</h2><blockquote>
+<p>工欲善其事，必先利其器！</p>
+</blockquote>
+<blockquote>
+<p>这款被称为“21世纪”的代码编辑器——Atom， 是开源免费跨平台的，并且整合 GIT 并提供类似 SublimeText 的包管理功能，</p>
+</blockquote>
+<blockquote>
+<p>同时，支持插件扩展，可配置性非常高……，乍一看，像极了Sublime Text，但当你在使用时却感觉还是特别爽！！！</p>
+</blockquote>
+<p>更多：<a href="http://www.iplaysoft.com/atom-editor.html" target="_blank" rel="noopener">Atom中文简介</a></p>
+<hr>
+<h2 id="预览"><a href="#预览" class="headerlink" title="预览"></a>预览</h2><p>先放几张靓图，感受一下！</p>
+<p><img src="http://img.blog.csdn.net/20151212173244975" alt="炫酷黑"></p>
+<p><img src="http://img.blog.csdn.net/20151212173324031" alt="分屏"></p>
+<p><img src="http://img.blog.csdn.net/20151212173343548" alt="Solarized主题"></p>
+<p><img src="http://img.blog.csdn.net/20151212173438671" alt="Solarized分屏"></p>
+<hr>
+<h2 id="基于Github的常用插件"><a href="#基于Github的常用插件" class="headerlink" title="基于Github的常用插件"></a>基于Github的常用插件</h2><p>目前Atom编辑器最新的版本是: v1.3.1，附上官网：<a href="https://atom.io/" target="_blank" rel="noopener">Atom官网</a>，长这样的：</p>
+<p><img src="http://img.blog.csdn.net/20151212174328081" alt="Atom官网样视=式"></p>
+<p>当然， 你也可以在Github上直接找到下载地址：<a href="https://github.com/atom/atom/releases/tag/v1.3.1" target="_blank" rel="noopener">Github上的下载地址</a></p>
+<hr>
+<h3 id="安装插件前准备"><a href="#安装插件前准备" class="headerlink" title="安装插件前准备"></a>安装插件前准备</h3><p>[1] 先了解下Atom的设置界面：</p>
+<p>打开Atom后使用键盘快捷键“Alt”，可以打开和隐藏菜单栏，不妨试试看，选择File -&gt; Settings，便可以打开设置界面（如图）：</p>
+<p><img src="http://img.blog.csdn.net/20151212175151649" alt="设置界面"></p>
+<p>设置界面主要有六个部分：</p>
+<p>1: Settings: 通用设置；<br>2: Keybindings: 快捷键设置；<br>3: Packages: 插件管理；<br>4: Themes: 设置和安装主题；<br>5: Updates: 更新插件<br>6: Install: 安装插件 或主题</p>
+<p>在Settings界面，我们先做一下常用的设置：</p>
+<p>1: Core Settings -&gt; File Encoding: utf-8;<br>2: Editor Settings 中：<br>       Audo Indent 选上;<br>       Font Family中 Windows默认使用Consolas字体，很适合编程，可以自定义，写上字体名称即可；<br>       Fonts Size: 设置字体大写；<br>       Line Height: 设置行高，如1.3；<br>       Show Indent Guide：缩进下垂线，选上；<br>       Show Line Number： 行号，选上；<br>       Soft Wrap: 超出行长度限制后，自动折行；<br>       Tab Length: 4；</p>
+<p><strong>其他的都保持默认吧！！！</strong></p>
+<hr>
+<p>[2] 翻墙：加速插件下载速度</p>
+<p>就用蓝灯吧，GitHub搜索lantern，Windows自动安装无需任何设置，记得使用Google Chrome不一样的体验，附上lantern地址：<a href="https://github.com/getlantern/lantern" target="_blank" rel="noopener">lantern Github下载地址</a>，打开浏览器是这样的：{Youtube, facebook,都上去了！速度还可以}</p>
+<p><img src="http://img.blog.csdn.net/20151212190657197" alt="lantern"></p>
+<p><img src="http://img.blog.csdn.net/20151212190721643" alt="YouTuBe"></p>
+<p><img src="http://img.blog.csdn.net/20151212190802893" alt="FaceBook"></p>
+<hr>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>本文推荐使用Atom自带插件管理器进行安装</p>
+<h4 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h4><p><strong>在Settings界面的Install选项中，可以搜索插件或者主题进行下载安装，有的可能会提醒重启Atom才能激活</strong>，界面下边还有Hot推荐插件列表：</p>
+<p><img src="http://img.blog.csdn.net/20151212191447866" alt="插件界面"></p>
+<hr>
+<h4 id="插件-1-minimap"><a href="#插件-1-minimap" class="headerlink" title="插件[1]  minimap"></a>插件[1]  minimap</h4><p>顾名思义，这款插件在窗口的右边栏打上遮罩，为 Atom 加上 Sublime Text 的源码预览图，提供丰富的自定义选项，值得一用，效果如1。</p>
+<p><img src="http://img.blog.csdn.net/20151212193134591" alt="minimap效果图"></p>
+<hr>
+<h4 id="插件-2-activity-power-mode"><a href="#插件-2-activity-power-mode" class="headerlink" title="插件[2]  activity-power-mode"></a>插件[2]  activity-power-mode</h4><p>Atom装逼插件，配上个青轴机械键盘，我看见代码在跳舞啊，动次动次动动次！！！</p>
+<p><a href="https://atom.io/packages/activate-power-mode" target="_blank" rel="noopener">activity-power-mode官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212194756869" alt="activity-power-mode效果图"></p>
+<p>装上之后使用快捷键：Ctrl + Alt + o 激活</p>
+<hr>
+<h4 id="插件-3-autocomplete-plus"><a href="#插件-3-autocomplete-plus" class="headerlink" title="插件[3]  autocomplete-plus"></a>插件[3]  autocomplete-plus</h4><p>当输入的时候，提供可能的候选项。<br><img src="http://img.blog.csdn.net/20151212195539843" alt="autocomplete-plus效果图"></p>
+<hr>
+<h4 id="插件-4-javascript-snippets"><a href="#插件-4-javascript-snippets" class="headerlink" title="插件[4]  javascript-snippets"></a>插件[4]  javascript-snippets</h4><p>输入特殊的字符后自动扩展成对应的代码片段。<br><img src="http://img.blog.csdn.net/20151212195931694" alt="javascript-snippets效果图"></p>
+<hr>
+<h4 id="插件-5-git-plus"><a href="#插件-5-git-plus" class="headerlink" title="插件[5]  git plus"></a>插件[5]  git plus</h4><p>在 Atom 里面执行 Git 命令，不用来回切换终端和编辑器。</p>
+<p><img src="http://img.blog.csdn.net/20151212200120631" alt="git plus效果图"></p>
+<hr>
+<h4 id="插件-6-merge-conflicts"><a href="#插件-6-merge-conflicts" class="headerlink" title="插件[6]  merge-conflicts"></a>插件[6]  merge-conflicts</h4><p>解决Atom中合并冲突插件！<br><a href="https://atom.io/packages/merge-conflicts" target="_blank" rel="noopener">merge-conflicts官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212210039475" alt="merge-conflicts效果图"></p>
+<hr>
+<h4 id="插件-7-Script"><a href="#插件-7-Script" class="headerlink" title="插件[7]  Script"></a>插件[7]  Script</h4><p>可以根据文件名称，或所选的代码块，或行号执行代码，支持大多数编程语言！！！<br><a href="https://atom.io/packages/script" target="_blank" rel="noopener">Script官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212201057750" alt="Script效果图"></p>
+<hr>
+<h4 id="插件-8-atom-ctags"><a href="#插件-8-atom-ctags" class="headerlink" title="插件[8]  atom-ctags"></a>插件[8]  atom-ctags</h4><p>使用 ctags 来强化自动完成功能，需借助于 autocomplete-plus。<br><a href="https://atom.io/packages/atom-ctags" target="_blank" rel="noopener">atom-ctags官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212201948831" alt="atom-ctags效果图"></p>
+<hr>
+<h4 id="插件-9-autocomplete-python"><a href="#插件-9-autocomplete-python" class="headerlink" title="插件[9] autocomplete-python"></a>插件[9] autocomplete-python</h4><p>Python包、变量、方法、函数声明等自动匹配<br><a href="https://atom.io/packages/autocomplete-python" target="_blank" rel="noopener">autocomplete-python官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212202453252" alt="autocomplete-python效果图"></p>
+<hr>
+<h4 id="插件-10-color-picker"><a href="#插件-10-color-picker" class="headerlink" title="插件[10]  color-picker"></a>插件[10]  color-picker</h4><p> 颜色拾取器，在编辑器里面挑选颜色。通过右键选择 Color picker ，或者 cmd + shift + c/ctrl + alt + c 快捷键调出颜色选择面板。支持 HEX, HEXA, RGB, RGBA, HSL, HSLA 形式指定的颜色值。<br><a href="https://atom.io/packages/color-picker" target="_blank" rel="noopener">color-picker官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212202852669" alt="color-picker效果图"></p>
+<hr>
+<h4 id="插件-11-python-tools"><a href="#插件-11-python-tools" class="headerlink" title="插件[11]  python-tools"></a>插件[11]  python-tools</h4><p>Python提高生产力的必备工具！！！</p>
+<p>默认快捷键：ctrl+alt+u<br><a href="https://atom.io/packages/python-tools" target="_blank" rel="noopener">python-tools官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212203239498" alt="python-tools效果图"></p>
+<hr>
+<h4 id="插件-12-xml-formatter"><a href="#插件-12-xml-formatter" class="headerlink" title="插件[12]  xml-formatter"></a>插件[12]  xml-formatter</h4><p>XML代码格式化工具， 默认快捷键：SHIFT-CTRL-X<br><a href="https://atom.io/packages/xml-formatter" target="_blank" rel="noopener">xml-formatter官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212203547305" alt="xml-formatter效果图"></p>
+<hr>
+<h4 id="插件-13-autocomplete-paths"><a href="#插件-13-autocomplete-paths" class="headerlink" title="插件[13]  autocomplete-paths"></a>插件[13]  autocomplete-paths</h4><p>自动匹配文件路径工具！<br><a href="https://atom.io/packages/autocomplete-paths" target="_blank" rel="noopener">autocomplete-paths官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212203953928" alt="autocomplete-paths效果图"></p>
+<hr>
+<h4 id="插件-14-atom-html-preview"><a href="#插件-14-atom-html-preview" class="headerlink" title="插件[14]  atom-html-preview"></a>插件[14]  atom-html-preview</h4><p>html文档预览工具， 默认快捷键：CTRL-SHIFT-H<br><a href="https://atom.io/packages/atom-html-preview" target="_blank" rel="noopener">atom-html-preview官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212204448735" alt="atom-html-preview效果图"></p>
+<hr>
+<h4 id="插件-15-atom-beautify"><a href="#插件-15-atom-beautify" class="headerlink" title="插件[15]  atom-beautify"></a>插件[15]  atom-beautify</h4><p>格式化代码，更统一的代码风格， 支持HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, and SQL等语言代码！<strong>必备！！！</strong><br><a href="https://atom.io/packages/atom-beautify" target="_blank" rel="noopener">atom-beautify官方地址</a></p>
+<h4 id="插件-16-file-icons"><a href="#插件-16-file-icons" class="headerlink" title="插件[16]  file-icons"></a>插件[16]  file-icons</h4><p>显示文件类型对应的图标，升级插件后可能需要重启Atom。<br><a href="https://atom.io/packages/file-icons" target="_blank" rel="noopener">file-icons官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212205023421" alt="file-icons效果图"></p>
+<hr>
+<h4 id="插件-17-java-importer"><a href="#插件-17-java-importer" class="headerlink" title="插件[17]  java-importer"></a>插件[17]  java-importer</h4><p>帮助Java用户自动导入依赖的包。<br><a href="https://atom.io/packages/java-importer" target="_blank" rel="noopener">java-importer官方地址</a></p>
+<hr>
+<h4 id="插件-18-jshint"><a href="#插件-18-jshint" class="headerlink" title="插件[18]    jshint"></a>插件[18]    jshint</h4><p>验证你的 JavaScript ，写更专业的 JavaScript 代码。<br><a href="https://atom.io/packages/jshint" target="_blank" rel="noopener">jshint官方地址</a></p>
+<p><img src="http://img.blog.csdn.net/20151212210400251" alt="jshint效果图"></p>
+<hr>
+<h4 id="插件-19-csslint"><a href="#插件-19-csslint" class="headerlink" title="插件[19]  csslint"></a>插件[19]  csslint</h4><p>CSSLint 会报告出不合规定的 CSS 规则！<br><a href="https://atom.io/packages/csslint" target="_blank" rel="noopener">csslint官方地址</a></p>
+<hr>
+<h4 id="插件-20-csscomb"><a href="#插件-20-csscomb" class="headerlink" title="插件[20]  csscomb"></a>插件[20]  csscomb</h4><p>CSSComb 的一个扩展工具， CSSComb 帮你写出更漂亮的 CSS ！<br><a href="https://atom.io/packages/csscomb" target="_blank" rel="noopener">csscomb官方地址</a></p>
+<hr>
+<h4 id="插件-21-autoprefixer"><a href="#插件-21-autoprefixer" class="headerlink" title="插件[21]  autoprefixer"></a>插件[21]  autoprefixer</h4><pre><code>AutoPrefix的一个扩展工具，自动为 CSS 属性添加特定的前缀。
+</code></pre><p><a href="https://atom.io/packages/autoprefixer" target="_blank" rel="noopener">autoprefixer官方地址</a></p>
+<hr>
+<h4 id="插件-22-emmet"><a href="#插件-22-emmet" class="headerlink" title="插件[22]  emmet"></a>插件[22]  emmet</h4><pre><code>手写 HTML 多少显得专业，但是手写的问题在于得大量的代码。Emmet大幅提升手写的效率。非常值得一装。
+</code></pre><p><a href="https://atom.io/packages/emmet" target="_blank" rel="noopener">emmet官方地址</a></p>
+<hr>
+<h4 id="插件-23-vim-mode"><a href="#插件-23-vim-mode" class="headerlink" title="插件[23]  vim-mode"></a>插件[23]  vim-mode</h4><pre><code>在Atom中使用vim!
+</code></pre><p><a href="https://atom.io/packages/vim-mode" target="_blank" rel="noopener">vim-mode官方地址</a></p>
+<hr>
+<h4 id="插件-24-sync-settings同步Atom"><a href="#插件-24-sync-settings同步Atom" class="headerlink" title="插件[24]  sync-settings同步Atom"></a>插件[24]  sync-settings同步Atom</h4><pre><code>安装了这么多的插件，并且这么多的设置，如何备份同步呢？Atom并没有账号支持啊？其实，sync-settings插件可以完成相关工作，非常出色！
+
+可以同步Atom的设置文件,自定义快捷键,用户风格,初始化脚本及代码片段,还支持已安装的插件同步
+</code></pre><p><a href="https://atom.io/packages/sync-settings" target="_blank" rel="noopener">sync-settings官方地址</a></p>
+<p><strong>sync-settings 设置方法：</strong></p>
+<p>1: 进入Atom设置中心找到该插件，进去setting；</p>
+<p>2: 打开自己的github创建一个<a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener">a new person access token</a> ， 然后复制生成的token序列， 粘贴到sync-settings插件的setting里面；</p>
+<p>3: 再打开github的gist服务，创建一个gist，并复制生成gist id（<strong>注意这个id就是你创建的gist服务对应的URL中除去你的用户名，之后的部分</strong>），也粘贴到sync-settings插件的setting里面<br>4:  配置完毕后， 在文档编辑页面,按下全局命令搜索面板(Ctrl+shift+p)，搜索sync-，会有可选项：</p>
+<ul>
+<li>sync-settings:backup – 这条命令是备份当前的配置</li>
+<li>sync-settings:restore – 这条命令是回复配置,是直接覆盖的;</li>
+<li>sync-settings:view-backup – 这条是当你执行备份后到线上查询你的备份的,也就是到你的gist code里面</li>
+<li>sync-settings:check-backup – 这条是查询最后一次是否正常</li>
+</ul>
+<p>效果图如下所示：</p>
+<p><img src="http://img.blog.csdn.net/20151212221051429" alt="sync1效果图"></p>
+<p>同步成功与失败的提示信息：</p>
+<p><img src="http://img.blog.csdn.net/20151212221117675" alt="sync2效果图"></p>
+<p>最后在Github中gist服务中多了许多Atom插件的备份配置信息，使用的是coffee脚本保存的，如图：</p>
+<p><img src="http://img.blog.csdn.net/20151212221541635" alt="sync3效果图"></p>
+<hr>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>1: Atom提供的插件非常多，都来自于Github，遇到问题可以直接在Github上提问；<br>2: 插件更新后，可能会失效，重启是个不错的解决办法 ；<br>3: 推荐几个常用功能，默认已安装：</p>
+<p>   1&gt;. ctrl + g: 只要 ctrl + g 后输入行号, 就能跳转到指定的行    ；<br>   2&gt;. ctrl + shift + p: 调出功能详情，如按下快捷键后输入pane命令，查找split列表项，点击后实现分屏功能；<br>   3&gt;. Atom-Material这个主题真心不错，是Android material风格。</p>
+<hr>
+<p>@@@@@@@@@@@@@@@@@---END---@@@@@@@@@@@@@@@@@</p>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Github/" rel="tag"># Github</a>
+          
+            <a href="/tags/Git/" rel="tag"># Git</a>
+          
+            <a href="/tags/编辑器/" rel="tag"># 编辑器</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/05/Python爬虫程序：电视剧琅琊榜全集的自动化处理/" rel="next" title="Python爬虫程序：电视剧琅琊榜全集的自动化处理">
+                <i class="fa fa-chevron-left"></i> Python爬虫程序：电视剧琅琊榜全集的自动化处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/10/我的vim配置-vimrc：git-github管理/" rel="prev" title="我的vim配置[.vimrc：git+github管理]">
+                我的vim配置[.vimrc：git+github管理] <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简记"><span class="nav-number">1.</span> <span class="nav-text">简记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预览"><span class="nav-number">2.</span> <span class="nav-text">预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于Github的常用插件"><span class="nav-number">3.</span> <span class="nav-text">基于Github的常用插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装插件前准备"><span class="nav-number">3.1.</span> <span class="nav-text">安装插件前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件安装"><span class="nav-number">3.2.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装方法"><span class="nav-number">3.2.1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-1-minimap"><span class="nav-number">3.2.2.</span> <span class="nav-text">插件[1]  minimap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-2-activity-power-mode"><span class="nav-number">3.2.3.</span> <span class="nav-text">插件[2]  activity-power-mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-3-autocomplete-plus"><span class="nav-number">3.2.4.</span> <span class="nav-text">插件[3]  autocomplete-plus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-4-javascript-snippets"><span class="nav-number">3.2.5.</span> <span class="nav-text">插件[4]  javascript-snippets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-5-git-plus"><span class="nav-number">3.2.6.</span> <span class="nav-text">插件[5]  git plus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-6-merge-conflicts"><span class="nav-number">3.2.7.</span> <span class="nav-text">插件[6]  merge-conflicts</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-7-Script"><span class="nav-number">3.2.8.</span> <span class="nav-text">插件[7]  Script</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-8-atom-ctags"><span class="nav-number">3.2.9.</span> <span class="nav-text">插件[8]  atom-ctags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-9-autocomplete-python"><span class="nav-number">3.2.10.</span> <span class="nav-text">插件[9] autocomplete-python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-10-color-picker"><span class="nav-number">3.2.11.</span> <span class="nav-text">插件[10]  color-picker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-11-python-tools"><span class="nav-number">3.2.12.</span> <span class="nav-text">插件[11]  python-tools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-12-xml-formatter"><span class="nav-number">3.2.13.</span> <span class="nav-text">插件[12]  xml-formatter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-13-autocomplete-paths"><span class="nav-number">3.2.14.</span> <span class="nav-text">插件[13]  autocomplete-paths</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-14-atom-html-preview"><span class="nav-number">3.2.15.</span> <span class="nav-text">插件[14]  atom-html-preview</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-15-atom-beautify"><span class="nav-number">3.2.16.</span> <span class="nav-text">插件[15]  atom-beautify</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-16-file-icons"><span class="nav-number">3.2.17.</span> <span class="nav-text">插件[16]  file-icons</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-17-java-importer"><span class="nav-number">3.2.18.</span> <span class="nav-text">插件[17]  java-importer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-18-jshint"><span class="nav-number">3.2.19.</span> <span class="nav-text">插件[18]    jshint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-19-csslint"><span class="nav-number">3.2.20.</span> <span class="nav-text">插件[19]  csslint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-20-csscomb"><span class="nav-number">3.2.21.</span> <span class="nav-text">插件[20]  csscomb</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-21-autoprefixer"><span class="nav-number">3.2.22.</span> <span class="nav-text">插件[21]  autoprefixer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-22-emmet"><span class="nav-number">3.2.23.</span> <span class="nav-text">插件[22]  emmet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-23-vim-mode"><span class="nav-number">3.2.24.</span> <span class="nav-text">插件[23]  vim-mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件-24-sync-settings同步Atom"><span class="nav-number">3.2.25.</span> <span class="nav-text">插件[24]  sync-settings同步Atom</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">3.3.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2015/12/12/Github开源编辑器Atom常用插件及安装方法/';
+        this.page.identifier = '2015/12/12/Github开源编辑器Atom常用插件及安装方法/';
+        this.page.title = 'Github开源编辑器Atom常用插件及安装方法';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

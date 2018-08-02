@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Microsoft YaHei:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://o8zyn0sct.qnssl.com/imagesfavicon.ico?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+  <meta name="description" content="前言 时光静好、珍藏一份守候、珍藏一份美好。   静听流年的剪辑、等候你归来、许我一场花开不败的回忆。  Deep Leaning的坑太深太重, 转战caffe之际, 寻找了很多资料; 本来想自己亲自披战, 玩转一把; 却发现社区内善良的兄弟姐妹们已经提供了这么多有用的资料, 一再鼓起自创的勇气, 也就淡了起来. 好东西, 当然要拿出来分享啦! 今儿的, 文章怪, 就这么干了, 贴出搜集到的链接">
+<meta name="keywords" content="Deep Learning,Caffe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习Caffe系列教程集合">
+<meta property="og:url" content="https://absentm.github.io/2016/05/14/深度学习Caffe系列教程集合/index.html">
+<meta property="og:site_name" content="AbsentM&#39;s Notes">
+<meta property="og:description" content="前言 时光静好、珍藏一份守候、珍藏一份美好。   静听流年的剪辑、等候你归来、许我一场花开不败的回忆。  Deep Leaning的坑太深太重, 转战caffe之际, 寻找了很多资料; 本来想自己亲自披战, 玩转一把; 却发现社区内善良的兄弟姐妹们已经提供了这么多有用的资料, 一再鼓起自创的勇气, 也就淡了起来. 好东西, 当然要拿出来分享啦! 今儿的, 文章怪, 就这么干了, 贴出搜集到的链接">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://img.blog.csdn.net/20160514220525582">
+<meta property="og:image" content="http://img.blog.csdn.net/20160514221439992">
+<meta property="og:image" content="http://img.blog.csdn.net/20160514221510274">
+<meta property="og:updated_time" content="2018-02-01T08:07:52.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深度学习Caffe系列教程集合">
+<meta name="twitter:description" content="前言 时光静好、珍藏一份守候、珍藏一份美好。   静听流年的剪辑、等候你归来、许我一场花开不败的回忆。  Deep Leaning的坑太深太重, 转战caffe之际, 寻找了很多资料; 本来想自己亲自披战, 玩转一把; 却发现社区内善良的兄弟姐妹们已经提供了这么多有用的资料, 一再鼓起自创的勇气, 也就淡了起来. 好东西, 当然要拿出来分享啦! 今儿的, 文章怪, 就这么干了, 贴出搜集到的链接">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160514220525582">
+
+
+
+
+
+
+  <link rel="canonical" href="https://absentm.github.io/2016/05/14/深度学习Caffe系列教程集合/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>深度学习Caffe系列教程集合 | AbsentM's Notes</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">AbsentM's Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://absentm.github.io/2016/05/14/深度学习Caffe系列教程集合/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="AbsentM">
+      <meta itemprop="description" content="Avenue to Jane!">
+      <meta itemprop="image" content="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AbsentM's Notes">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深度学习Caffe系列教程集合
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-14 22:46:31" itemprop="dateCreated datePublished" datetime="2016-05-14T22:46:31+08:00">2016-05-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-02-01 16:07:52" itemprop="dateModified" datetime="2018-02-01T16:07:52+08:00">2018-02-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/14/深度学习Caffe系列教程集合/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/14/深度学习Caffe系列教程集合/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/05/14/深度学习Caffe系列教程集合/" class="leancloud_visitors" data-flag-title="深度学习Caffe系列教程集合">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>时光静好、珍藏一份守候、珍藏一份美好。</p>
+</blockquote>
+<blockquote>
+<p>静听流年的剪辑、等候你归来、许我一场花开不败的回忆。</p>
+</blockquote>
+<p>Deep Leaning的坑太深太重, 转战caffe之际, 寻找了很多资料; 本来想自己亲自披战, 玩转一把; 却发现社区内善良的兄弟姐妹们已经提供了这么多有用的资料, 一再鼓起自创的勇气, 也就淡了起来.</p>
+<p>好东西, 当然要拿出来分享啦!</p>
+<p>今儿的, 文章怪, 就这么干了, 贴出搜集到的链接资料, 与君分享!</p>
+<p><img src="http://img.blog.csdn.net/20160514220525582" alt="听说这东西能使人..."></p>
+<hr>
+<h2 id="caffe笔记系列链接"><a href="#caffe笔记系列链接" class="headerlink" title="caffe笔记系列链接"></a>caffe笔记系列链接</h2><p>推荐这位博主, 先看看样子吧, 博客内容着实让我获益良多, 真心感谢!</p>
+<p><img src="http://img.blog.csdn.net/20160514221439992" alt="caffe blog1"></p>
+<p><img src="http://img.blog.csdn.net/20160514221510274" alt="caffe blog2"></p>
+<p>下面在我的博客中贴出仁兄的链接, 流年!</p>
+<ol>
+<li><p><a href="http://www.cnblogs.com/denny402/p/4989514.html" target="_blank" rel="noopener">Google protocol buffer在windows下的编译</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5041060.html" target="_blank" rel="noopener">caffe windows 学习第一步：编译和安装（vs2012+win 64)</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5041122.html" target="_blank" rel="noopener">caffe windows学习：第一个测试程序</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/mduanfire/article/details/50939210" target="_blank" rel="noopener">64位Ubuntu 14.04 LTS + Caffe + CUDA 7.5 + Opencv 3.0 安装配置实战 </a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5070928.html" target="_blank" rel="noopener">Caffe学习系列(2)：数据层及参数</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5071126.html" target="_blank" rel="noopener">Caffe学习系列(3)：视觉层（Vision Layers)及参数</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5072507.html" target="_blank" rel="noopener">Caffe学习系列(4)：激活层（Activiation Layers)及参数</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5072746.html" target="_blank" rel="noopener">Caffe学习系列(5)：其它常用层及参数</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5073427.html" target="_blank" rel="noopener">Caffe学习系列(6)：Blob,Layer and Net以及对应配置文件的编写</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5074049.html" target="_blank" rel="noopener">Caffe学习系列(7)：solver及其配置</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5074212.html" target="_blank" rel="noopener">Caffe学习系列(8)：solver优化方法</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5075490.html" target="_blank" rel="noopener">Caffe学习系列(9)：运行caffe自带的两个简单例子</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5076285.html" target="_blank" rel="noopener">Caffe学习系列(10)：命令行解析</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5082341.html" target="_blank" rel="noopener">Caffe学习系列(11)：图像数据转换成db（leveldb/lmdb)文件</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5083300.html" target="_blank" rel="noopener">Caffe学习系列(12)：训练和测试自己的图片</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5088399.html" target="_blank" rel="noopener">Caffe学习系列(13)：数据可视化环境（python接口)配置</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5092075.html" target="_blank" rel="noopener">Caffe学习系列(14)：初识数据可视化</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5102328.html" target="_blank" rel="noopener">Caffe学习系列(15)：计算图片数据的均值</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5103425.html" target="_blank" rel="noopener">Caffe学习系列(16)：caffemodel可视化</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5105911.html" target="_blank" rel="noopener">Caffe学习系列(17)：模型各层数据和参数可视化</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5106764.html" target="_blank" rel="noopener">Caffe学习系列(18): 绘制网络模型</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5110204.html" target="_blank" rel="noopener">Caffe学习系列(19): 绘制loss和accuracy曲线</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5111018.html" target="_blank" rel="noopener">Caffe学习系列(20)：用训练好的caffemodel来进行分类</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5136155.html" target="_blank" rel="noopener">Caffe学习系列(21)：caffe图形化操作工具digits的安装与运行</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5136262.html" target="_blank" rel="noopener">Caffe学习系列(22)：caffe图形化操作工具digits运行实例</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/denny402/p/5137534.html" target="_blank" rel="noopener">Caffe学习系列(23)：如何将别人训练好的model用到自己的数据上</a></p>
+</li>
+</ol>
+<hr>
+<h2 id="测试模型脚本"><a href="#测试模型脚本" class="headerlink" title="测试模型脚本"></a>测试模型脚本</h2><p>上文中的链接, 基本上已经详细得列举了这个深度学习工具caffe的完整教程, 我这里再补充一下, 训练好已有模型如何进行测试的脚本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;1&gt; ## 测试自己数据模型的脚本: imagenet</span><br><span class="line">./build/tools/caffe.bin test -model=examples/myself/model/caffenet_imagenet/train_val.prototxt -weights=/home/dm/caffe/examples/myself/model/caffenet_imagenet/train_caffenet_iter_20000.caffemodel -gpu=0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;2&gt; ## 在MNIST调用已经训练好的模型，测试。</span><br><span class="line">./build/tools/caffe.bin test -model=examples/mnist/lenet_train_test.prototxt -weights=examples/mnist/lenet_iter_10000.caffemodel -gpu=0</span><br><span class="line"></span><br><span class="line">## 如果没有GPU则使用</span><br><span class="line">./build/tools/caffe.bin test -model=examples/mnist/lenet_train_test.prototxt -weights=examples/mnist/lenet_iter_10000.caffemodel</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;3&gt; ## 在cifar10模型下面调用已经训练好的模型，测试。</span><br><span class="line">./build/tools/caffe.bin test -model=examples/cifar10/cifar10_quick_train_test.prototxt -weights=examples/cifar10/cifar10_quick_iter_5000.caffemodel -gpu=0</span><br></pre></td></tr></table></figure>
+<p>此部分可参考链接: <a href="http://www.bubuko.com/infodetail-867723.html" target="_blank" rel="noopener">caffe调用已生成的模型，测试（Linux）</a></p>
+<hr>
+<h2 id="备份资料"><a href="#备份资料" class="headerlink" title="备份资料"></a>备份资料</h2><p><strong>另外建议, 如果决定使用caffe请在ubuntu等linux系统上进行训练和开发, windows上的坑实在是太多.</strong></p>
+<p>除了官方的资料, 我这里在云盘中搜集整理了caffe相关的pdf文档资料; 在网上飘着链接, 终究没有硬盘里的实物安全, 一向注重备份资料的我, 有谁会能想到, 我居然会把别人blog的内容保存成pdf文档呢? 我就这么干了! 谁让俺遇到宝贝, 就真么爱惜呢? 啊哈哈哈哈……</p>
+<p>取之于童鞋, 予之于童鞋, 双手奉上全部资料:</p>
+<p>链接：<a href="https://pan.baidu.com/s/1c3JznJ6" target="_blank" rel="noopener">https://pan.baidu.com/s/1c3JznJ6</a> 密码：xay4</p>
+<hr>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Caffe/" rel="tag"># Caffe</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/14/数据库题目整理及详解中文版（五）/" rel="next" title="数据库题目整理及详解中文版（五）">
+                <i class="fa fa-chevron-left"></i> 数据库题目整理及详解中文版（五）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/17/Sublime-text-3-相关配置/" rel="prev" title="Sublime text 3 相关配置">
+                Sublime text 3 相关配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://o8zyn0sct.qnssl.com/googlrPhoto.jpg" alt="AbsentM">
+            
+              <p class="site-author-name" itemprop="name">AbsentM</p>
+              <p class="site-description motion-element" itemprop="description">Avenue to Jane!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/absentm" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/absentm123" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#caffe笔记系列链接"><span class="nav-number">2.</span> <span class="nav-text">caffe笔记系列链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试模型脚本"><span class="nav-number">3.</span> <span class="nav-text">测试模型脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份资料"><span class="nav-number">4.</span> <span class="nav-text">备份资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AbsentM</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.3.0</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+      <div>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58d66725c4aec37d" async="async"></script>
+</div>
+
+      </div>
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2016/05/14/深度学习Caffe系列教程集合/';
+        this.page.identifier = '2016/05/14/深度学习Caffe系列教程集合/';
+        this.page.title = '深度学习Caffe系列教程集合';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8gIMbJWMH7XprqgkEiPWXvuu-gzGzoHsz", "W9NRpyhllWph45XiJsEHVgct");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
