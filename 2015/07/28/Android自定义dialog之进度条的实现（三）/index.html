@@ -136,7 +136,7 @@
   };
 </script>
   <meta name="description" content="进度条的实现原理其实很简单，就是设置一个动画，使图片在对话框中旋转。同时设置一定的时间限制，通常为几秒钟；当时间到期后开始执行相应的业务操作。具体的介绍见下文: 效果图：  具体实现通过设计自定义style，完成具体的样式. Button3的监听事件：12345678910111213141516171819private Dialog progressDialog;Button buttonPr">
-<meta name="keywords" content="Android,Mobile Development">
+<meta name="keywords" content="Mobile Development,Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android自定义dialog之进度条的实现（三）">
 <meta property="og:url" content="https://absentm.github.io/2015/07/28/Android自定义dialog之进度条的实现（三）/index.html">
@@ -497,6 +497,35 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>Enjoy it ? Donate me !  求鼓励，求支持！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -504,9 +533,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
             <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
         </div>
       

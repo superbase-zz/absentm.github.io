@@ -136,7 +136,7 @@
   };
 </script>
   <meta name="description" content="由于各个手机厂商对原声Android系统的阉割，造成在各种手机上做测试时，通过App保存的图片不能迅速的显示在系统相册内。本实验所使用的测试机是红米2A(Ps: 雷神着实给手机阉割的很是难受啊，简直了), 可以完美的做到将图片保存到本地，并及时更新到系统相册. 国际惯例，先上代码 12345678910111213141516171819202122232425262728293031323334">
-<meta name="keywords" content="Android,Mobile Development,图像处理">
+<meta name="keywords" content="Mobile Development,Android,图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中图片保存到本地，并及时更新到系统相册">
 <meta property="og:url" content="https://absentm.github.io/2015/11/11/Android中图片保存到本地，并及时更新到系统相册/index.html">
@@ -499,6 +499,35 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div>Enjoy it ? Donate me !  求鼓励，求支持！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="https://o8zyn0sct.qnssl.com/wechat.png" alt="AbsentM WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="https://o8zyn0sct.qnssl.com/alipay.png" alt="AbsentM Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -506,9 +535,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"># Android</a>
-          
             <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
           
             <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
           
