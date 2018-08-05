@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="前言在做移动开发过程中底部导航栏是十分常见的功能，且市面上见到的做法也有很多种，这篇博文记录一下使用Fragment实现底部导航栏的功能，算是对这几天学习Android做的Demo的一个总结吧。 好久不敲代码，确实生疏不少。现在发现使用博客记录自己平时的学习资料，节省了很多搜集资料的时间，是一个很好的学习方法。  说明1: IDE：AS，Android studio;2: 模拟器：genymoti">
-<meta name="keywords" content="Mobile Development,Android">
+<meta name="keywords" content="Android,Mobile Development">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android使用Fragment实现底部导航栏">
 <meta property="og:url" content="https://absentm.github.io/2016/03/20/Android使用Fragment实现底部导航栏/index.html">
@@ -430,6 +430,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/03/20/Android使用Fragment实现底部导航栏/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2016/03/20/Android使用Fragment实现底部导航栏/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -561,9 +571,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
           
         </div>
       
@@ -609,6 +619,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -1028,6 +1045,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'absentm',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1d68bec430d6df3363ff64454cbd6ce79333e41c',
+            
+                client_id: 'f46da3d9ad4280ba11ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 

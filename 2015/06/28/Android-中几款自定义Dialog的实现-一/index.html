@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="本文中，将会介绍几款自定义样式的Dialog的实现，包括（单个“确认”按钮的警告框1，含取消和确认按钮的警告框2，），预览样式如下：       Demo主界面的实现：由第1张图片可见：主界面的实现很简单，四个按钮Button，设置No Title, 间隔和按钮的background！ 主界面的activity_main.xml内容如下：123456789101112131415&amp;lt;Relat">
-<meta name="keywords" content="Mobile Development,Android">
+<meta name="keywords" content="Android,Mobile Development">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 中几款自定义Dialog的实现(一)">
 <meta property="og:url" content="https://absentm.github.io/2015/06/28/Android-中几款自定义Dialog的实现-一/index.html">
@@ -426,6 +426,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/06/28/Android-中几款自定义Dialog的实现-一/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2015/06/28/Android-中几款自定义Dialog的实现-一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -524,9 +534,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
           
         </div>
       
@@ -572,6 +582,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -991,6 +1008,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'absentm',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1d68bec430d6df3363ff64454cbd6ce79333e41c',
+            
+                client_id: 'f46da3d9ad4280ba11ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 

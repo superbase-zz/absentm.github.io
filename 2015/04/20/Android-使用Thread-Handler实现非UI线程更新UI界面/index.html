@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="摘要：每个Android应用程序都运行在一个dalvik虚拟机进程中，进程开始的时候会启动一个主线程(MainThread)，主线程负责处理和ui相关的事件，因此主线程通常又叫UI线程。而由于Android采用UI单线程模型，所以只能在主线程中对UI元素进行操作。如果在非UI线程直接对UI进行了操作，则会报错：CalledFromWrongThreadException:only the orig">
-<meta name="keywords" content="Mobile Development,Android">
+<meta name="keywords" content="Android,Mobile Development">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 使用Thread+Handler实现非UI线程更新UI界面">
 <meta property="og:url" content="https://absentm.github.io/2015/04/20/Android-使用Thread-Handler实现非UI线程更新UI界面/index.html">
@@ -423,6 +423,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/20/Android-使用Thread-Handler实现非UI线程更新UI界面/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2015/04/20/Android-使用Thread-Handler实现非UI线程更新UI界面/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -528,9 +538,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
           
         </div>
       
@@ -576,6 +586,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -995,6 +1012,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'absentm',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1d68bec430d6df3363ff64454cbd6ce79333e41c',
+            
+                client_id: 'f46da3d9ad4280ba11ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 

@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="多选列表框的实现原理极为简单，基本上是用系统原生的Dialog，主要看一下内容的实现。先上效果图:    具体实现主要是AlertDialog和DialogInterface.OnClickListener的使用，具体API接口实现中又完成了调用系统相机拍照， 系统相册图片的选取功能。 Button监听事件：123456789101112131415Button mulChoiseDialog =">
-<meta name="keywords" content="Mobile Development,Android">
+<meta name="keywords" content="Android,Mobile Development">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android自定义dialog之多选列表框的实现（四）">
 <meta property="og:url" content="https://absentm.github.io/2015/07/28/Android自定义dialog之多选列表框的实现（四）/index.html">
@@ -423,6 +423,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/07/28/Android自定义dialog之多选列表框的实现（四）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2015/07/28/Android自定义dialog之多选列表框的实现（四）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -517,9 +527,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
           
         </div>
       
@@ -565,6 +575,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -984,6 +1001,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'absentm',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1d68bec430d6df3363ff64454cbd6ce79333e41c',
+            
+                client_id: 'f46da3d9ad4280ba11ea'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
