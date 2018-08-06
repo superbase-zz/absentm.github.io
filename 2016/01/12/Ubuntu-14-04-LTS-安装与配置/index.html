@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="简记最近项目环境重新移植到阔别1年多的Linux系统上，重新在实验室台式机上安装windows10 + ubuntu 14.04.3双系统，搭建环境。 下面简单记录一下安装和常用的软件配置，算是个整合吧（个人喜好设置）。  安装我的双系统安装方式一直没变过，在原有的windwos10上，分出一块未使用的磁盘空间，格式化，删除卷，不分配，大约90G，用于ubuntu系统； 安装方式（最为快捷）：U盘">
-<meta name="keywords" content="Ubuntu,Linux">
+<meta name="keywords" content="Linux,Ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu 14.04 LTS 安装与配置">
 <meta property="og:url" content="https://absentm.github.io/2016/01/12/Ubuntu-14-04-LTS-安装与配置/index.html">
@@ -433,8 +433,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2016/01/12/Ubuntu-14-04-LTS-安装与配置/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/12/Ubuntu-14-04-LTS-安装与配置/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2016/01/12/Ubuntu-14-04-LTS-安装与配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -606,9 +605,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-          
             <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
           
         </div>
       
@@ -657,12 +656,9 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
 
   
@@ -1078,48 +1074,50 @@
 
   
 
-  
-    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
-  
+
 
   
-    <script type="text/javascript">
-      var disqus_config = function () {
-        this.page.url = 'https://absentm.github.io/2016/01/12/Ubuntu-14-04-LTS-安装与配置/';
-        this.page.identifier = '2016/01/12/Ubuntu-14-04-LTS-安装与配置/';
-        this.page.title = 'Ubuntu 14.04 LTS 安装与配置';
-        };
-      function loadComments () {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://absentm.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'absentm',
+            repo: 'gitment-comments',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1d68bec430d6df3363ff64454cbd6ce79333e41c',
+            
+                client_id: 'f46da3d9ad4280ba11ea'
+            }});
+        gitment.render('gitment-container');
       }
+
       
-        $(function () {
-          var offsetTop = $('#comments').offset().top - $(window).height();
-          if (offsetTop <= 0) {
-            // load directly when there's no a scrollbar
-            loadComments();
-          } else {
-            $(window).on('scroll.disqus_scroll', function () {
-              var scrollTop = document.documentElement.scrollTop;
-              if (scrollTop >= offsetTop) {
-                $(window).off('.disqus_scroll');
-                loadComments();
-              }
-            });
-          }
-        });
+      renderGitment();
       
-    </script>
-  
-
-
-
-
-
-
+      </script>
+    
 
 
 
