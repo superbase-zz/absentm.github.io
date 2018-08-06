@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="由于各个手机厂商对原声Android系统的阉割，造成在各种手机上做测试时，通过App保存的图片不能迅速的显示在系统相册内。本实验所使用的测试机是红米2A(Ps: 雷神着实给手机阉割的很是难受啊，简直了), 可以完美的做到将图片保存到本地，并及时更新到系统相册. 国际惯例，先上代码 12345678910111213141516171819202122232425262728293031323334">
-<meta name="keywords" content="Mobile Development,Android,图像处理">
+<meta name="keywords" content="Android,Mobile Development,图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中图片保存到本地，并及时更新到系统相册">
 <meta property="og:url" content="https://absentm.github.io/2015/11/11/Android中图片保存到本地，并及时更新到系统相册/index.html">
@@ -532,9 +532,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
           
             <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
           
@@ -1026,7 +1026,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: window.location.pathname,
+            id: decodeURI(window.location.pathname),
             owner: 'absentm',
             repo: 'gitment-comments',
             

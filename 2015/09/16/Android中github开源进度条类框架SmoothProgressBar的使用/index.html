@@ -102,7 +102,7 @@
   };
 </script>
   <meta name="description" content="前言SmoothProgressBar是Github上的一个开源框架， 牛人所著， 只作翻译； 开发环境：Android studio；Eclipse用户请直接进入项目首页，克隆源码。 Github项目主页：SmoothProgressBar 有没有炫酷的Fell啊   详细配置使用说明Maven 库添加作者已经将该库放在Maven Centra中了， 所以Android Studio 用户可直">
-<meta name="keywords" content="Mobile Development,Android,开源框架">
+<meta name="keywords" content="Android,Mobile Development,开源框架">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中github开源进度条类框架SmoothProgressBar的使用">
 <meta property="og:url" content="https://absentm.github.io/2015/09/16/Android中github开源进度条类框架SmoothProgressBar的使用/index.html">
@@ -546,9 +546,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
-          
             <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile-Development/" rel="tag"># Mobile Development</a>
           
             <a href="/tags/开源框架/" rel="tag"># 开源框架</a>
           
@@ -1040,7 +1040,7 @@
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: window.location.pathname,
+            id: decodeURI(window.location.pathname),
             owner: 'absentm',
             repo: 'gitment-comments',
             
