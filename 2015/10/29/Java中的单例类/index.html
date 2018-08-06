@@ -26,6 +26,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -426,7 +433,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2015/10/29/Java中的单例类/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2015/10/29/Java中的单例类/" itemprop="commentsCount"></span>
+                
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/29/Java中的单例类/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -574,9 +582,12 @@
 
   
     <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     </div>
 
   
@@ -992,8 +1003,41 @@
 
   
 
+  
+    <script id="dsq-count-scr" src="https://absentm.disqus.com/count.js" async></script>
+  
 
-
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://absentm.github.io/2015/10/29/Java中的单例类/';
+        this.page.identifier = '2015/10/29/Java中的单例类/';
+        this.page.title = 'Java中的单例类';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://absentm.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        $(function () {
+          var offsetTop = $('#comments').offset().top - $(window).height();
+          if (offsetTop <= 0) {
+            // load directly when there's no a scrollbar
+            loadComments();
+          } else {
+            $(window).on('scroll.disqus_scroll', function () {
+              var scrollTop = document.documentElement.scrollTop;
+              if (scrollTop >= offsetTop) {
+                $(window).off('.disqus_scroll');
+                loadComments();
+              }
+            });
+          }
+        });
+      
+    </script>
   
 
 
@@ -1001,41 +1045,6 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: decodeURI(window.location.pathname),
-            owner: 'absentm',
-            repo: 'gitment-comments',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '1d68bec430d6df3363ff64454cbd6ce79333e41c',
-            
-                client_id: 'f46da3d9ad4280ba11ea'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
